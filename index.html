@@ -32,7 +32,7 @@ body{background:var(--bg-deep);color:var(--text);font-family:var(--sans);font-si
 .radar-diag{position:absolute;top:50%;left:50%;width:510px;height:1px;background:rgba(61,220,132,0.03);transform-origin:left center}
 .diag-1{transform:translate(-255px,-255px) rotate(45deg)}
 .diag-2{transform:translate(-255px,255px) rotate(-45deg)}
-.radar-sweep{position:absolute;top:50%;left:50%;width:360px;height:2px;background:linear-gradient(90deg,rgba(61,220,132,0.75),rgba(61,220,132,0.24),transparent);transform-origin:left center;animation:sweep 6s linear infinite;filter:drop-shadow(0 0 8px rgba(61,220,132,0.22))}
+.radar-sweep{position:absolute;top:50%;left:50%;width:360px;height:2px;background:linear-gradient(90deg,rgba(61,220,132,0.75),rgba(61,220,132,0.24),transparent);transform-origin:left center;animation:sweep 9s linear infinite;filter:drop-shadow(0 0 8px rgba(61,220,132,0.22))}
 .radar-sweep::before{content:'';position:absolute;top:-180px;left:0;width:360px;height:360px;background:conic-gradient(from 0deg,rgba(61,220,132,0.20),rgba(61,220,132,0.08) 14deg,transparent 42deg);transform-origin:0 180px;border-radius:0 360px 0 0;clip-path:polygon(0 50%,100% 0,100% 50%)}
 @keyframes sweep{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
 .radar-dot{position:absolute;top:50%;left:50%;width:6px;height:6px;background:var(--green);border-radius:50%;box-shadow:0 0 6px var(--green-glow)}
@@ -51,9 +51,9 @@ body{background:var(--bg-deep);color:var(--text);font-family:var(--sans);font-si
 .flight-point{position:absolute;top:50%;left:50%;width:7px;height:7px;margin:-3.5px;border-radius:50%;background:var(--green);box-shadow:0 0 8px rgba(61,220,132,0.45)}
 .flight::after{content:'';position:absolute;top:50%;left:50%;width:1px;height:28px;background:linear-gradient(to top,rgba(61,220,132,0.25),transparent);transform:translate(-50%,-100%)}
 .flight-label{position:absolute;top:50%;left:50%;margin-left:12px;margin-top:-16px;padding:3px 6px;border:1px solid rgba(61,220,132,0.14);background:rgba(8,11,17,0.72);font-family:var(--mono);font-size:8px;letter-spacing:1.4px;text-transform:uppercase;color:rgba(220,227,236,0.78);white-space:nowrap}
-.flight-1{animation:orbit-one 16s linear infinite}
-.flight-2{animation:orbit-two 22s linear infinite}
-.flight-3{animation:orbit-three 19s linear infinite}
+.flight-1{animation:orbit-one 30s linear infinite}
+.flight-2{animation:orbit-two 38s linear infinite}
+.flight-3{animation:orbit-three 34s linear infinite}
 @keyframes orbit-one{0%{transform:translate(-210px,-80px)}25%{transform:translate(-40px,-200px)}50%{transform:translate(170px,-100px)}75%{transform:translate(110px,120px)}100%{transform:translate(-210px,-80px)}}
 @keyframes orbit-two{0%{transform:translate(-120px,180px)}25%{transform:translate(-200px,10px)}50%{transform:translate(-20px,-150px)}75%{transform:translate(180px,-30px)}100%{transform:translate(-120px,180px)}}
 @keyframes orbit-three{0%{transform:translate(170px,100px)}25%{transform:translate(40px,210px)}50%{transform:translate(-180px,70px)}75%{transform:translate(-40px,-120px)}100%{transform:translate(170px,100px)}}
@@ -465,12 +465,13 @@ footer{padding:40px 0 60px;text-align:center}
             <span class="skill-chip">IT Operations</span>
           </div>
         </button>
-        <button class="skill-group reveal reveal-stagger" style="--delay: 240ms;" type="button" data-skill-title="Software" data-skill-copy="I use common workplace tools comfortably and can move between documentation, spreadsheets, coordination, and day-to-day operational systems without friction." data-skill-tags="Microsoft Office|Google Workspace|Excel" aria-pressed="false">
+        <button class="skill-group reveal reveal-stagger" style="--delay: 240ms;" type="button" data-skill-title="Software" data-skill-copy="I am comfortable working in terminals, Linux and Ubuntu environments, VS Code, and virtual machines for hands-on technical work and troubleshooting." data-skill-tags="Terminals|Linux / Ubuntu|VS Code|Virtual Machines" aria-pressed="false">
           <div class="skill-group-title">Software</div>
           <div class="skill-list">
-            <span class="skill-chip">Microsoft Office</span>
-            <span class="skill-chip">Google Workspace</span>
-            <span class="skill-chip">Excel</span>
+            <span class="skill-chip">Terminals</span>
+            <span class="skill-chip">Linux / Ubuntu</span>
+            <span class="skill-chip">VS Code</span>
+            <span class="skill-chip">Virtual Machines</span>
           </div>
         </button>
       </div>
@@ -531,10 +532,10 @@ footer{padding:40px 0 60px;text-align:center}
           <div class="contact-title">Ready for the next mission.</div>
           <p class="contact-copy">If you want to talk about logistics, operations, or technical work, this section is built to make that easy. Reach out through the channel that fits best.</p>
           <div class="contact-links">
-            <a class="contact-link" href="mailto:abigail@example.com">
+            <a class="contact-link" href="mailto:abigailmenasco@gmail.com">
               <div>
                 <div class="contact-link-label">Email</div>
-                <div class="contact-link-value">abigail@example.com</div>
+                <div class="contact-link-value">abigailmenasco@gmail.com</div>
               </div>
               <div class="contact-link-arrow">Transmit</div>
             </a>
@@ -546,7 +547,7 @@ footer{padding:40px 0 60px;text-align:center}
               <div class="contact-link-arrow">Open</div>
             </a>
           </div>
-          <a class="download-button" href="#">Download Resume</a>
+          <a class="download-button" href="./AbigailH-Resume-Dark.pdf" target="_blank" rel="noreferrer">Download Resume</a>
         </div>
         <div class="contact-side reveal reveal-stagger" style="--delay: 120ms;">
           <div class="command-card">
@@ -561,8 +562,8 @@ footer{padding:40px 0 60px;text-align:center}
           </div>
           <div class="command-card">
             <div class="command-label">Status</div>
-            <div class="command-value">Signal stable / ready for contact</div>
-            <p class="command-note">Built to feel like a live operations console instead of a standard footer.</p>
+            <div class="command-value">Mission open / accepting new opportunities</div>
+            <p class="command-note">Focused on logistics, operations, and entry-level technical roles where consistency and problem solving matter.</p>
           </div>
         </div>
       </div>
@@ -716,11 +717,11 @@ if (!prefersReducedMotion) {
     triggerPulse();
     statusIndex = (statusIndex + 1) % statusMessages.length;
     radarStatusText.textContent = statusMessages[statusIndex];
-  }, 2200);
+  }, 3800);
 
   window.addEventListener('mousemove', (event) => {
-    const x = (event.clientX / window.innerWidth - 0.5) * 12;
-    const y = (event.clientY / window.innerHeight - 0.5) * 12;
+    const x = (event.clientX / window.innerWidth - 0.5) * 6;
+    const y = (event.clientY / window.innerHeight - 0.5) * 6;
     radarWrap.style.transform = `translate3d(${x}px, ${y}px, 0)`;
   });
 }
