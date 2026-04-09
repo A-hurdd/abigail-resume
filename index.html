@@ -323,14 +323,14 @@ footer{padding:40px 0 60px;text-align:center}
   <div class="radar-diag diag-2"></div>
   <div class="radar-sweep"></div>
   <div class="radar-panel panel-left">
-    <span class="panel-line">MODE / TWS</span>
-    <span class="panel-line">IFF / GREEN</span>
-    <span class="panel-line">SECTOR / KOKC</span>
+    <span class="panel-line">BOARD / DISPATCH</span>
+    <span class="panel-line">EMS / READY</span>
+    <span class="panel-line">ZONE / OKC WEST</span>
   </div>
   <div class="radar-panel panel-right">
-    <span class="panel-line">RANGE / 100NM</span>
-    <span class="panel-line">AZ / 360</span>
-    <span class="panel-line">PRI / 01</span>
+    <span class="panel-line">COVERAGE / METRO</span>
+    <span class="panel-line">UNITS / 03</span>
+    <span class="panel-line">PRIORITY / 01</span>
   </div>
   <div class="flight-layer">
     <div class="flight-track track-1"></div>
@@ -339,22 +339,22 @@ footer{padding:40px 0 60px;text-align:center}
     <div class="flight flight-1 track-friendly">
       <div class="flight-point"></div>
       <div class="flight-tag">
-        <span class="flight-call">VIPR-11</span>
-        <span class="flight-meta">ANGELS 24 / IFF FRIEND</span>
+        <span class="flight-call">MED-04</span>
+        <span class="flight-meta">SUPPLY RUN / UNIT READY</span>
       </div>
     </div>
     <div class="flight flight-2 track-priority">
       <div class="flight-point"></div>
       <div class="flight-tag">
-        <span class="flight-call">SABLE-03</span>
-        <span class="flight-meta">ANGELS 18 / PRI TRACK</span>
+        <span class="flight-call">DISPATCH-1</span>
+        <span class="flight-meta">PRIORITY CALL / ENROUTE</span>
       </div>
     </div>
     <div class="flight flight-3 track-unknown">
       <div class="flight-point"></div>
       <div class="flight-tag">
-        <span class="flight-call">GHOST-21</span>
-        <span class="flight-meta">ANGELS 31 / IFF HOLD</span>
+        <span class="flight-call">OPS-21</span>
+        <span class="flight-meta">FLEET CHECK / STANDBY</span>
       </div>
     </div>
   </div>
@@ -364,17 +364,17 @@ footer{padding:40px 0 60px;text-align:center}
   <div class="radar-dot dot-3"></div>
   <div class="radar-dot dot-4"></div>
   <div class="radar-dot dot-5"></div>
-  <div class="radar-label label-1">ID-441 / HOLD</div>
-  <div class="radar-label label-2">CORRIDOR 7</div>
-  <div class="radar-label label-3">IFF PING</div>
-  <div class="radar-label label-4">ROUTE GATE</div>
-  <div class="radar-label label-5">STACK B</div>
+  <div class="radar-label label-1">POST 441 / READY</div>
+  <div class="radar-label label-2">SUPPLY CORRIDOR</div>
+  <div class="radar-label label-3">RADIO CHECK</div>
+  <div class="radar-label label-4">ROUTE CLEAR</div>
+  <div class="radar-label label-5">STAGING B</div>
   <div class="radar-legend">
-    <div class="legend-item"><span class="legend-swatch friend"></span><span>Friendly</span></div>
-    <div class="legend-item"><span class="legend-swatch"></span><span>Unknown</span></div>
+    <div class="legend-item"><span class="legend-swatch friend"></span><span>Ready</span></div>
+    <div class="legend-item"><span class="legend-swatch"></span><span>Standby</span></div>
     <div class="legend-item"><span class="legend-swatch priority"></span><span>Priority</span></div>
   </div>
-  <div class="radar-status"><span id="radar-status-text">TWS / IFF GREEN / 03 TRACKS</span></div>
+  <div class="radar-status"><span id="radar-status-text">DISPATCH BOARD / 03 UNITS LIVE</span></div>
 </div>
 
 <div class="topo-bg" aria-hidden="true">
@@ -828,11 +828,11 @@ const flights = Array.from(document.querySelectorAll('.flight'));
 const radarDots = Array.from(document.querySelectorAll('.radar-dot'));
 const radarLabels = Array.from(document.querySelectorAll('.radar-label'));
 const statusMessages = [
-  'TWS / IFF GREEN / 03 TRACKS',
-  'SECTOR KOKC / AIR PICTURE STABLE',
-  'PRI TRACK SABLE-03 / ANGELS 18',
-  'RANGE GATE 100NM / SWEEP NOMINAL',
-  'VIPR-11 / GHOST-21 / ACTIVE STACK'
+  'DISPATCH BOARD / 03 UNITS LIVE',
+  'OKC WEST / COVERAGE STABLE',
+  'PRIORITY CALL / DISPATCH-1 ENROUTE',
+  'SUPPLY RUN / MED-04 CLEAR',
+  'FLEET STATUS / OPS-21 STANDBY'
 ];
 let statusIndex = 0;
 const radarSweepDuration = 14000;
