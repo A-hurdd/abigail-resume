@@ -6,7 +6,21 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'none'; navigate-to 'self' https://github.com mailto:">
 <meta name="referrer" content="strict-origin">
 <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=()">
-<title>Abigail H.</title>
+<title>Abigail H. — Logistics & Cybersecurity</title>
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Abigail H. — Logistics Technician & Cybersecurity Student">
+<meta property="og:description" content="Logistics tech at EMSA Western Division, cybersecurity student, and off-grid systems builder based in Oklahoma City, OK.">
+<meta property="og:url" content="https://a-hurdd.github.io/abigail-resume/">
+<meta property="og:site_name" content="Abigail H.">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Abigail H. — Logistics & Cybersecurity">
+<meta name="twitter:description" content="Logistics tech at EMSA Western Division, cybersecurity student, and off-grid systems builder based in Oklahoma City, OK.">
+
+<!-- Favicon -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' fill='%230c1018'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='monospace' font-size='14' font-weight='700' fill='%233ddc84'>AH</text></svg>">
+
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" crossorigin="anonymous">
 <style>
 :root {
@@ -449,13 +463,15 @@ footer{padding:60px 0 60px;text-align:center}
         <div class="project-card">
           <div class="project-label">Personal Project</div>
           <div class="project-name">Off-Grid Mobile Terminal</div>
-          <div class="project-tech">Termux / Android / Local Inference / SQLite</div>
-          <p class="project-desc">Converted a spare phone into a fully offline reference and problem-solving terminal using Termux. Runs local inference with a custom database of information. Built for scenarios with no internet access.</p>
+          <div class="project-tech">Samsung S22 Ultra / Termux / Llama CLI / QEMU / SSH</div>
+          <p class="project-desc">Turned a Samsung Galaxy S22 Ultra into a self-contained field terminal — runs a local LLM, searches reference files to answer questions, hosts an SSH-accessible VM, and carries a full networking toolkit. No cloud. No internet required.</p>
           <div class="project-extra">
             <div class="project-extra-inner">
-              <p>The problem: in field environments, internet isn't guaranteed. I wanted a device that could answer questions, run lookups, and serve as a technical reference without any connection.</p>
-              <p>Built on a spare Android phone using Termux as the shell environment. Integrated a lightweight local inference model with a custom SQLite database of reference material — equipment specs, protocols, and quick-reference data.</p>
-              <p>Designed to be portable, low-power, and fully self-contained. No cloud dependency, no setup required in the field.</p>
+              <p><strong style="color:var(--text-bright)">The problem.</strong> In EMS and field environments, internet access isn't reliable and cloud tools aren't always appropriate. I wanted a single device that could answer technical questions, run network diagnostics, and serve as a portable lab — without depending on any external service.</p>
+              <p><strong style="color:var(--text-bright)">The hardware.</strong> Samsung Galaxy S22 Ultra. Enough CPU and RAM to run local inference without throttling. The S22 Ultra's processing headroom made it viable as an actual compute platform, not just a terminal emulator.</p>
+              <p><strong style="color:var(--text-bright)">The VM layer.</strong> A virtual machine runs persistently on the device. Any other device on the same network can SSH in directly — laptop, tablet, another phone. The phone effectively acts as a portable server you carry in your pocket.</p>
+              <p><strong style="color:var(--text-bright)">Local LLM + file search.</strong> Llama runs locally via CLI through Termux — no API calls, no internet. When you ask it a question, it searches through a library of downloaded reference files first and pulls the most relevant content as context before generating a response. Effectively a local RAG system: your own knowledge base, searchable by natural language, running entirely on-device.</p>
+              <p><strong style="color:var(--text-bright)">Networking toolkit.</strong> Termux hosts every networking tool that would compile and run on Android — scanners, packet tools, enumeration utilities. Useful for both legitimate network diagnostics and cybersecurity lab work in the field.</p>
             </div>
           </div>
           <div class="project-toggle">EXPAND</div>
@@ -508,7 +524,7 @@ footer{padding:60px 0 60px;text-align:center}
           <div class="skill-list">
             <span class="skill-chip" data-desc="Passed CompTIA IT Fundamentals (ITF+) — covering hardware, software, networking, databases, security concepts, and IT infrastructure basics.">CompTIA ITF+</span>
             <span class="skill-chip" data-desc="Hands-on study of network protocols, topology, subnetting, and basic device configuration through coursework and personal lab work.">Networking</span>
-            <span class="skill-chip" data-desc="Daily Linux user. Built a fully offline Android terminal using Termux — runs local inference, custom scripts, and a personal reference database for field use.">Linux / Termux</span>
+            <span class="skill-chip" data-desc="Daily Linux user. Built a fully offline field terminal on a Samsung S22 Ultra using Termux — runs Llama locally, searches downloaded reference files for context, hosts an SSH-accessible VM, and carries a full networking toolkit. No internet required.">Linux / Termux</span>
             <span class="skill-chip" data-desc="Completed CodeFellows Ops 102, 201, and 301 certificate series covering threat analysis, offensive/defensive tools, incident response, and security operations.">Cybersecurity</span>
             <span class="skill-chip" data-desc="Supporting systems reliability, technical documentation, and cross-functional problem solving in high-pressure operational environments.">IT Operations</span>
           </div>
