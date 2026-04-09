@@ -60,6 +60,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:14px 28px;background
 .nav-links{display:flex;gap:28px;list-style:none}
 .nav-links a{font-family:var(--mono);font-size:11px;color:var(--text-dim);text-decoration:none;letter-spacing:1.5px;text-transform:uppercase;transition:color 0.3s}
 .nav-links a:hover{color:var(--green)}
+.nav-links a.active{color:var(--green)}
 
 /* STATUS BAR */
 .status-bar{position:fixed;bottom:0;left:0;right:0;z-index:100;padding:8px 28px;background:rgba(8,11,17,0.92);backdrop-filter:blur(12px);border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:10px;color:var(--text-dim);letter-spacing:1.5px;text-transform:uppercase}
@@ -629,6 +630,22 @@ document.querySelectorAll('.project-card').forEach(card => {
     if (toggle) toggle.textContent = card.classList.contains('expanded') ? 'COLLAPSE' : 'EXPAND';
   });
 });
+
+// Nav highlight on scroll
+(function () {
+  var sections = document.querySelectorAll('section[id]');
+  var navLinks = document.querySelectorAll('.nav-links a');
+  var observer = new IntersectionObserver(function (entries) {
+    entries.forEach(function (entry) {
+      if (entry.isIntersecting) {
+        navLinks.forEach(function (a) { a.classList.remove('active'); });
+        var active = document.querySelector('.nav-links a[href="#' + entry.target.id + '"]');
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-30% 0px -60% 0px', threshold: 0 });
+  sections.forEach(function (s) { observer.observe(s); });
+})();
 </script>
 </body>
 </html>
