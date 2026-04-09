@@ -118,7 +118,12 @@ h2{font-family:var(--sans);font-size:32px;font-weight:600;color:var(--text-brigh
 .skill-group-title{font-family:var(--mono);font-size:10px;color:var(--green);letter-spacing:2.5px;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:8px}
 .skill-group-title::before{content:'';width:4px;height:4px;background:var(--green);border-radius:50%;box-shadow:0 0 4px var(--green-glow)}
 .skill-list{display:flex;flex-wrap:wrap;gap:6px}
-.skill-chip{font-family:var(--mono);font-size:11px;color:var(--text-mid);background:var(--green-faint);padding:5px 10px;border-radius:2px;border:1px solid var(--border)}
+.skill-chip{font-family:var(--mono);font-size:11px;color:var(--text-mid);background:var(--green-faint);padding:5px 10px;border-radius:2px;border:1px solid var(--border);cursor:pointer;transition:all 0.2s}
+.skill-chip:hover{color:var(--green);border-color:rgba(61,220,132,0.3);background:rgba(61,220,132,0.06)}
+.skill-chip.active{color:var(--green);border-color:rgba(61,220,132,0.5);background:rgba(61,220,132,0.10)}
+.skill-desc{font-family:var(--mono);font-size:11px;color:var(--text-mid);line-height:1.7;margin-top:14px;padding:12px;background:rgba(61,220,132,0.04);border:1px solid rgba(61,220,132,0.10);border-radius:2px;display:none}
+.skill-desc.visible{display:block}
+.skill-desc-label{color:var(--green);margin-bottom:4px;font-size:10px;letter-spacing:1px}
 
 /* CERTS */
 .certs-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
@@ -134,6 +139,28 @@ h2{font-family:var(--sans);font-size:32px;font-weight:600;color:var(--text-brigh
 .edu-title{font-family:var(--sans);font-size:16px;font-weight:500;color:var(--text-bright)}
 .edu-date{font-family:var(--mono);font-size:11px;color:var(--text-dim);letter-spacing:1px}
 .edu-school{font-family:var(--mono);font-size:12px;color:var(--green);margin-top:2px;opacity:0.7}
+
+/* PROJECT EXPAND */
+.project-card{cursor:pointer}
+.project-extra{max-height:0;overflow:hidden;transition:max-height 0.4s ease,opacity 0.3s ease;opacity:0}
+.project-card.expanded .project-extra{max-height:400px;opacity:1}
+.project-extra-inner{padding-top:16px;border-top:1px solid var(--border);margin-top:16px}
+.project-extra-inner p{font-size:13px;font-weight:300;color:var(--text-mid);line-height:1.7;margin-bottom:8px}
+.project-extra-inner p:last-child{margin-bottom:0}
+.project-toggle{font-family:var(--mono);font-size:10px;color:var(--text-dim);letter-spacing:1px;margin-top:12px;display:flex;align-items:center;gap:6px;transition:color 0.2s}
+.project-card:hover .project-toggle{color:var(--green)}
+.project-toggle::after{content:'▾';transition:transform 0.3s}
+.project-card.expanded .project-toggle::after{transform:rotate(180deg)}
+
+/* CONTACT */
+.contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-bottom:32px}
+.contact-item{display:flex;align-items:center;gap:14px;padding:16px 18px;background:var(--bg-card);border:1px solid var(--border);border-radius:4px;transition:border-color 0.3s;text-decoration:none}
+.contact-item:hover{border-color:var(--green-mid)}
+.contact-icon{font-family:var(--mono);font-size:11px;color:var(--green);letter-spacing:1px;flex-shrink:0;width:36px}
+.contact-text{font-family:var(--mono);font-size:12px;color:var(--text-mid);line-height:1.4}
+.contact-label{font-size:9px;color:var(--text-dim);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:2px}
+.contact-avail{display:inline-flex;align-items:center;gap:8px;margin-top:20px;font-family:var(--mono);font-size:11px;color:var(--text-dim);letter-spacing:1.5px}
+.contact-avail-dot{width:7px;height:7px;background:var(--green);border-radius:50%;box-shadow:0 0 6px var(--green-glow);animation:pulse-dot 2s ease infinite;flex-shrink:0}
 
 footer{padding:60px 0 60px;text-align:center}
 .footer-text{font-family:var(--mono);font-size:11px;color:var(--text-dim);letter-spacing:2px}
@@ -307,6 +334,7 @@ footer{padding:60px 0 60px;text-align:center}
       <li><a href="#experience">Work</a></li>
       <li><a href="#projects">Projects</a></li>
       <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
     </ul>
   </nav>
 
@@ -387,13 +415,27 @@ footer{padding:60px 0 60px;text-align:center}
           <div class="project-label">Personal Project</div>
           <div class="project-name">Off-Grid Mobile Terminal</div>
           <div class="project-tech">Termux / Android / Local Inference / SQLite</div>
-          <p class="project-desc">Converted a spare phone into a fully offline reference and problem-solving terminal using Termux. Runs local inference with a custom database of information. Built for scenarios with no internet access, designed to be a self-contained tool that works anywhere.</p>
+          <p class="project-desc">Converted a spare phone into a fully offline reference and problem-solving terminal using Termux. Runs local inference with a custom database of information. Built for scenarios with no internet access.</p>
+          <div class="project-extra">
+            <div class="project-extra-inner">
+              <p>The problem: in field environments, internet isn't guaranteed. I wanted a device that could answer questions, run lookups, and serve as a technical reference without any connection.</p>
+              <p>Built on a spare Android phone using Termux as the shell environment. Integrated a lightweight local inference model with a custom SQLite database of reference material — equipment specs, protocols, and quick-reference data.</p>
+              <p>Designed to be portable, low-power, and fully self-contained. No cloud dependency, no setup required in the field.</p>
+            </div>
+          </div>
+          <div class="project-toggle">EXPAND</div>
         </div>
         <div class="project-card">
           <div class="project-label">Coming Soon</div>
           <div class="project-name">Next Build</div>
           <div class="project-tech">TBD</div>
           <p class="project-desc">Placeholder for the next project. As I build more things, they'll show up here.</p>
+          <div class="project-extra">
+            <div class="project-extra-inner">
+              <p>Still in planning. Ideas in the queue involve network monitoring tools, inventory automation, and more off-grid utility builds.</p>
+            </div>
+          </div>
+          <div class="project-toggle">EXPAND</div>
         </div>
       </div>
     </section>
@@ -408,39 +450,43 @@ footer{padding:60px 0 60px;text-align:center}
         <div class="skill-group">
           <div class="skill-group-title">Logistics</div>
           <div class="skill-list">
-            <span class="skill-chip">Inventory Management</span>
-            <span class="skill-chip">Forklift Operation</span>
-            <span class="skill-chip">Supply Distribution</span>
-            <span class="skill-chip">Tracking Systems</span>
-            <span class="skill-chip">Warehouse Ops</span>
+            <span class="skill-chip" data-desc="Tracking and managing medical supply levels across the ambulance fleet and central warehouse — maintaining par levels, logging consumption, and coordinating reorders.">Inventory Management</span>
+            <span class="skill-chip" data-desc="Certified forklift operator. Handle bulk receiving, staging, and movement of medical supply pallets in a warehouse environment.">Forklift Operation</span>
+            <span class="skill-chip" data-desc="Field delivery of critical supplies to active EMS crews mid-call — epinephrine, BVMs, oxygen, and other time-sensitive consumables.">Supply Distribution</span>
+            <span class="skill-chip" data-desc="Using supply chain software and manual logs to track equipment deployment, returns, maintenance status, and expiration dates.">Tracking Systems</span>
+            <span class="skill-chip" data-desc="Receiving, organizing, and managing a medical supply warehouse across multiple shifts — from intake to last-mile field delivery.">Warehouse Ops</span>
           </div>
+          <div class="skill-desc"></div>
         </div>
         <div class="skill-group">
           <div class="skill-group-title">Equipment</div>
           <div class="skill-list">
-            <span class="skill-chip">Lifepak 35</span>
-            <span class="skill-chip">O2 Systems</span>
-            <span class="skill-chip">Fleet Maintenance</span>
-            <span class="skill-chip">Hardware Repair</span>
+            <span class="skill-chip" data-desc="Field troubleshooting and basic repair of Stryker Lifepak 35 cardiac monitors used by ALS/BLS crews. Identify faults and coordinate unit swaps to minimize downtime.">Lifepak 35</span>
+            <span class="skill-chip" data-desc="Inspection, testing, and repair of portable oxygen delivery systems — regulators, masks, non-rebreathers, BVMs, and portable tanks.">O2 Systems</span>
+            <span class="skill-chip" data-desc="Coordinating ambulance unit swaps, cycling equipment in and out of service, and tracking readiness status across the Western Division fleet.">Fleet Maintenance</span>
+            <span class="skill-chip" data-desc="Diagnosing and repairing medical and electronic equipment in the field and at the warehouse to keep units stocked and operational.">Hardware Repair</span>
           </div>
+          <div class="skill-desc"></div>
         </div>
         <div class="skill-group">
           <div class="skill-group-title">Cyber / IT</div>
           <div class="skill-list">
-            <span class="skill-chip">CompTIA ITF+</span>
-            <span class="skill-chip">Networking</span>
-            <span class="skill-chip">Linux / Termux</span>
-            <span class="skill-chip">Cybersecurity</span>
-            <span class="skill-chip">IT Operations</span>
+            <span class="skill-chip" data-desc="Passed CompTIA IT Fundamentals (ITF+) — covering hardware, software, networking, databases, security concepts, and IT infrastructure basics.">CompTIA ITF+</span>
+            <span class="skill-chip" data-desc="Hands-on study of network protocols, topology, subnetting, and basic device configuration through coursework and personal lab work.">Networking</span>
+            <span class="skill-chip" data-desc="Daily Linux user. Built a fully offline Android terminal using Termux — runs local inference, custom scripts, and a personal reference database for field use.">Linux / Termux</span>
+            <span class="skill-chip" data-desc="Completed CodeFellows Ops 102, 201, and 301 certificate series covering threat analysis, offensive/defensive tools, incident response, and security operations.">Cybersecurity</span>
+            <span class="skill-chip" data-desc="Supporting systems reliability, technical documentation, and cross-functional problem solving in high-pressure operational environments.">IT Operations</span>
           </div>
+          <div class="skill-desc"></div>
         </div>
         <div class="skill-group">
           <div class="skill-group-title">Software</div>
           <div class="skill-list">
-            <span class="skill-chip">Microsoft Office</span>
-            <span class="skill-chip">Google Workspace</span>
-            <span class="skill-chip">Excel</span>
+            <span class="skill-chip" data-desc="Proficient in Word, Excel, and Outlook for documentation, reporting, inventory tracking, and day-to-day professional communication.">Microsoft Office</span>
+            <span class="skill-chip" data-desc="Daily use of Docs, Sheets, and Drive for collaborative documentation, scheduling, and shared tracking across teams.">Google Workspace</span>
+            <span class="skill-chip" data-desc="Spreadsheet work for inventory tracking, data organization, and supply chain reporting — formulas, filters, and structured data entry.">Excel</span>
           </div>
+          <div class="skill-desc"></div>
         </div>
       </div>
     </section>
@@ -478,6 +524,41 @@ footer{padding:60px 0 60px;text-align:center}
   </div>
 
   <div class="container">
+    <section id="contact">
+      <div class="section-marker">06 / Contact</div>
+      <h2>Get In Touch</h2>
+      <div class="divider"></div>
+      <div class="contact-grid">
+        <a class="contact-item" href="https://github.com/A-hurdd" target="_blank" rel="noopener">
+          <div class="contact-icon">GH</div>
+          <div class="contact-text">
+            <div class="contact-label">GitHub</div>
+            A-hurdd
+          </div>
+        </a>
+        <div class="contact-item">
+          <div class="contact-icon">LOC</div>
+          <div class="contact-text">
+            <div class="contact-label">Location</div>
+            Oklahoma City, OK
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">OPN</div>
+          <div class="contact-text">
+            <div class="contact-label">Status</div>
+            Open to opportunities
+          </div>
+        </div>
+      </div>
+      <div class="contact-avail">
+        <div class="contact-avail-dot"></div>
+        Available for supply chain, logistics, and IT roles
+      </div>
+    </section>
+  </div>
+
+  <div class="container">
     <footer>
       <div class="footer-text">Abigail H. / Oklahoma City, OK</div>
     </footer>
@@ -490,5 +571,33 @@ footer{padding:60px 0 60px;text-align:center}
   <span>AH-001</span>
 </div>
 
+<script>
+// Skill chip descriptions
+document.querySelectorAll('.skill-group').forEach(group => {
+  const chips = group.querySelectorAll('.skill-chip');
+  const desc = group.querySelector('.skill-desc');
+  chips.forEach(chip => {
+    chip.addEventListener('click', () => {
+      const isActive = chip.classList.contains('active');
+      chips.forEach(c => c.classList.remove('active'));
+      desc.classList.remove('visible');
+      if (!isActive) {
+        chip.classList.add('active');
+        desc.innerHTML = '<div class="skill-desc-label">' + chip.textContent + '</div>' + chip.dataset.desc;
+        desc.classList.add('visible');
+      }
+    });
+  });
+});
+
+// Project card expand
+document.querySelectorAll('.project-card').forEach(card => {
+  card.addEventListener('click', () => {
+    card.classList.toggle('expanded');
+    const toggle = card.querySelector('.project-toggle');
+    if (toggle) toggle.textContent = card.classList.contains('expanded') ? 'COLLAPSE' : 'EXPAND';
+  });
+});
+</script>
 </body>
 </html>
