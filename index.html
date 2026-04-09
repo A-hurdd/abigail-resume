@@ -162,6 +162,11 @@ h2{font-family:var(--sans);font-size:32px;font-weight:600;color:var(--text-brigh
 .contact-avail{display:inline-flex;align-items:center;gap:8px;margin-top:20px;font-family:var(--mono);font-size:11px;color:var(--text-dim);letter-spacing:1.5px}
 .contact-avail-dot{width:7px;height:7px;background:var(--green);border-radius:50%;box-shadow:0 0 6px var(--green-glow);animation:pulse-dot 2s ease infinite;flex-shrink:0}
 
+/* DOWNLOAD BUTTON */
+.dl-btn{display:inline-flex;align-items:center;gap:10px;font-family:var(--mono);font-size:11px;color:var(--green);letter-spacing:2px;text-transform:uppercase;text-decoration:none;padding:10px 20px;border:1px solid rgba(61,220,132,0.35);border-radius:2px;background:rgba(61,220,132,0.05);transition:all 0.25s;margin-top:8px}
+.dl-btn:hover{background:rgba(61,220,132,0.10);border-color:rgba(61,220,132,0.6);box-shadow:0 0 16px rgba(61,220,132,0.10)}
+.dl-btn-icon{width:14px;height:14px;border:1.5px solid var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px;line-height:1}
+
 footer{padding:60px 0 60px;text-align:center}
 .footer-text{font-family:var(--mono);font-size:11px;color:var(--text-dim);letter-spacing:2px}
 
@@ -190,106 +195,138 @@ footer{padding:60px 0 60px;text-align:center}
     </div>
     <div class="dispatch-map-area">
       <svg class="dispatch-roads" viewBox="0 0 420 370" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-        <!-- map background fill -->
+        <defs>
+          <radialGradient id="vig" cx="50%" cy="50%" r="70%">
+            <stop offset="60%" stop-color="transparent"/>
+            <stop offset="100%" stop-color="rgba(10,14,22,0.60)"/>
+          </radialGradient>
+        </defs>
+        <!-- map background -->
         <rect x="0" y="0" width="420" height="370" fill="#1c2436"/>
-        <!-- OKC mile-grid: E-W arterials -->
-        <g stroke="rgba(255,255,255,0.08)" stroke-width="1">
-          <line x1="0" y1="42"  x2="420" y2="42"/>   <!-- NW 63rd -->
-          <line x1="0" y1="88"  x2="420" y2="88"/>   <!-- NW 50th -->
-          <line x1="0" y1="133" x2="420" y2="133"/>  <!-- NW 36th -->
-          <line x1="0" y1="168" x2="420" y2="168"/>  <!-- NW 23rd -->
-          <line x1="0" y1="240" x2="420" y2="240"/>  <!-- SW 15th -->
-          <line x1="0" y1="278" x2="420" y2="278"/>  <!-- SW 29th -->
-          <line x1="0" y1="330" x2="420" y2="330"/>  <!-- SW 44th -->
+
+        <!-- Lake Hefner (NW OKC reservoir — between Penn & Lake Hefner Pkwy, N of NW 63rd) -->
+        <ellipse cx="278" cy="56" rx="30" ry="22" fill="rgba(18,38,72,0.85)" stroke="rgba(60,110,200,0.22)" stroke-width="1"/>
+
+        <!-- Will Rogers World Airport (SW area, MacArthur–Portland × SW 44th–59th) -->
+        <rect x="148" y="328" width="60" height="36" fill="rgba(14,18,28,0.60)" stroke="rgba(255,255,255,0.07)" stroke-width="0.8" stroke-dasharray="4,4"/>
+        <!-- runway -->
+        <line x1="160" y1="346" x2="196" y2="346" stroke="rgba(255,255,255,0.10)" stroke-width="1.5"/>
+        <line x1="178" y1="332" x2="178" y2="360" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>
+
+        <!-- OKC mile-grid E-W arterials -->
+        <g stroke="rgba(255,255,255,0.07)" stroke-width="0.9">
+          <line x1="0"   y1="18"  x2="420" y2="18"/>  <!-- NW 122nd (N boundary) -->
+          <line x1="0"   y1="62"  x2="420" y2="62"/>  <!-- NW 63rd -->
+          <line x1="0"   y1="100" x2="420" y2="100"/> <!-- NW 50th -->
+          <line x1="0"   y1="138" x2="420" y2="138"/> <!-- NW 36th -->
+          <line x1="0"   y1="170" x2="420" y2="170"/> <!-- NW 23rd -->
+          <line x1="0"   y1="238" x2="420" y2="238"/> <!-- SW 15th -->
+          <line x1="0"   y1="272" x2="420" y2="272"/> <!-- SW 29th -->
+          <line x1="0"   y1="328" x2="420" y2="328"/> <!-- SW 44th -->
         </g>
-        <!-- OKC mile-grid: N-S arterials -->
-        <g stroke="rgba(255,255,255,0.08)" stroke-width="1">
-          <line x1="42"  y1="0" x2="42"  y2="370"/>  <!-- Council Rd -->
-          <line x1="95"  y1="0" x2="95"  y2="370"/>  <!-- Rockwell Ave -->
-          <line x1="148" y1="0" x2="148" y2="370"/>  <!-- MacArthur Blvd -->
-          <line x1="198" y1="0" x2="198" y2="370"/>  <!-- Portland Ave -->
-          <line x1="244" y1="0" x2="244" y2="370"/>  <!-- Penn Ave -->
-          <line x1="286" y1="0" x2="286" y2="370"/>  <!-- May Ave -->
-          <line x1="326" y1="0" x2="326" y2="370"/>  <!-- Western Ave -->
-          <line x1="370" y1="0" x2="370" y2="370"/>  <!-- Meridian Ave -->
+        <!-- OKC mile-grid N-S arterials -->
+        <g stroke="rgba(255,255,255,0.07)" stroke-width="0.9">
+          <line x1="38"  y1="0" x2="38"  y2="370"/> <!-- Council Rd -->
+          <line x1="90"  y1="0" x2="90"  y2="370"/> <!-- Rockwell Ave -->
+          <line x1="148" y1="0" x2="148" y2="370"/> <!-- MacArthur Blvd -->
+          <line x1="198" y1="0" x2="198" y2="370"/> <!-- Portland Ave -->
+          <line x1="244" y1="0" x2="244" y2="370"/> <!-- Penn Ave / Lake Hefner Pkwy S -->
+          <line x1="286" y1="0" x2="286" y2="370"/> <!-- May Ave -->
+          <line x1="326" y1="0" x2="326" y2="370"/> <!-- Western Ave -->
+          <line x1="372" y1="0" x2="372" y2="370"/> <!-- Meridian Ave -->
         </g>
-        <!-- I-40 (dominant E-W highway — amber like dark-mode maps) -->
-        <line x1="0" y1="205" x2="420" y2="203" stroke="#8a7040" stroke-width="3.5"/>
-        <line x1="0" y1="205" x2="420" y2="203" stroke="rgba(200,160,80,0.55)" stroke-width="1.5"/>
-        <!-- I-44 diagonal -->
-        <path d="M28,0 Q110,82 186,160 T298,338" stroke="#7a6438" stroke-width="3" fill="none"/>
-        <path d="M28,0 Q110,82 186,160 T298,338" stroke="rgba(200,160,80,0.40)" stroke-width="1.2" fill="none"/>
-        <!-- I-35 / Broadway Ext -->
-        <path d="M390,0 Q388,120 386,204 T382,370" stroke="#7a6438" stroke-width="3" fill="none"/>
-        <path d="M390,0 Q388,120 386,204 T382,370" stroke="rgba(200,160,80,0.40)" stroke-width="1.2" fill="none"/>
-        <!-- I-240 south loop -->
-        <path d="M80,358 Q200,338 340,352" stroke="#7a6438" stroke-width="2.8" fill="none"/>
-        <path d="M80,358 Q200,338 340,352" stroke="rgba(200,160,80,0.40)" stroke-width="1.2" fill="none"/>
-        <!-- Lake Hefner Pkwy spur -->
-        <path d="M244,0 Q248,55 260,88" stroke="rgba(255,255,255,0.06)" stroke-width="1" fill="none" stroke-dasharray="4,4"/>
-        <!-- subtle vignette overlay -->
-        <radialGradient id="vig" cx="50%" cy="50%" r="70%">
-          <stop offset="60%" stop-color="transparent"/>
-          <stop offset="100%" stop-color="rgba(10,14,22,0.55)"/>
-        </radialGradient>
+
+        <!-- Lake Hefner Pkwy (curves NW off Penn, goes around lake) -->
+        <path d="M244,62 Q256,30 278,18 T320,10" stroke="rgba(255,255,255,0.07)" stroke-width="1" fill="none"/>
+
+        <!-- I-40 east-west (amber highway) — runs near Reno/SW 1st, not SW 15th -->
+        <line x1="0" y1="204" x2="420" y2="202" stroke="#7a6030" stroke-width="4"/>
+        <line x1="0" y1="204" x2="420" y2="202" stroke="rgba(210,168,84,0.50)" stroke-width="1.5"/>
+
+        <!-- I-44 / NW Expressway — enters OKC from NW (Council/NW122nd area),
+             runs SE through NW OKC, meets I-40 near MacArthur interchange -->
+        <path d="M38,18 Q80,52 120,90 T178,164 L148,204" stroke="#7a6030" stroke-width="3.5" fill="none"/>
+        <path d="M38,18 Q80,52 120,90 T178,164 L148,204" stroke="rgba(210,168,84,0.45)" stroke-width="1.3" fill="none"/>
+
+        <!-- I-40 continues west of MacArthur toward Yukon -->
+        <!-- already covered by the full I-40 line above -->
+
+        <!-- I-44 south of I-40 (Broadway Extension heads NE toward downtown) -->
+        <path d="M148,204 Q200,210 250,200 T372,190" stroke="#7a6030" stroke-width="3" fill="none"/>
+        <path d="M148,204 Q200,210 250,200 T372,190" stroke="rgba(210,168,84,0.35)" stroke-width="1.2" fill="none"/>
+
+        <!-- I-240 south loop (curves from MacArthur area eastward) -->
+        <path d="M90,358 Q148,344 244,348 T372,356" stroke="#7a6030" stroke-width="3" fill="none"/>
+        <path d="M90,358 Q148,344 244,348 T372,356" stroke="rgba(210,168,84,0.38)" stroke-width="1.2" fill="none"/>
+
+        <!-- SH-74 / Council Rd extension (north, curved slightly) -->
+        <path d="M38,0 L38,18" stroke="rgba(255,255,255,0.07)" stroke-width="0.9" fill="none"/>
+
+        <!-- vignette -->
         <rect x="0" y="0" width="420" height="370" fill="url(#vig)"/>
       </svg>
 
-      <!-- E-W street labels (left edge) -->
-      <div class="road-label" style="left:1%;top:9%">63</div>
-      <div class="road-label" style="left:1%;top:21%">50</div>
-      <div class="road-label" style="left:1%;top:33%">36</div>
-      <div class="road-label" style="left:1%;top:42%">23</div>
-      <div class="road-label" style="left:1%;top:53%;color:rgba(200,160,80,0.65);font-size:9px">I-40</div>
+      <!-- E-W labels -->
+      <div class="road-label" style="left:1%;top:3%">122</div>
+      <div class="road-label" style="left:1%;top:14%">63</div>
+      <div class="road-label" style="left:1%;top:24%">50</div>
+      <div class="road-label" style="left:1%;top:35%">36</div>
+      <div class="road-label" style="left:1%;top:44%">23</div>
+      <div class="road-label" style="left:1%;top:53%;color:rgba(210,168,84,0.70);font-size:9px">I-40</div>
       <div class="road-label" style="left:1%;top:63%">15</div>
-      <div class="road-label" style="left:1%;top:83%">44</div>
-      <!-- N-S street labels (top edge) -->
-      <div class="road-label" style="left:7%;top:1%">CNCL</div>
-      <div class="road-label" style="left:19%;top:1%">MCR</div>
+      <div class="road-label" style="left:1%;top:72%">29</div>
+      <div class="road-label" style="left:1%;top:87%">44</div>
+      <!-- N-S labels -->
+      <div class="road-label" style="left:6%;top:1%">CNCL</div>
+      <div class="road-label" style="left:18%;top:1%">MCR</div>
       <div class="road-label" style="left:31%;top:1%">PTLD</div>
-      <div class="road-label" style="left:53%;top:1%">MAY</div>
+      <div class="road-label" style="left:54%;top:1%">MAY</div>
       <div class="road-label" style="left:74%;top:1%">WES</div>
-      <div class="road-label" style="left:86%;top:1%;color:rgba(200,160,80,0.55)">I-35</div>
+      <div class="road-label" style="left:86%;top:1%">MER</div>
+      <!-- Landmarks -->
+      <div class="road-label" style="left:59%;top:9%;color:rgba(60,110,200,0.45);font-size:7px">HEFNER</div>
+      <div class="road-label" style="left:33%;top:92%;color:rgba(255,255,255,0.18);font-size:7px">WRWA</div>
+      <div class="road-label" style="left:2%;top:48%;color:rgba(210,168,84,0.55);font-size:8px">I-44</div>
 
-      <!-- Units — placed at real grid intersections across W-DIV -->
+      <!-- Units at real W-DIV grid intersections -->
       <!-- Council/NW36 -->
-      <div class="unit" style="left:10%;top:34%">
+      <div class="unit" style="left:9%;top:36%">
         <div class="unit-ping ap"></div>
         <div class="unit-badge avail">BLS-346</div>
       </div>
-      <!-- MacArthur/NW50 -->
-      <div class="unit" style="left:34%;top:21%">
+      <!-- MacArthur/NW50 — on I-44 NW Expressway corridor -->
+      <div class="unit" style="left:30%;top:22%">
         <div class="unit-ping sp"></div>
         <div class="unit-badge scene">MED-378*</div>
       </div>
       <!-- MacArthur/NW23 -->
-      <div class="unit" style="left:34%;top:43%">
+      <div class="unit" style="left:35%;top:44%">
         <div class="unit-ping sp"></div>
         <div class="unit-badge scene">BLS-337*</div>
       </div>
-      <!-- Portland/NW63 -->
-      <div class="unit" style="left:46%;top:10%">
+      <!-- Penn/NW63 (near Lake Hefner SE corner) -->
+      <div class="unit" style="left:57%;top:15%">
         <div class="unit-badge avail">SUP-377</div>
       </div>
-      <!-- Portland/I-40 -->
-      <div class="unit" style="left:46%;top:53%">
+      <!-- Portland/I-40 interchange -->
+      <div class="unit" style="left:47%;top:53%">
         <div class="unit-badge avail">MED-392</div>
       </div>
       <!-- May/NW36 -->
-      <div class="unit" style="left:67%;top:33%">
+      <div class="unit" style="left:68%;top:36%">
         <div class="unit-ping bp"></div>
         <div class="unit-badge busy">BLS-382*</div>
       </div>
       <!-- Rockwell/SW15 -->
-      <div class="unit" style="left:22%;top:63%">
+      <div class="unit" style="left:21%;top:63%">
         <div class="unit-badge avail">BLS-362</div>
       </div>
       <!-- Portland/SW29 -->
-      <div class="unit" style="left:46%;top:73%">
+      <div class="unit" style="left:47%;top:72%">
         <div class="unit-badge avail">BLS-387</div>
       </div>
-      <!-- May/SW44 -->
-      <div class="unit" style="left:67%;top:83%">
+      <!-- May/SW44 (near airport NE corner) -->
+      <div class="unit" style="left:68%;top:86%">
         <div class="unit-badge avail">BLS-389</div>
       </div>
     </div>
@@ -344,6 +381,10 @@ footer{padding:60px 0 60px;text-align:center}
       <div class="hero-ident">IDENT: AH-001 &middot; STATUS: ACTIVE &middot; CLR<span class="blink">_</span></div>
       <h1>Abigail H.</h1>
       <p class="hero-sub">Logistics technician, cybersecurity student, and off-grid tech builder. I keep things running whether it's ambulances, networks, or improvised systems.</p>
+      <a class="dl-btn" href="AbigailH-Resume-Dark.pdf" download>
+        <div class="dl-btn-icon">↓</div>
+        Download Resume
+      </a>
     </div>
   </div>
 
