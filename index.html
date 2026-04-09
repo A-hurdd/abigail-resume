@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'none'">
 <meta name="referrer" content="strict-origin">
 <title>Abigail H.</title>
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" crossorigin="anonymous">
@@ -141,6 +141,26 @@ h2{font-family:var(--sans);font-size:32px;font-weight:600;color:var(--text-brigh
 footer{padding:60px 0 60px;text-align:center}
 .footer-text{font-family:var(--mono);font-size:11px;color:var(--text-dim);letter-spacing:2px}
 
+/* TERMINAL */
+.terminal-wrap{background:#050810;border:1px solid var(--border);border-radius:4px;overflow:hidden;font-family:var(--mono)}
+.terminal-titlebar{background:#0a0f1a;border-bottom:1px solid var(--border);padding:10px 16px;display:flex;align-items:center;gap:8px}
+.terminal-dot{width:10px;height:10px;border-radius:50%}
+.td-red{background:#ff5f57}.td-yellow{background:#febc2e}.td-green{background:#28c840}
+.terminal-title{font-size:11px;color:var(--text-dim);letter-spacing:1.5px;margin-left:8px}
+.terminal-output{height:320px;overflow-y:auto;padding:16px;font-size:13px;line-height:1.8;color:var(--text-mid)}
+.terminal-output::-webkit-scrollbar{width:4px}
+.terminal-output::-webkit-scrollbar-track{background:transparent}
+.terminal-output::-webkit-scrollbar-thumb{background:var(--green-mid);border-radius:2px}
+.term-line{margin-bottom:1px}
+.term-prompt{color:var(--green)}
+.term-cmd{color:var(--text-bright)}
+.term-output{color:var(--text-mid);white-space:pre-wrap}
+.term-error{color:#ff6b6b}
+.term-highlight{color:var(--green)}
+.terminal-input-line{display:flex;align-items:center;padding:10px 16px;border-top:1px solid var(--border);gap:8px}
+.term-input-prompt{font-family:var(--mono);font-size:13px;color:var(--green);white-space:nowrap;flex-shrink:0}
+.term-input{background:transparent;border:none;outline:none;font-family:var(--mono);font-size:13px;color:var(--text-bright);flex:1;caret-color:var(--green);width:100%}
+
 @keyframes blink{50%{opacity:0}}
 
 @media(max-width:640px){
@@ -206,6 +226,7 @@ footer{padding:60px 0 60px;text-align:center}
       <li><a href="#experience">Work</a></li>
       <li><a href="#projects">Projects</a></li>
       <li><a href="#skills">Skills</a></li>
+      <li><a href="#terminal">Terminal</a></li>
     </ul>
   </nav>
 
@@ -377,6 +398,27 @@ footer{padding:60px 0 60px;text-align:center}
   </div>
 
   <div class="container">
+    <section id="terminal">
+      <div class="section-marker">06 / Terminal</div>
+      <h2>Interactive</h2>
+      <div class="divider"></div>
+      <div class="terminal-wrap">
+        <div class="terminal-titlebar">
+          <div class="terminal-dot td-red"></div>
+          <div class="terminal-dot td-yellow"></div>
+          <div class="terminal-dot td-green"></div>
+          <span class="terminal-title">ah@kokc: ~</span>
+        </div>
+        <div class="terminal-output" id="term-output"></div>
+        <div class="terminal-input-line">
+          <span class="term-input-prompt">ah@kokc:~$</span>
+          <input class="term-input" id="term-input" type="text" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="type 'help'">
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div class="container">
     <footer>
       <div class="footer-text">Abigail H. / Oklahoma City, OK</div>
     </footer>
@@ -385,9 +427,144 @@ footer{padding:60px 0 60px;text-align:center}
 
 <div class="status-bar">
   <span><span class="status-dot"></span>SYS NOMINAL</span>
-  <span>KOKC &middot; 35.47N 97.52W</span>
-  <span>AH-001</span>
+  <span>KOKC &middot; 35.47N 97.52W &middot; <span id="status-clock">--:--:--</span></span>
+  <span>UP <span id="status-uptime">00:00:00</span></span>
 </div>
 
+<script>
+// Live clock + uptime counter
+(function () {
+  var start = Date.now();
+  function pad(n) { return String(n).padStart(2, '0'); }
+  function tick() {
+    var now = new Date();
+    var clockEl = document.getElementById('status-clock');
+    var uptimeEl = document.getElementById('status-uptime');
+    if (clockEl) clockEl.textContent = pad(now.getHours()) + ':' + pad(now.getMinutes()) + ':' + pad(now.getSeconds());
+    if (uptimeEl) {
+      var s = Math.floor((Date.now() - start) / 1000);
+      uptimeEl.textContent = pad(Math.floor(s / 3600)) + ':' + pad(Math.floor((s % 3600) / 60)) + ':' + pad(s % 60);
+    }
+  }
+  tick();
+  setInterval(tick, 1000);
+})();
+
+// Interactive terminal
+(function () {
+  var output = document.getElementById('term-output');
+  var input = document.getElementById('term-input');
+  if (!output || !input) return;
+
+  var PROMPT = '<span class="term-prompt">ah@kokc:~$</span> ';
+  var history = [];
+  var histIdx = -1;
+
+  function esc(s) { return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+
+  var commands = {
+    help: function () {
+      return '<span class="term-highlight">available commands</span>\n' +
+        '  whoami        who is abigail\n' +
+        '  ls            list resume sections\n' +
+        '  cat [file]    read a section  (e.g. cat about.txt)\n' +
+        '  skills        list all skills\n' +
+        '  experience    work history\n' +
+        '  projects      current builds\n' +
+        '  certs         certifications\n' +
+        '  uname -a      system info\n' +
+        '  pwd           current directory\n' +
+        '  date          current date/time\n' +
+        '  uptime        session uptime\n' +
+        '  echo [text]   echo text\n' +
+        '  clear         clear terminal';
+    },
+    whoami: function () {
+      return 'abigail h.\nlogistics technician · cybersecurity student · off-grid builder\nlocation : oklahoma city, ok  [35.47°n 97.52°w]\nstatus   : active';
+    },
+    ls: function () {
+      return 'about.txt    experience.txt    projects.txt    skills.txt    certs.txt';
+    },
+    'cat about.txt': function () {
+      return 'Logistics technician at EMSA Western Division. I keep ambulances stocked,\ntroubleshoot medical equipment in the field, and handle biohazard cleanup.\nPreviously promoted from guest service to shift lead at Nothing Bundt Cakes\nin under a year.\n\nOn my own time: studying cybersecurity, building off-grid tools, and figuring\nout how to make things work with limited resources.\n\nLooking for opportunities in: supply chain / logistics / IT';
+    },
+    'cat experience.txt': function () {
+      return '[2025-07 → present]  Logistics Technician (VST) — EMSA Western Division, OKC\n[2024-12 → 2025-07]  Barista — Dutch Bros Coffee, OKC\n[2023-11 → 2024-11]  Shift Lead — Nothing Bundt Cakes, OKC';
+    },
+    'cat projects.txt': function () {
+      return '[1] Off-Grid Mobile Terminal\n    stack : Termux / Android / local inference / SQLite\n    desc  : spare phone → fully offline reference + problem-solving terminal\n            custom knowledge base, no internet required\n\n[2] Next Build — TBD';
+    },
+    'cat skills.txt': function () { return commands.skills(); },
+    skills: function () {
+      return 'logistics  : inventory management, forklift op, supply distribution,\n             tracking systems, warehouse ops\nequipment  : lifepak 35, o2 systems, fleet maintenance, hardware repair\ncyber / it : comptia itf+, networking, linux/termux, cybersecurity, it ops\nsoftware   : microsoft office, google workspace, excel';
+    },
+    experience: function () { return commands['cat experience.txt'](); },
+    projects: function () { return commands['cat projects.txt'](); },
+    certs: function () {
+      return '[✓] forklift operator certified\n[✓] evoc certified\n[✓] comptia itf+\n[ ] studying: security+';
+    },
+    'uname -a': function () {
+      return 'AH-OS 1.0.0-field #1 SMP PREEMPT_DYNAMIC\narch: human  machine: ah-001  processor: caffeine-powered\nkernel: logistics + cybersecurity + improvised systems';
+    },
+    pwd: function () { return '/home/abigail'; },
+    date: function () { return new Date().toString(); },
+    uptime: function () {
+      var el = document.getElementById('status-uptime');
+      return 'session uptime: ' + (el ? el.textContent : '00:00:00');
+    },
+    clear: function () { return '__clear__'; }
+  };
+
+  function print(html) {
+    var line = document.createElement('div');
+    line.className = 'term-line';
+    line.innerHTML = html;
+    output.appendChild(line);
+    output.scrollTop = output.scrollHeight;
+  }
+
+  function run(raw) {
+    var trimmed = raw.trim();
+    if (!trimmed) return;
+    history.unshift(trimmed);
+    histIdx = -1;
+    print(PROMPT + '<span class="term-cmd">' + esc(trimmed) + '</span>');
+    var lower = trimmed.toLowerCase();
+    var result;
+    if (lower.startsWith('echo ')) {
+      result = esc(trimmed.slice(5));
+    } else if (lower === 'cat') {
+      result = '<span class="term-error">usage: cat [file]  — try: cat about.txt</span>';
+    } else if (commands[lower] !== undefined) {
+      result = commands[lower]();
+    } else {
+      result = '<span class="term-error">command not found: ' + esc(trimmed) + ' — try \'help\'</span>';
+    }
+    if (result === '__clear__') {
+      output.innerHTML = '';
+    } else if (result) {
+      print('<span class="term-output">' + result + '</span>');
+    }
+  }
+
+  input.addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') {
+      run(input.value);
+      input.value = '';
+    } else if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      if (histIdx < history.length - 1) { histIdx++; input.value = history[histIdx]; }
+    } else if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      if (histIdx > 0) { histIdx--; input.value = history[histIdx]; }
+      else { histIdx = -1; input.value = ''; }
+    }
+  });
+
+  output.addEventListener('click', function () { input.focus(); });
+
+  print('<span class="term-output">AH-001 terminal v1.0 — type <span class="term-highlight">help</span> for commands.</span>');
+})();
+</script>
 </body>
 </html>
