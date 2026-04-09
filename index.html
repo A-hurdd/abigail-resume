@@ -107,9 +107,27 @@ body{background:var(--bg-deep);color:var(--text);font-family:var(--sans);font-si
 .radar-status{position:absolute;bottom:78px;left:50%;transform:translateX(-50%);display:flex;gap:12px;align-items:center;padding:8px 12px;border:1px solid rgba(61,220,132,0.14);background:rgba(8,11,17,0.82);font-family:var(--mono);font-size:9px;letter-spacing:1.8px;text-transform:uppercase;color:rgba(220,227,236,0.74);min-width:260px;justify-content:center}
 .radar-status::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 6px rgba(61,220,132,0.4)}
 
-.topo-bg{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:0.4}
+.topo-bg{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:0.32;mix-blend-mode:screen}
+.topo-bg::before{content:'';position:absolute;inset:0;background:
+  radial-gradient(circle at 18% 22%,rgba(61,220,132,0.08),transparent 34%),
+  radial-gradient(circle at 82% 18%,rgba(109,212,255,0.05),transparent 28%),
+  radial-gradient(circle at 62% 68%,rgba(61,220,132,0.05),transparent 32%);
+  opacity:0.55
+}
+.topo-bg::after{content:'';position:absolute;inset:0;background:
+  linear-gradient(180deg,rgba(8,11,17,0.08),rgba(8,11,17,0.28) 42%,rgba(8,11,17,0.54)),
+  radial-gradient(circle at center,transparent 50%,rgba(8,11,17,0.14) 100%);
+  opacity:0.9
+}
 .topo-bg svg{width:100%;height:100%}
-body::before{content:'';position:fixed;top:0;left:0;right:0;bottom:0;background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,0,0,0.015) 3px,rgba(0,0,0,0.015) 6px);pointer-events:none;z-index:999}
+body::before{content:'';position:fixed;top:0;left:0;right:0;bottom:0;background:
+  repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,0,0,0.014) 3px,rgba(0,0,0,0.014) 6px),
+  linear-gradient(90deg,rgba(61,220,132,0.015),transparent 22%,transparent 78%,rgba(61,220,132,0.015));
+pointer-events:none;z-index:999}
+body::after{content:'';position:fixed;inset:0;background:
+  radial-gradient(circle at 50% 14%,rgba(61,220,132,0.045),transparent 28%),
+  radial-gradient(circle at 50% 50%,transparent 56%,rgba(2,5,8,0.18) 100%);
+pointer-events:none;z-index:0}
 
 .page-wrap{position:relative;z-index:1}
 .container{max-width:900px;margin:0 auto;padding:0 28px}
@@ -361,12 +379,45 @@ footer{padding:40px 0 60px;text-align:center}
 
 <div class="topo-bg" aria-hidden="true">
 <svg viewBox="0 0 1000 1000" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-  <g fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="0.8">
-    <path d="M0,200 Q150,180 300,220 T600,190 T900,230 L1000,210"/>
-    <path d="M0,300 Q100,320 250,290 T550,310 T850,280 L1000,300"/>
-    <path d="M0,420 Q140,400 280,440 T580,410 T880,450 L1000,430"/>
-    <path d="M0,540 Q120,560 260,530 T560,550 T860,520 L1000,540"/>
-    <path d="M0,680 Q160,700 310,670 T610,690 T910,660 L1000,680"/>
+  <defs>
+    <linearGradient id="topoGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="rgba(61,220,132,0.26)"/>
+      <stop offset="100%" stop-color="rgba(109,212,255,0.10)"/>
+    </linearGradient>
+  </defs>
+  <g fill="none" stroke="rgba(61,220,132,0.08)" stroke-width="0.8">
+    <path d="M-20,150 Q120,110 250,150 T520,142 T790,168 T1040,140"/>
+    <path d="M-10,190 Q150,152 296,192 T610,178 T900,214 T1030,186"/>
+    <path d="M0,230 Q158,194 304,232 T618,218 T906,256 T1000,236"/>
+    <path d="M0,278 Q150,248 286,284 T568,270 T854,306 T1000,286"/>
+    <path d="M0,330 Q118,350 250,320 T548,344 T848,316 L1000,334"/>
+    <path d="M0,382 Q132,360 268,394 T566,372 T862,410 L1000,388"/>
+    <path d="M0,438 Q140,414 280,448 T586,422 T886,458 L1000,436"/>
+    <path d="M0,498 Q124,518 262,490 T552,514 T842,486 L1000,504"/>
+    <path d="M0,560 Q134,530 290,566 T602,540 T904,576 L1000,554"/>
+    <path d="M0,624 Q150,594 312,630 T628,608 T914,648 L1000,624"/>
+    <path d="M0,692 Q172,714 332,680 T642,706 T930,672 L1000,692"/>
+    <path d="M0,770 Q152,742 314,778 T642,754 T938,790 L1000,770"/>
+  </g>
+  <g fill="none" stroke="rgba(220,227,236,0.035)" stroke-width="0.7">
+    <path d="M64,116 C158,74 264,76 338,132 C402,180 512,190 622,154 C724,122 814,112 936,146"/>
+    <path d="M54,468 C142,434 252,444 344,500 C422,548 520,556 624,524 C734,492 846,500 960,540"/>
+    <path d="M92,830 C188,790 302,798 386,848 C462,892 562,898 666,868 C774,836 874,840 962,882"/>
+  </g>
+  <g fill="none" stroke="url(#topoGlow)" stroke-width="1.1" opacity="0.34">
+    <path d="M100,238 C184,188 310,190 400,250 C482,304 596,314 700,274 C804,234 884,228 960,266"/>
+    <path d="M84,614 C180,566 314,576 408,634 C500,688 616,696 720,652 C814,612 894,608 972,642"/>
+  </g>
+  <g fill="none" stroke="rgba(61,220,132,0.045)" stroke-width="0.7" stroke-dasharray="3 10">
+    <path d="M0,112 L1000,112"/>
+    <path d="M0,284 L1000,284"/>
+    <path d="M0,456 L1000,456"/>
+    <path d="M0,628 L1000,628"/>
+    <path d="M0,800 L1000,800"/>
+    <path d="M146,0 L146,1000"/>
+    <path d="M372,0 L372,1000"/>
+    <path d="M628,0 L628,1000"/>
+    <path d="M854,0 L854,1000"/>
   </g>
 </svg>
 </div>
