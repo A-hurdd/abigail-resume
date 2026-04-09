@@ -17,58 +17,94 @@
 html{scroll-behavior:smooth}
 body{background:var(--bg-deep);color:var(--text);font-family:var(--sans);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 
-.radar-wrap{position:fixed;top:0;right:0;width:760px;height:760px;pointer-events:none;z-index:0;opacity:0.68;transform:translate3d(0,0,0);transition:transform 0.6s ease;filter:drop-shadow(0 0 28px rgba(61,220,132,0.08))}
-.radar-wrap::before{content:'';position:absolute;inset:52px;border-radius:50%;background:radial-gradient(circle,rgba(61,220,132,0.08) 0%,rgba(61,220,132,0.035) 32%,rgba(8,11,17,0) 74%)}
+.radar-wrap{position:fixed;top:0;right:0;width:760px;height:760px;pointer-events:none;z-index:0;opacity:0.82;transform:translate3d(0,0,0);transition:transform 0.6s ease;filter:drop-shadow(0 0 36px rgba(61,220,132,0.12))}
+.radar-wrap::before{content:'';position:absolute;inset:42px;border-radius:50%;background:radial-gradient(circle,rgba(61,220,132,0.12) 0%,rgba(61,220,132,0.045) 34%,rgba(8,11,17,0) 76%)}
+.radar-wrap::after{content:'';position:absolute;inset:22px;border-radius:50%;border:1px solid rgba(61,220,132,0.05);box-shadow:inset 0 0 80px rgba(0,0,0,0.26)}
 .radar-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)}
-.radar-grid{position:absolute;inset:0;border-radius:50%;background:radial-gradient(circle at center,rgba(61,220,132,0.04) 0 2px,transparent 2px 100%),repeating-radial-gradient(circle at center,rgba(61,220,132,0.04) 0 1px,transparent 1px 74px),linear-gradient(0deg,transparent 49.7%,rgba(61,220,132,0.04) 49.85%,rgba(61,220,132,0.04) 50.15%,transparent 50.3%),linear-gradient(90deg,transparent 49.7%,rgba(61,220,132,0.04) 49.85%,rgba(61,220,132,0.04) 50.15%,transparent 50.3%);opacity:0.55}
-.radar-ring{position:absolute;top:50%;left:50%;border-radius:50%;border:1px solid rgba(61,220,132,0.06);transform:translate(-50%,-50%)}
-.ring-1{width:150px;height:150px}
-.ring-2{width:300px;height:300px}
-.ring-3{width:450px;height:450px}
-.ring-4{width:600px;height:600px;border-color:rgba(61,220,132,0.08)}
-.ring-5{width:720px;height:720px;border-color:rgba(61,220,132,0.05)}
+.radar-grid{position:absolute;inset:0;border-radius:50%;background:
+  radial-gradient(circle at center,rgba(61,220,132,0.06) 0 2px,transparent 2px 100%),
+  repeating-radial-gradient(circle at center,rgba(61,220,132,0.035) 0 1px,transparent 1px 72px),
+  repeating-conic-gradient(from 0deg,rgba(61,220,132,0.05) 0deg 0.75deg,transparent 0.75deg 15deg),
+  linear-gradient(0deg,transparent 49.8%,rgba(61,220,132,0.05) 49.9%,rgba(61,220,132,0.05) 50.1%,transparent 50.2%),
+  linear-gradient(90deg,transparent 49.8%,rgba(61,220,132,0.05) 49.9%,rgba(61,220,132,0.05) 50.1%,transparent 50.2%);
+  opacity:0.8
+}
+.radar-ring{position:absolute;top:50%;left:50%;border-radius:50%;border:1px solid rgba(61,220,132,0.08);transform:translate(-50%,-50%)}
+.radar-ring::after{content:attr(data-range);position:absolute;top:50%;left:100%;margin-left:10px;transform:translateY(-50%);font-family:var(--mono);font-size:9px;letter-spacing:1.8px;color:rgba(220,227,236,0.46);text-transform:uppercase}
+.ring-1{width:144px;height:144px}
+.ring-2{width:288px;height:288px}
+.ring-3{width:432px;height:432px}
+.ring-4{width:576px;height:576px;border-color:rgba(61,220,132,0.1)}
+.ring-5{width:720px;height:720px;border-color:rgba(61,220,132,0.06)}
 .radar-cross{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)}
-.radar-cross::before,.radar-cross::after{content:'';position:absolute;background:rgba(61,220,132,0.04)}
+.radar-cross::before,.radar-cross::after{content:'';position:absolute;background:rgba(61,220,132,0.05)}
 .radar-cross::before{width:720px;height:1px;top:0;left:-360px}
 .radar-cross::after{width:1px;height:720px;top:-360px;left:0}
-.radar-diag{position:absolute;top:50%;left:50%;width:510px;height:1px;background:rgba(61,220,132,0.03);transform-origin:left center}
+.radar-diag{position:absolute;top:50%;left:50%;width:510px;height:1px;background:rgba(61,220,132,0.035);transform-origin:left center}
 .diag-1{transform:translate(-255px,-255px) rotate(45deg)}
 .diag-2{transform:translate(-255px,255px) rotate(-45deg)}
-.radar-sweep{position:absolute;top:50%;left:50%;width:360px;height:2px;background:linear-gradient(90deg,rgba(61,220,132,0.95),rgba(61,220,132,0.45),transparent 78%);transform-origin:left center;animation:sweep 11s linear infinite;filter:drop-shadow(0 0 10px rgba(61,220,132,0.24))}
-.radar-sweep::before{content:'';position:absolute;top:-180px;left:0;width:360px;height:360px;background:conic-gradient(from 0deg,rgba(61,220,132,0.20),rgba(61,220,132,0.08) 14deg,transparent 42deg);transform-origin:0 180px;border-radius:0 360px 0 0;clip-path:polygon(0 50%,100% 0,100% 50%)}
+.radar-bearing{position:absolute;top:50%;left:50%;font-family:var(--mono);font-size:10px;letter-spacing:2px;color:rgba(220,227,236,0.55);text-transform:uppercase}
+.bearing-n{transform:translate(-50%,-356px)}
+.bearing-e{transform:translate(328px,-50%)}
+.bearing-s{transform:translate(-50%,336px)}
+.bearing-w{transform:translate(-348px,-50%)}
+.radar-north{position:absolute;top:28px;left:50%;transform:translateX(-50%);font-family:var(--mono);font-size:11px;letter-spacing:2.4px;color:var(--green);text-transform:uppercase}
+.radar-north::after{content:'';display:block;width:1px;height:22px;margin:6px auto 0;background:linear-gradient(to bottom,rgba(61,220,132,0.85),transparent)}
+.radar-sweep{position:absolute;top:50%;left:50%;width:360px;height:2px;background:linear-gradient(90deg,rgba(125,255,181,0.98),rgba(61,220,132,0.52),transparent 80%);transform-origin:left center;animation:sweep 14s linear infinite;filter:drop-shadow(0 0 10px rgba(61,220,132,0.3))}
+.radar-sweep::before{content:'';position:absolute;top:-180px;left:0;width:360px;height:360px;background:conic-gradient(from 0deg,rgba(61,220,132,0.28),rgba(61,220,132,0.10) 10deg,rgba(61,220,132,0.04) 22deg,transparent 42deg);transform-origin:0 180px;border-radius:0 360px 0 0;clip-path:polygon(0 50%,100% 0,100% 50%)}
+.radar-sweep::after{content:'';position:absolute;top:50%;right:-5px;width:11px;height:11px;border-radius:50%;background:rgba(140,255,194,0.98);transform:translateY(-50%);box-shadow:0 0 18px rgba(61,220,132,0.62)}
 @keyframes sweep{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
-.radar-dot{position:absolute;top:50%;left:50%;width:6px;height:6px;background:var(--green);border-radius:50%;box-shadow:0 0 6px var(--green-glow);opacity:calc(0.08 + var(--signal,0) * 0.92);transform:translate(-50%,-50%) scale(calc(0.75 + var(--signal,0) * 0.35));transition:opacity 0.16s linear,transform 0.16s linear,box-shadow 0.16s linear}
-.radar-dot::after{content:'';position:absolute;inset:-5px;border-radius:50%;border:1px solid rgba(61,220,132,0.18);opacity:calc(var(--signal,0) * 0.85)}
-.dot-1{margin-top:-80px;margin-left:60px}
-.dot-2{margin-top:40px;margin-left:-120px}
-.dot-3{margin-top:-150px;margin-left:-80px;width:4px;height:4px}
-.dot-4{margin-top:100px;margin-left:140px;width:5px;height:5px}
-.dot-5{margin-top:-30px;margin-left:200px;width:4px;height:4px}
-
-.radar-label{position:absolute;top:50%;left:50%;font-family:var(--mono);font-size:9px;color:rgba(61,220,132,0.12);pointer-events:none;opacity:0.2}
-.label-1{margin-top:2px;margin-left:78px}.label-2{margin-top:2px;margin-left:153px}.label-3{margin-top:2px;margin-left:228px}.label-4{margin-top:2px;margin-left:305px}
-.radar-route{position:absolute;inset:0;opacity:0.4}
-.radar-route path{fill:none;stroke:rgba(61,220,132,0.14);stroke-width:1.2;stroke-dasharray:5 10}
+.radar-dot{position:absolute;top:50%;left:50%;width:7px;height:7px;background:var(--green);border-radius:50%;box-shadow:0 0 calc(7px + var(--signal,0) * 12px) rgba(61,220,132,0.65);opacity:calc(0.10 + var(--signal,0) * 0.95);transform:translate(-50%,-50%) scale(calc(0.76 + var(--signal,0) * 0.36));transition:opacity 0.16s linear,transform 0.16s linear,box-shadow 0.16s linear}
+.radar-dot::after{content:'';position:absolute;inset:-5px;border-radius:50%;border:1px solid rgba(61,220,132,0.24);opacity:calc(var(--signal,0) * 0.9)}
+.dot-1{margin-top:-110px;margin-left:82px}
+.dot-2{margin-top:92px;margin-left:-156px}
+.dot-3{margin-top:-194px;margin-left:-106px;width:5px;height:5px}
+.dot-4{margin-top:144px;margin-left:166px;width:6px;height:6px}
+.dot-5{margin-top:-48px;margin-left:232px;width:5px;height:5px}
+.radar-label{position:absolute;top:50%;left:50%;font-family:var(--mono);font-size:9px;letter-spacing:1.6px;color:rgba(220,227,236,0.25);pointer-events:none;opacity:calc(0.12 + var(--signal,0) * 0.9);transform:translateY(calc((1 - var(--signal,0)) * 2px));transition:opacity 0.18s linear,transform 0.18s linear}
+.label-1{margin-top:-116px;margin-left:98px}
+.label-2{margin-top:98px;margin-left:-138px}
+.label-3{margin-top:-198px;margin-left:-84px}
+.label-4{margin-top:148px;margin-left:184px}
+.label-5{margin-top:-52px;margin-left:248px}
+.radar-route{position:absolute;inset:0;opacity:0.55}
+.radar-route path{fill:none;stroke:rgba(61,220,132,0.16);stroke-width:1.2;stroke-dasharray:7 12}
 .flight-layer{position:absolute;inset:0}
-.flight{position:absolute;top:50%;left:50%;width:12px;height:12px;margin:-6px;transform-origin:center;--signal:0;--heading:0deg}
-.flight-point{position:absolute;top:50%;left:50%;width:8px;height:8px;margin:-4px;border-radius:50%;background:rgba(61,220,132,0.98);box-shadow:0 0 calc(8px + var(--signal,0) * 10px) rgba(61,220,132,0.55);opacity:calc(0.22 + var(--signal,0) * 0.9);transition:opacity 0.16s linear,box-shadow 0.16s linear,transform 0.16s linear}
-.flight-point::before{content:'';position:absolute;top:50%;left:50%;width:18px;height:2px;background:linear-gradient(90deg,rgba(61,220,132,0.9),transparent);transform-origin:2px 50%;transform:translateY(-50%) rotate(var(--heading));opacity:calc(0.25 + var(--signal,0) * 0.85)}
-.flight::after{content:'';position:absolute;top:50%;left:50%;width:1px;height:28px;background:linear-gradient(to top,rgba(61,220,132,0.25),transparent);transform:translate(-50%,-100%)}
-.flight-label{position:absolute;top:50%;left:50%;margin-left:14px;margin-top:-18px;padding:4px 7px;border:1px solid rgba(61,220,132,0.14);background:rgba(8,11,17,0.78);font-family:var(--mono);font-size:8px;letter-spacing:1.4px;text-transform:uppercase;color:rgba(220,227,236,0.85);white-space:nowrap;opacity:calc(0.18 + var(--signal,0) * 0.95);transform:translateY(calc((1 - var(--signal,0)) * 2px));transition:opacity 0.16s linear,transform 0.16s linear,border-color 0.16s linear,box-shadow 0.16s linear;box-shadow:0 0 calc(var(--signal,0) * 18px) rgba(61,220,132,0.16)}
-.flight-track{position:absolute;top:50%;left:50%;height:1px;border-top:1px dashed rgba(61,220,132,0.18);transform-origin:left center;opacity:0.45}
-.track-1{width:180px;transform:translate(-210px,-80px) rotate(-26deg)}
-.track-2{width:210px;transform:translate(-120px,180px) rotate(-60deg)}
-.track-3{width:165px;transform:translate(170px,100px) rotate(148deg)}
-.flight-1{animation:orbit-one 34s linear infinite}
-.flight-2{animation:orbit-two 42s linear infinite}
-.flight-3{animation:orbit-three 38s linear infinite}
+.flight{position:absolute;top:50%;left:50%;width:14px;height:14px;margin:-7px;transform-origin:center;--signal:0;--heading:0deg}
+.flight-point{position:absolute;top:50%;left:50%;width:10px;height:10px;margin:-5px;border:1px solid rgba(140,255,194,0.95);background:rgba(10,16,18,0.95);box-shadow:0 0 calc(10px + var(--signal,0) * 14px) rgba(61,220,132,0.45);opacity:calc(0.2 + var(--signal,0) * 0.92);transform:rotate(45deg);transition:opacity 0.16s linear,box-shadow 0.16s linear,transform 0.16s linear}
+.flight.track-friendly .flight-point{border-radius:50%;transform:scale(calc(0.9 + var(--signal,0) * 0.2))}
+.flight.track-priority .flight-point{border-color:rgba(204,255,111,0.95);box-shadow:0 0 calc(12px + var(--signal,0) * 18px) rgba(204,255,111,0.32)}
+.flight::after{content:'';position:absolute;top:50%;left:50%;width:64px;height:1px;background:linear-gradient(90deg,rgba(61,220,132,0.45),transparent);transform-origin:left center;transform:translate(0,-50%) rotate(var(--heading));opacity:calc(0.18 + var(--signal,0) * 0.72)}
+.flight-point::before{content:'';position:absolute;top:50%;left:50%;width:18px;height:2px;background:linear-gradient(90deg,rgba(140,255,194,0.95),transparent);transform-origin:1px 50%;transform:translate(-2px,-50%) rotate(var(--heading));opacity:calc(0.2 + var(--signal,0) * 0.85)}
+.flight-tag{position:absolute;top:50%;left:50%;min-width:122px;margin-left:16px;margin-top:-24px;padding:6px 8px 7px;border:1px solid rgba(61,220,132,0.2);background:linear-gradient(180deg,rgba(6,12,14,0.9),rgba(8,11,17,0.76));font-family:var(--mono);text-transform:uppercase;opacity:calc(0.12 + var(--signal,0) * 0.98);transform:translateY(calc((1 - var(--signal,0)) * 3px));transition:opacity 0.16s linear,transform 0.16s linear,border-color 0.16s linear,box-shadow 0.16s linear;box-shadow:0 0 calc(var(--signal,0) * 18px) rgba(61,220,132,0.18)}
+.flight-tag::before{content:'';position:absolute;left:-10px;top:16px;width:10px;height:1px;background:linear-gradient(90deg,rgba(61,220,132,0.65),transparent)}
+.track-priority .flight-tag{border-color:rgba(204,255,111,0.24)}
+.flight-call{display:block;font-size:9px;letter-spacing:2px;color:rgba(227,248,231,0.92)}
+.flight-meta{display:block;margin-top:4px;font-size:8px;letter-spacing:1.4px;color:rgba(220,227,236,0.64)}
+.flight-track{position:absolute;top:50%;left:50%;height:1px;border-top:1px dashed rgba(61,220,132,0.22);transform-origin:left center;opacity:0.36}
+.track-1{width:194px;transform:translate(-224px,-112px) rotate(-22deg)}
+.track-2{width:230px;transform:translate(-158px,146px) rotate(-58deg)}
+.track-3{width:188px;transform:translate(112px,138px) rotate(162deg)}
+.flight-1{animation:orbit-one 42s linear infinite}
+.flight-2{animation:orbit-two 52s linear infinite}
+.flight-3{animation:orbit-three 46s linear infinite}
 @keyframes orbit-one{0%{transform:translate(-210px,-80px)}25%{transform:translate(-40px,-200px)}50%{transform:translate(170px,-100px)}75%{transform:translate(110px,120px)}100%{transform:translate(-210px,-80px)}}
 @keyframes orbit-two{0%{transform:translate(-120px,180px)}25%{transform:translate(-200px,10px)}50%{transform:translate(-20px,-150px)}75%{transform:translate(180px,-30px)}100%{transform:translate(-120px,180px)}}
 @keyframes orbit-three{0%{transform:translate(170px,100px)}25%{transform:translate(40px,210px)}50%{transform:translate(-180px,70px)}75%{transform:translate(-40px,-120px)}100%{transform:translate(170px,100px)}}
 .radar-pulse{position:absolute;top:50%;left:50%;width:18px;height:18px;border-radius:50%;border:1px solid rgba(61,220,132,0.65);transform:translate(-50%,-50%) scale(0.3);opacity:0;pointer-events:none}
 .radar-pulse.is-active{animation:pulse-ring 0.9s ease-out}
 @keyframes pulse-ring{0%{opacity:0.8;transform:translate(-50%,-50%) scale(0.4)}100%{opacity:0;transform:translate(-50%,-50%) scale(3.1)}}
-.radar-status{position:absolute;bottom:78px;left:50%;transform:translateX(-50%);display:flex;gap:12px;align-items:center;padding:8px 12px;border:1px solid rgba(61,220,132,0.12);background:rgba(8,11,17,0.78);font-family:var(--mono);font-size:9px;letter-spacing:1.8px;text-transform:uppercase;color:rgba(220,227,236,0.72);min-width:188px;justify-content:center}
+.radar-panel{position:absolute;padding:10px 12px;border:1px solid rgba(61,220,132,0.14);background:linear-gradient(180deg,rgba(8,11,17,0.86),rgba(8,11,17,0.62));font-family:var(--mono);font-size:8px;letter-spacing:1.6px;text-transform:uppercase;color:rgba(220,227,236,0.66)}
+.panel-left{top:88px;left:-8px}
+.panel-right{top:108px;right:-4px;text-align:right}
+.panel-line{display:block}
+.panel-line + .panel-line{margin-top:6px}
+.radar-legend{position:absolute;bottom:134px;left:24px;display:grid;gap:7px;padding:10px 12px;border:1px solid rgba(61,220,132,0.12);background:rgba(8,11,17,0.58);font-family:var(--mono);font-size:8px;letter-spacing:1.4px;text-transform:uppercase;color:rgba(220,227,236,0.6)}
+.legend-item{display:flex;align-items:center;gap:8px}
+.legend-swatch{width:10px;height:10px;border:1px solid rgba(140,255,194,0.9);background:rgba(10,16,18,0.92);transform:rotate(45deg)}
+.legend-swatch.friend{border-radius:50%;transform:none}
+.legend-swatch.priority{border-color:rgba(204,255,111,0.95);transform:none}
+.radar-status{position:absolute;bottom:78px;left:50%;transform:translateX(-50%);display:flex;gap:12px;align-items:center;padding:8px 12px;border:1px solid rgba(61,220,132,0.14);background:rgba(8,11,17,0.82);font-family:var(--mono);font-size:9px;letter-spacing:1.8px;text-transform:uppercase;color:rgba(220,227,236,0.74);min-width:260px;justify-content:center}
 .radar-status::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 6px rgba(61,220,132,0.4)}
 
 .topo-bg{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:0.4}
@@ -210,6 +246,8 @@ footer{padding:40px 0 60px;text-align:center}
 @media(max-width:780px){
   .stats-strip{grid-template-columns:repeat(2,minmax(0,1fr))}
   .contact-grid{grid-template-columns:1fr}
+  .radar-legend{left:18px;bottom:118px}
+  .radar-panel{font-size:7px}
 }
 
 @media(max-width:640px){
@@ -221,6 +259,16 @@ footer{padding:40px 0 60px;text-align:center}
   .timeline-header{flex-direction:column;gap:2px}
   .status-bar{font-size:9px}
   .radar-wrap{width:460px;height:460px;right:-120px;top:-30px}
+  .radar-panel,.radar-legend{display:none}
+  .radar-bearing{font-size:8px}
+  .bearing-n{transform:translate(-50%,-214px)}
+  .bearing-e{transform:translate(198px,-50%)}
+  .bearing-s{transform:translate(-50%,206px)}
+  .bearing-w{transform:translate(-214px,-50%)}
+  .radar-ring::after{font-size:7px;margin-left:6px}
+  .flight-tag{min-width:96px;margin-left:12px;margin-top:-18px;padding:5px 6px}
+  .flight-call{font-size:8px}
+  .flight-meta{font-size:7px}
   .hero-actions,.project-actions{flex-direction:column;align-items:flex-start}
   .stats-strip{grid-template-columns:1fr}
   .radar-status{bottom:52px;width:max-content;max-width:88vw}
@@ -237,27 +285,60 @@ footer{padding:40px 0 60px;text-align:center}
 
 <div class="radar-wrap" id="radar-wrap" aria-hidden="true">
   <div class="radar-grid"></div>
+  <div class="radar-north">N</div>
+  <div class="radar-bearing bearing-n">000</div>
+  <div class="radar-bearing bearing-e">090</div>
+  <div class="radar-bearing bearing-s">180</div>
+  <div class="radar-bearing bearing-w">270</div>
   <svg class="radar-route" viewBox="0 0 760 760" xmlns="http://www.w3.org/2000/svg">
     <path d="M145 520 C 245 355, 370 300, 560 180" />
     <path d="M122 356 C 256 250, 360 205, 605 250" />
     <path d="M210 615 C 330 520, 430 470, 620 525" />
   </svg>
-  <div class="radar-ring ring-1"></div>
-  <div class="radar-ring ring-2"></div>
-  <div class="radar-ring ring-3"></div>
-  <div class="radar-ring ring-4"></div>
-  <div class="radar-ring ring-5"></div>
+  <div class="radar-ring ring-1" data-range="20NM"></div>
+  <div class="radar-ring ring-2" data-range="40NM"></div>
+  <div class="radar-ring ring-3" data-range="60NM"></div>
+  <div class="radar-ring ring-4" data-range="80NM"></div>
+  <div class="radar-ring ring-5" data-range="100NM"></div>
   <div class="radar-cross"></div>
   <div class="radar-diag diag-1"></div>
   <div class="radar-diag diag-2"></div>
   <div class="radar-sweep"></div>
+  <div class="radar-panel panel-left">
+    <span class="panel-line">MODE / TWS</span>
+    <span class="panel-line">IFF / GREEN</span>
+    <span class="panel-line">SECTOR / KOKC</span>
+  </div>
+  <div class="radar-panel panel-right">
+    <span class="panel-line">RANGE / 100NM</span>
+    <span class="panel-line">AZ / 360</span>
+    <span class="panel-line">PRI / 01</span>
+  </div>
   <div class="flight-layer">
     <div class="flight-track track-1"></div>
     <div class="flight-track track-2"></div>
     <div class="flight-track track-3"></div>
-    <div class="flight flight-1"><div class="flight-point"></div><div class="flight-label">AH-01 / OKC</div></div>
-    <div class="flight flight-2"><div class="flight-point"></div><div class="flight-label">TRACK / ACTIVE</div></div>
-    <div class="flight flight-3"><div class="flight-point"></div><div class="flight-label">FIELD / READY</div></div>
+    <div class="flight flight-1 track-friendly">
+      <div class="flight-point"></div>
+      <div class="flight-tag">
+        <span class="flight-call">VIPR-11</span>
+        <span class="flight-meta">ANGELS 24 / IFF FRIEND</span>
+      </div>
+    </div>
+    <div class="flight flight-2 track-priority">
+      <div class="flight-point"></div>
+      <div class="flight-tag">
+        <span class="flight-call">SABLE-03</span>
+        <span class="flight-meta">ANGELS 18 / PRI TRACK</span>
+      </div>
+    </div>
+    <div class="flight flight-3 track-unknown">
+      <div class="flight-point"></div>
+      <div class="flight-tag">
+        <span class="flight-call">GHOST-21</span>
+        <span class="flight-meta">ANGELS 31 / IFF HOLD</span>
+      </div>
+    </div>
   </div>
   <div class="radar-pulse" id="radar-pulse"></div>
   <div class="radar-dot dot-1"></div>
@@ -265,11 +346,17 @@ footer{padding:40px 0 60px;text-align:center}
   <div class="radar-dot dot-3"></div>
   <div class="radar-dot dot-4"></div>
   <div class="radar-dot dot-5"></div>
-  <div class="radar-label label-1">25nm</div>
-  <div class="radar-label label-2">50nm</div>
-  <div class="radar-label label-3">75nm</div>
-  <div class="radar-label label-4">100nm</div>
-  <div class="radar-status"><span id="radar-status-text">Tracking 03 targets</span></div>
+  <div class="radar-label label-1">ID-441 / HOLD</div>
+  <div class="radar-label label-2">CORRIDOR 7</div>
+  <div class="radar-label label-3">IFF PING</div>
+  <div class="radar-label label-4">ROUTE GATE</div>
+  <div class="radar-label label-5">STACK B</div>
+  <div class="radar-legend">
+    <div class="legend-item"><span class="legend-swatch friend"></span><span>Friendly</span></div>
+    <div class="legend-item"><span class="legend-swatch"></span><span>Unknown</span></div>
+    <div class="legend-item"><span class="legend-swatch priority"></span><span>Priority</span></div>
+  </div>
+  <div class="radar-status"><span id="radar-status-text">TWS / IFF GREEN / 03 TRACKS</span></div>
 </div>
 
 <div class="topo-bg" aria-hidden="true">
@@ -687,14 +774,74 @@ const radarWrap = document.getElementById('radar-wrap');
 const radarPulse = document.getElementById('radar-pulse');
 const radarStatusText = document.getElementById('radar-status-text');
 const flights = Array.from(document.querySelectorAll('.flight'));
+const radarDots = Array.from(document.querySelectorAll('.radar-dot'));
+const radarLabels = Array.from(document.querySelectorAll('.radar-label'));
 const statusMessages = [
-  'Tracking 03 targets',
-  'Signal lock stable',
-  'Flight paths nominal',
-  'Sweep synced to sector',
-  'Field systems active'
+  'TWS / IFF GREEN / 03 TRACKS',
+  'SECTOR KOKC / AIR PICTURE STABLE',
+  'PRI TRACK SABLE-03 / ANGELS 18',
+  'RANGE GATE 100NM / SWEEP NOMINAL',
+  'VIPR-11 / GHOST-21 / ACTIVE STACK'
 ];
 let statusIndex = 0;
+const radarSweepDuration = 14000;
+const flightMemory = new WeakMap();
+
+function normalizeAngle(angle) {
+  return (angle % 360 + 360) % 360;
+}
+
+function signalFromSweep(centerX, centerY, sweepAngle, radius) {
+  const dx = centerX - radius;
+  const dy = centerY - radius;
+  const targetAngle = normalizeAngle(Math.atan2(dy, dx) * (180 / Math.PI));
+  const delta = Math.abs(((sweepAngle - targetAngle + 540) % 360) - 180);
+  return Math.max(0, 1 - delta / 16);
+}
+
+function updateRadarFrame(now) {
+  if (!radarWrap) return;
+  const rect = radarWrap.getBoundingClientRect();
+  const radius = rect.width / 2;
+  const sweepAngle = normalizeAngle((now % radarSweepDuration) / radarSweepDuration * 360);
+
+  radarDots.forEach((dot) => {
+    const dotRect = dot.getBoundingClientRect();
+    const x = dotRect.left - rect.left + dotRect.width / 2;
+    const y = dotRect.top - rect.top + dotRect.height / 2;
+    const signal = signalFromSweep(x, y, sweepAngle, radius);
+    dot.style.setProperty('--signal', signal.toFixed(3));
+  });
+
+  radarLabels.forEach((label) => {
+    const labelRect = label.getBoundingClientRect();
+    const x = labelRect.left - rect.left + labelRect.width / 2;
+    const y = labelRect.top - rect.top + labelRect.height / 2;
+    const signal = signalFromSweep(x, y, sweepAngle, radius);
+    label.style.setProperty('--signal', signal.toFixed(3));
+  });
+
+  flights.forEach((flight) => {
+    const flightRect = flight.getBoundingClientRect();
+    const x = flightRect.left - rect.left + flightRect.width / 2;
+    const y = flightRect.top - rect.top + flightRect.height / 2;
+    const signal = signalFromSweep(x, y, sweepAngle, radius);
+    flight.style.setProperty('--signal', signal.toFixed(3));
+
+    const previous = flightMemory.get(flight);
+    if (previous) {
+      const dx = x - previous.x;
+      const dy = y - previous.y;
+      if (Math.hypot(dx, dy) > 0.05) {
+        const heading = normalizeAngle(Math.atan2(dy, dx) * (180 / Math.PI));
+        flight.style.setProperty('--heading', `${heading.toFixed(1)}deg`);
+      }
+    }
+    flightMemory.set(flight, { x, y });
+  });
+
+  requestAnimationFrame(updateRadarFrame);
+}
 
 function triggerPulse() {
   if (!radarPulse) return;
@@ -711,6 +858,7 @@ function triggerPulse() {
 }
 
 if (!prefersReducedMotion) {
+  requestAnimationFrame(updateRadarFrame);
   setInterval(() => {
     triggerPulse();
     statusIndex = (statusIndex + 1) % statusMessages.length;
@@ -721,6 +869,13 @@ if (!prefersReducedMotion) {
     const x = (event.clientX / window.innerWidth - 0.5) * 6;
     const y = (event.clientY / window.innerHeight - 0.5) * 6;
     radarWrap.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+  });
+} else {
+  radarDots.forEach((dot) => dot.style.setProperty('--signal', '0.75'));
+  radarLabels.forEach((label) => label.style.setProperty('--signal', '0.75'));
+  flights.forEach((flight, index) => {
+    flight.style.setProperty('--signal', '0.9');
+    flight.style.setProperty('--heading', `${45 + index * 80}deg`);
   });
 }
 
