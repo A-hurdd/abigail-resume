@@ -17,33 +17,32 @@
 html{scroll-behavior:smooth}
 body{background:var(--bg-deep);color:var(--text);font-family:var(--sans);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 
-/* === CSS RADAR === */
-.radar-wrap{position:fixed;top:0;right:0;width:700px;height:700px;pointer-events:none;z-index:0;opacity:0.5}
-.radar-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)}
-.radar-ring{position:absolute;top:50%;left:50%;border-radius:50%;border:1px solid rgba(61,220,132,0.06);transform:translate(-50%,-50%)}
-.ring-1{width:150px;height:150px}
-.ring-2{width:300px;height:300px}
-.ring-3{width:450px;height:450px}
-.ring-4{width:600px;height:600px;border-color:rgba(61,220,132,0.08)}
-.radar-cross{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)}
-.radar-cross::before,.radar-cross::after{content:'';position:absolute;background:rgba(61,220,132,0.04)}
-.radar-cross::before{width:600px;height:1px;top:0;left:-300px}
-.radar-cross::after{width:1px;height:600px;top:-300px;left:0}
-.radar-diag{position:absolute;top:50%;left:50%;width:424px;height:1px;background:rgba(61,220,132,0.03);transform-origin:left center}
-.diag-1{transform:translate(-212px,-212px) rotate(45deg)}
-.diag-2{transform:translate(-212px,212px) rotate(-45deg)}
-.radar-sweep{position:absolute;top:50%;left:50%;width:300px;height:2px;background:linear-gradient(90deg,rgba(61,220,132,0.5),transparent);transform-origin:left center;animation:sweep 6s linear infinite}
-.radar-sweep::before{content:'';position:absolute;top:-150px;left:0;width:300px;height:300px;background:conic-gradient(from 0deg,rgba(61,220,132,0.12),transparent 40deg);transform-origin:0 150px;border-radius:0 300px 0 0;clip-path:polygon(0 50%,100% 0,100% 50%)}
-@keyframes sweep{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
-.radar-dot{position:absolute;top:50%;left:50%;width:6px;height:6px;background:var(--green);border-radius:50%;box-shadow:0 0 6px var(--green-glow)}
-.dot-1{margin-top:-80px;margin-left:60px;animation:blip 6s ease infinite}
-.dot-2{margin-top:40px;margin-left:-120px;animation:blip 6s ease 1.5s infinite}
-.dot-3{margin-top:-150px;margin-left:-80px;animation:blip 6s ease 3s infinite;width:4px;height:4px}
-.dot-4{margin-top:100px;margin-left:140px;animation:blip 6s ease 4s infinite;width:5px;height:5px}
-.dot-5{margin-top:-30px;margin-left:200px;animation:blip 6s ease 2s infinite;width:4px;height:4px}
-@keyframes blip{0%,80%{opacity:0.1}10%,30%{opacity:0.8}15%{opacity:1}}
-.radar-label{position:absolute;top:50%;left:50%;font-family:var(--mono);font-size:9px;color:rgba(61,220,132,0.12);pointer-events:none}
-.label-1{margin-top:2px;margin-left:78px}.label-2{margin-top:2px;margin-left:153px}.label-3{margin-top:2px;margin-left:228px}
+/* === DISPATCH MAP === */
+.dispatch-wrap{position:fixed;top:0;right:0;width:420px;height:440px;pointer-events:none;z-index:0;padding:58px 18px 18px 18px;opacity:0.65}
+.dispatch-panel{width:100%;height:100%;background:rgba(8,11,17,0.80);border:1px solid rgba(61,220,132,0.10);border-radius:3px;display:flex;flex-direction:column;overflow:hidden;backdrop-filter:blur(6px)}
+.dispatch-header{display:flex;justify-content:space-between;align-items:center;padding:7px 12px;border-bottom:1px solid rgba(61,220,132,0.07);font-family:var(--mono);font-size:9px;color:var(--green);letter-spacing:2px;text-transform:uppercase;flex-shrink:0}
+.dispatch-live{display:flex;align-items:center;gap:5px;color:var(--text-dim)}
+.dispatch-live-dot{width:5px;height:5px;background:var(--green);border-radius:50%;box-shadow:0 0 4px var(--green-glow);animation:pulse-dot 1.8s ease infinite}
+.dispatch-map-area{position:relative;flex:1;overflow:hidden}
+.dispatch-roads{position:absolute;top:0;left:0;width:100%;height:100%}
+.road-label{position:absolute;font-family:var(--mono);font-size:8px;color:rgba(61,220,132,0.18);letter-spacing:1px;pointer-events:none;white-space:nowrap}
+.unit{position:absolute;transform:translate(-50%,-50%)}
+.unit-badge{font-family:var(--mono);font-size:9px;font-weight:500;padding:2px 6px;border-radius:2px;letter-spacing:0.5px;white-space:nowrap;position:relative;z-index:1}
+.unit-badge.avail{background:rgba(61,220,132,0.10);border:1px solid rgba(61,220,132,0.32);color:#3ddc84}
+.unit-badge.scene{background:rgba(245,200,66,0.09);border:1px solid rgba(245,200,66,0.32);color:#f5c842}
+.unit-badge.busy{background:rgba(255,100,80,0.09);border:1px solid rgba(255,100,80,0.28);color:#ff7060}
+.unit-ping{position:absolute;top:50%;left:50%;width:26px;height:26px;border-radius:50%;transform:translate(-50%,-50%);animation:unit-ping 3.2s ease-out infinite;pointer-events:none}
+.unit-ping.ap{border:1px solid rgba(61,220,132,0.45)}
+.unit-ping.sp{border:1px solid rgba(245,200,66,0.45);animation-delay:0.6s}
+.unit-ping.bp{border:1px solid rgba(255,100,80,0.40);animation-delay:1.2s}
+@keyframes unit-ping{0%{transform:translate(-50%,-50%) scale(0.4);opacity:0.7}100%{transform:translate(-50%,-50%) scale(2.4);opacity:0}}
+.dispatch-legend{display:flex;gap:14px;padding:5px 12px;border-top:1px solid rgba(61,220,132,0.07);font-family:var(--mono);font-size:8px;letter-spacing:1px;flex-shrink:0}
+.legend-item{display:flex;align-items:center;gap:4px;color:var(--text-dim)}
+.legend-dot{width:5px;height:5px;border-radius:1px}
+.legend-dot.a{background:rgba(61,220,132,0.6)}
+.legend-dot.s{background:rgba(245,200,66,0.6)}
+.legend-dot.b{background:rgba(255,100,80,0.5)}
+.dispatch-footer{display:flex;justify-content:space-between;padding:5px 12px;border-top:1px solid rgba(61,220,132,0.07);font-family:var(--mono);font-size:8px;color:var(--text-dim);letter-spacing:1.5px;flex-shrink:0}
 
 /* === TOPO LINES (SVG background) === */
 .topo-bg{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:0.4}
@@ -149,30 +148,95 @@ footer{padding:60px 0 60px;text-align:center}
   .nav-links a{font-size:10px;letter-spacing:1px}
   .timeline-header{flex-direction:column;gap:2px}
   .status-bar{font-size:9px}
-  .radar-wrap{width:400px;height:400px;right:-100px;top:-50px}
+  .dispatch-wrap{width:240px;height:260px;opacity:0.35;padding:52px 10px 10px 10px}
 }
 </style>
 </head>
 <body>
 
-<!-- CSS RADAR -->
-<div class="radar-wrap">
-  <div class="radar-ring ring-1"></div>
-  <div class="radar-ring ring-2"></div>
-  <div class="radar-ring ring-3"></div>
-  <div class="radar-ring ring-4"></div>
-  <div class="radar-cross"></div>
-  <div class="radar-diag diag-1"></div>
-  <div class="radar-diag diag-2"></div>
-  <div class="radar-sweep"></div>
-  <div class="radar-dot dot-1"></div>
-  <div class="radar-dot dot-2"></div>
-  <div class="radar-dot dot-3"></div>
-  <div class="radar-dot dot-4"></div>
-  <div class="radar-dot dot-5"></div>
-  <div class="radar-label label-1">25nm</div>
-  <div class="radar-label label-2">50nm</div>
-  <div class="radar-label label-3">75nm</div>
+<!-- DISPATCH MAP -->
+<div class="dispatch-wrap">
+  <div class="dispatch-panel">
+    <div class="dispatch-header">
+      <span>EMSA // WESTERN DIV</span>
+      <div class="dispatch-live"><div class="dispatch-live-dot"></div><span>LIVE</span></div>
+    </div>
+    <div class="dispatch-map-area">
+      <svg class="dispatch-roads" viewBox="0 0 400 350" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+        <!-- sector grid -->
+        <g stroke="rgba(61,220,132,0.03)" stroke-width="0.5" stroke-dasharray="4,8">
+          <line x1="100" y1="0" x2="100" y2="350"/><line x1="200" y1="0" x2="200" y2="350"/>
+          <line x1="300" y1="0" x2="300" y2="350"/>
+          <line x1="0" y1="88" x2="400" y2="88"/><line x1="0" y1="175" x2="400" y2="175"/>
+          <line x1="0" y1="263" x2="400" y2="263"/>
+        </g>
+        <!-- I-40 east-west -->
+        <line x1="0" y1="192" x2="400" y2="188" stroke="rgba(61,220,132,0.22)" stroke-width="2.5"/>
+        <!-- I-44 diagonal NW-SE -->
+        <path d="M35,0 Q130,95 200,168 T305,330" stroke="rgba(61,220,132,0.16)" stroke-width="2" fill="none"/>
+        <!-- I-35 north-south -->
+        <line x1="285" y1="0" x2="290" y2="350" stroke="rgba(61,220,132,0.15)" stroke-width="2"/>
+        <!-- NW Expressway -->
+        <path d="M0,65 Q90,88 170,124 T350,178" stroke="rgba(61,220,132,0.10)" stroke-width="1.5" fill="none"/>
+        <!-- MacArthur N-S -->
+        <line x1="128" y1="0" x2="126" y2="350" stroke="rgba(61,220,132,0.07)" stroke-width="1"/>
+        <!-- SW 15th / Reno area -->
+        <line x1="0" y1="278" x2="400" y2="274" stroke="rgba(61,220,132,0.07)" stroke-width="1"/>
+        <!-- NW 50th -->
+        <line x1="0" y1="115" x2="400" y2="111" stroke="rgba(61,220,132,0.06)" stroke-width="1"/>
+        <!-- I-240 south loop -->
+        <path d="M95,335 Q200,310 305,328" stroke="rgba(61,220,132,0.12)" stroke-width="1.5" fill="none"/>
+        <!-- Tinker AFB outline (eastern edge) -->
+        <rect x="315" y="220" width="65" height="55" stroke="rgba(61,220,132,0.05)" stroke-width="0.5" fill="none" stroke-dasharray="3,5"/>
+      </svg>
+      <!-- Road labels -->
+      <div class="road-label" style="left:3%;top:52%">I-40</div>
+      <div class="road-label" style="left:64%;top:7%">I-35</div>
+      <div class="road-label" style="left:6%;top:10%">I-44</div>
+      <div class="road-label" style="right:4%;bottom:16%">TINKER</div>
+      <!-- Units -->
+      <div class="unit" style="left:16%;top:27%">
+        <div class="unit-ping ap"></div>
+        <div class="unit-badge avail">BLS-346</div>
+      </div>
+      <div class="unit" style="left:35%;top:43%">
+        <div class="unit-ping sp"></div>
+        <div class="unit-badge scene">BLS-337*</div>
+      </div>
+      <div class="unit" style="left:54%;top:35%">
+        <div class="unit-badge avail">MED-392</div>
+      </div>
+      <div class="unit" style="left:67%;top:20%">
+        <div class="unit-ping sp"></div>
+        <div class="unit-badge scene">MED-378*</div>
+      </div>
+      <div class="unit" style="left:22%;top:71%">
+        <div class="unit-badge avail">BLS-362</div>
+      </div>
+      <div class="unit" style="left:44%;top:81%">
+        <div class="unit-badge avail">BLS-387</div>
+      </div>
+      <div class="unit" style="left:71%;top:60%">
+        <div class="unit-ping bp"></div>
+        <div class="unit-badge busy">BLS-382*</div>
+      </div>
+      <div class="unit" style="left:20%;top:53%">
+        <div class="unit-badge avail">SUP-377</div>
+      </div>
+      <div class="unit" style="left:58%;top:73%">
+        <div class="unit-badge avail">BLS-389</div>
+      </div>
+    </div>
+    <div class="dispatch-legend">
+      <div class="legend-item"><div class="legend-dot a"></div>AVAIL</div>
+      <div class="legend-item"><div class="legend-dot s"></div>ON SCENE</div>
+      <div class="legend-item"><div class="legend-dot b"></div>ACTIVE</div>
+    </div>
+    <div class="dispatch-footer">
+      <span>9 UNITS &middot; W-DIV</span>
+      <span>35.47N &middot; 97.52W</span>
+    </div>
+  </div>
 </div>
 
 <!-- TOPO BACKGROUND -->
