@@ -18,31 +18,31 @@ html{scroll-behavior:smooth}
 body{background:var(--bg-deep);color:var(--text);font-family:var(--sans);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 
 /* === DISPATCH MAP === */
-.dispatch-wrap{position:fixed;top:0;right:0;width:460px;height:470px;pointer-events:none;z-index:0;padding:58px 18px 18px 18px;opacity:0.65}
-.dispatch-panel{width:100%;height:100%;background:rgba(8,11,17,0.80);border:1px solid rgba(61,220,132,0.10);border-radius:3px;display:flex;flex-direction:column;overflow:hidden;backdrop-filter:blur(6px)}
-.dispatch-header{display:flex;justify-content:space-between;align-items:center;padding:7px 12px;border-bottom:1px solid rgba(61,220,132,0.07);font-family:var(--mono);font-size:9px;color:var(--green);letter-spacing:2px;text-transform:uppercase;flex-shrink:0}
+.dispatch-wrap{position:fixed;top:0;right:0;width:460px;height:470px;pointer-events:none;z-index:0;padding:58px 18px 18px 18px;opacity:0.80}
+.dispatch-panel{width:100%;height:100%;background:rgba(8,11,17,0.55);border:1px solid rgba(255,255,255,0.07);border-radius:3px;display:flex;flex-direction:column;overflow:hidden;backdrop-filter:blur(8px)}
+.dispatch-header{display:flex;justify-content:space-between;align-items:center;padding:7px 12px;border-bottom:1px solid rgba(255,255,255,0.06);font-family:var(--mono);font-size:9px;color:var(--green);letter-spacing:2px;text-transform:uppercase;flex-shrink:0;background:rgba(8,11,17,0.40)}
 .dispatch-live{display:flex;align-items:center;gap:5px;color:var(--text-dim)}
 .dispatch-live-dot{width:5px;height:5px;background:var(--green);border-radius:50%;box-shadow:0 0 4px var(--green-glow);animation:pulse-dot 1.8s ease infinite}
-.dispatch-map-area{position:relative;flex:1;overflow:hidden}
+.dispatch-map-area{position:relative;flex:1;overflow:hidden;background:#1c2436}
 .dispatch-roads{position:absolute;top:0;left:0;width:100%;height:100%}
-.road-label{position:absolute;font-family:var(--mono);font-size:8px;color:rgba(61,220,132,0.18);letter-spacing:1px;pointer-events:none;white-space:nowrap}
+.road-label{position:absolute;font-family:var(--mono);font-size:8px;color:rgba(180,185,200,0.35);letter-spacing:1px;pointer-events:none;white-space:nowrap}
 .unit{position:absolute;transform:translate(-50%,-50%)}
 .unit-badge{font-family:var(--mono);font-size:9px;font-weight:500;padding:2px 6px;border-radius:2px;letter-spacing:0.5px;white-space:nowrap;position:relative;z-index:1}
-.unit-badge.avail{background:rgba(61,220,132,0.10);border:1px solid rgba(61,220,132,0.32);color:#3ddc84}
-.unit-badge.scene{background:rgba(245,200,66,0.09);border:1px solid rgba(245,200,66,0.32);color:#f5c842}
-.unit-badge.busy{background:rgba(255,100,80,0.09);border:1px solid rgba(255,100,80,0.28);color:#ff7060}
+.unit-badge.avail{background:rgba(20,38,30,0.85);border:1px solid rgba(61,220,132,0.50);color:#3ddc84}
+.unit-badge.scene{background:rgba(38,32,10,0.85);border:1px solid rgba(245,200,66,0.55);color:#f5c842}
+.unit-badge.busy{background:rgba(38,16,14,0.85);border:1px solid rgba(255,100,80,0.50);color:#ff7060}
 .unit-ping{position:absolute;top:50%;left:50%;width:26px;height:26px;border-radius:50%;transform:translate(-50%,-50%);animation:unit-ping 3.2s ease-out infinite;pointer-events:none}
 .unit-ping.ap{border:1px solid rgba(61,220,132,0.45)}
 .unit-ping.sp{border:1px solid rgba(245,200,66,0.45);animation-delay:0.6s}
 .unit-ping.bp{border:1px solid rgba(255,100,80,0.40);animation-delay:1.2s}
 @keyframes unit-ping{0%{transform:translate(-50%,-50%) scale(0.4);opacity:0.7}100%{transform:translate(-50%,-50%) scale(2.4);opacity:0}}
-.dispatch-legend{display:flex;gap:14px;padding:5px 12px;border-top:1px solid rgba(61,220,132,0.07);font-family:var(--mono);font-size:8px;letter-spacing:1px;flex-shrink:0}
+.dispatch-legend{display:flex;gap:14px;padding:5px 12px;border-top:1px solid rgba(255,255,255,0.05);font-family:var(--mono);font-size:8px;letter-spacing:1px;flex-shrink:0;background:rgba(8,11,17,0.35)}
 .legend-item{display:flex;align-items:center;gap:4px;color:var(--text-dim)}
 .legend-dot{width:5px;height:5px;border-radius:1px}
 .legend-dot.a{background:rgba(61,220,132,0.6)}
 .legend-dot.s{background:rgba(245,200,66,0.6)}
 .legend-dot.b{background:rgba(255,100,80,0.5)}
-.dispatch-footer{display:flex;justify-content:space-between;padding:5px 12px;border-top:1px solid rgba(61,220,132,0.07);font-family:var(--mono);font-size:8px;color:var(--text-dim);letter-spacing:1.5px;flex-shrink:0}
+.dispatch-footer{display:flex;justify-content:space-between;padding:5px 12px;border-top:1px solid rgba(255,255,255,0.05);font-family:var(--mono);font-size:8px;color:var(--text-dim);letter-spacing:1.5px;flex-shrink:0;background:rgba(8,11,17,0.35)}
 
 /* === TOPO LINES (SVG background) === */
 .topo-bg{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:0.4}
@@ -163,8 +163,10 @@ footer{padding:60px 0 60px;text-align:center}
     </div>
     <div class="dispatch-map-area">
       <svg class="dispatch-roads" viewBox="0 0 420 370" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-        <!-- OKC mile-grid: E-W arterials (N→S: NW63, NW50, NW36, NW23, I-40, SW15, SW29, SW44/I-240) -->
-        <g stroke="rgba(61,220,132,0.065)" stroke-width="0.8">
+        <!-- map background fill -->
+        <rect x="0" y="0" width="420" height="370" fill="#1c2436"/>
+        <!-- OKC mile-grid: E-W arterials -->
+        <g stroke="rgba(255,255,255,0.08)" stroke-width="1">
           <line x1="0" y1="42"  x2="420" y2="42"/>   <!-- NW 63rd -->
           <line x1="0" y1="88"  x2="420" y2="88"/>   <!-- NW 50th -->
           <line x1="0" y1="133" x2="420" y2="133"/>  <!-- NW 36th -->
@@ -173,8 +175,8 @@ footer{padding:60px 0 60px;text-align:center}
           <line x1="0" y1="278" x2="420" y2="278"/>  <!-- SW 29th -->
           <line x1="0" y1="330" x2="420" y2="330"/>  <!-- SW 44th -->
         </g>
-        <!-- OKC mile-grid: N-S arterials (W→E: Council, Rockwell, MacArthur, Portland, Penn, May, Western, Meridian) -->
-        <g stroke="rgba(61,220,132,0.065)" stroke-width="0.8">
+        <!-- OKC mile-grid: N-S arterials -->
+        <g stroke="rgba(255,255,255,0.08)" stroke-width="1">
           <line x1="42"  y1="0" x2="42"  y2="370"/>  <!-- Council Rd -->
           <line x1="95"  y1="0" x2="95"  y2="370"/>  <!-- Rockwell Ave -->
           <line x1="148" y1="0" x2="148" y2="370"/>  <!-- MacArthur Blvd -->
@@ -184,16 +186,26 @@ footer{padding:60px 0 60px;text-align:center}
           <line x1="326" y1="0" x2="326" y2="370"/>  <!-- Western Ave -->
           <line x1="370" y1="0" x2="370" y2="370"/>  <!-- Meridian Ave -->
         </g>
-        <!-- I-40 (dominant E-W highway) -->
-        <line x1="0" y1="204" x2="420" y2="202" stroke="rgba(61,220,132,0.26)" stroke-width="2.8"/>
-        <!-- I-44 (diagonal NW Expressway corridor) -->
-        <path d="M28,0 Q110,82 186,160 T298,338" stroke="rgba(61,220,132,0.18)" stroke-width="2.2" fill="none"/>
-        <!-- I-35 / Broadway Ext (eastern edge, slight curve) -->
-        <path d="M390,0 Q388,120 386,204 T382,370" stroke="rgba(61,220,132,0.18)" stroke-width="2.2" fill="none"/>
-        <!-- I-240 (south loop, curves west→east) -->
-        <path d="M80,358 Q200,338 340,352" stroke="rgba(61,220,132,0.16)" stroke-width="2" fill="none"/>
-        <!-- Lake Hefner Pkwy spur (NW, curves off grid) -->
-        <path d="M244,0 Q248,55 260,88" stroke="rgba(61,220,132,0.07)" stroke-width="1" fill="none" stroke-dasharray="4,4"/>
+        <!-- I-40 (dominant E-W highway — amber like dark-mode maps) -->
+        <line x1="0" y1="205" x2="420" y2="203" stroke="#8a7040" stroke-width="3.5"/>
+        <line x1="0" y1="205" x2="420" y2="203" stroke="rgba(200,160,80,0.55)" stroke-width="1.5"/>
+        <!-- I-44 diagonal -->
+        <path d="M28,0 Q110,82 186,160 T298,338" stroke="#7a6438" stroke-width="3" fill="none"/>
+        <path d="M28,0 Q110,82 186,160 T298,338" stroke="rgba(200,160,80,0.40)" stroke-width="1.2" fill="none"/>
+        <!-- I-35 / Broadway Ext -->
+        <path d="M390,0 Q388,120 386,204 T382,370" stroke="#7a6438" stroke-width="3" fill="none"/>
+        <path d="M390,0 Q388,120 386,204 T382,370" stroke="rgba(200,160,80,0.40)" stroke-width="1.2" fill="none"/>
+        <!-- I-240 south loop -->
+        <path d="M80,358 Q200,338 340,352" stroke="#7a6438" stroke-width="2.8" fill="none"/>
+        <path d="M80,358 Q200,338 340,352" stroke="rgba(200,160,80,0.40)" stroke-width="1.2" fill="none"/>
+        <!-- Lake Hefner Pkwy spur -->
+        <path d="M244,0 Q248,55 260,88" stroke="rgba(255,255,255,0.06)" stroke-width="1" fill="none" stroke-dasharray="4,4"/>
+        <!-- subtle vignette overlay -->
+        <radialGradient id="vig" cx="50%" cy="50%" r="70%">
+          <stop offset="60%" stop-color="transparent"/>
+          <stop offset="100%" stop-color="rgba(10,14,22,0.55)"/>
+        </radialGradient>
+        <rect x="0" y="0" width="420" height="370" fill="url(#vig)"/>
       </svg>
 
       <!-- E-W street labels (left edge) -->
@@ -201,7 +213,7 @@ footer{padding:60px 0 60px;text-align:center}
       <div class="road-label" style="left:1%;top:21%">50</div>
       <div class="road-label" style="left:1%;top:33%">36</div>
       <div class="road-label" style="left:1%;top:42%">23</div>
-      <div class="road-label" style="left:1%;top:52%;color:rgba(61,220,132,0.32);font-size:9px">I-40</div>
+      <div class="road-label" style="left:1%;top:53%;color:rgba(200,160,80,0.65);font-size:9px">I-40</div>
       <div class="road-label" style="left:1%;top:63%">15</div>
       <div class="road-label" style="left:1%;top:83%">44</div>
       <!-- N-S street labels (top edge) -->
@@ -210,7 +222,7 @@ footer{padding:60px 0 60px;text-align:center}
       <div class="road-label" style="left:31%;top:1%">PTLD</div>
       <div class="road-label" style="left:53%;top:1%">MAY</div>
       <div class="road-label" style="left:74%;top:1%">WES</div>
-      <div class="road-label" style="left:86%;top:1%;color:rgba(61,220,132,0.30)">I-35</div>
+      <div class="road-label" style="left:86%;top:1%;color:rgba(200,160,80,0.55)">I-35</div>
 
       <!-- Units — placed at real grid intersections across W-DIV -->
       <!-- Council/NW36 -->
