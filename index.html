@@ -268,21 +268,13 @@ footer{padding:40px 0 60px;text-align:center}
     <path d="M0,420 Q140,400 280,440 T580,410 T880,450 L1000,430"/>
     <path d="M0,540 Q120,560 260,530 T560,550 T860,520 L1000,540"/>
     <path d="M0,680 Q160,700 310,670 T610,690 T910,660 L1000,680"/>
-    <path d="M0,820 Q140,840 290,810 T590,830 T890,800 L1000,820"/>
-    <path d="M0,100 Q180,80 330,120 T630,90 T930,130 L1000,110"/>
-    <path d="M0,960 Q160,980 310,950 T610,970 T910,940 L1000,960"/>
-  </g>
-  <g stroke="rgba(61,220,132,0.02)" stroke-width="0.5" stroke-dasharray="4,8">
-    <line x1="0" y1="250" x2="1000" y2="250"/><line x1="0" y1="500" x2="1000" y2="500"/>
-    <line x1="0" y1="750" x2="1000" y2="750"/><line x1="250" y1="0" x2="250" y2="1000"/>
-    <line x1="500" y1="0" x2="500" y2="1000"/><line x1="750" y1="0" x2="750" y2="1000"/>
   </g>
 </svg>
 </div>
 
 <div class="page-wrap">
   <nav>
-    <div class="nav-logo">AH.</div>
+    <div class="nav-logo">AH / RESUME</div>
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
       <li><a href="#experience">Work</a></li>
@@ -292,17 +284,15 @@ footer{padding:40px 0 60px;text-align:center}
     </ul>
   </nav>
 
-  <div class="container">
-    <div class="hero reveal is-visible">
-      <div class="hero-coord">35.4676&deg; N &middot; 97.5164&deg; W &middot; KOKC</div>
-      <div class="hero-ident">IDENT: AH-001 &middot; STATUS: ACTIVE &middot; CLR<span class="blink">_</span></div>
-      <h1>Abigail H.</h1>
-      <p class="hero-sub">Logistics technician, cybersecurity student, and off-grid tech builder. I keep things running whether it's ambulances, networks, or improvised systems.</p>
-      <div class="hero-actions">
-        <a class="hero-button hero-button-primary" href="#projects">View Projects</a>
-        <a class="hero-button hero-button-secondary" href="#skills">Explore Skills</a>
-        <a class="hero-button hero-button-tertiary" href="https://github.com/A-hurdd" target="_blank" rel="noreferrer">View GitHub</a>
-      </div>
+  <div class="container hero reveal is-visible">
+    <div class="hero-coord">KOKC / 35.47N / 97.52W</div>
+    <div class="hero-ident">ABIGAIL H. <span class="blink">_</span></div>
+    <h1>Logistics. Operations. Technical Curiosity.</h1>
+    <p class="hero-sub">Logistics technician with field support experience, supply chain readiness, and a growing hands-on background in cybersecurity and IT systems.</p>
+    <div class="hero-actions">
+      <a class="hero-button hero-button-primary" href="#projects">View Projects</a>
+      <a class="hero-button hero-button-secondary" href="#skills">Explore Skills</a>
+      <a class="hero-button hero-button-tertiary" href="https://github.com/A-hurdd" target="_blank" rel="noreferrer">View GitHub</a>
     </div>
     <div class="stats-strip reveal">
       <article class="stat-card reveal reveal-stagger" style="--delay: 0ms;">
@@ -415,10 +405,8 @@ footer{padding:40px 0 60px;text-align:center}
           <div class="project-tech">TBD</div>
           <p class="project-desc">Placeholder for the next project. As I build more things, they'll show up here.</p>
           <div class="project-actions">
-            <button class="project-toggle" type="button" aria-expanded="false">Open Build Details</button>
             <span class="project-state">Queued for deployment</span>
           </div>
-          <div class="project-detail" hidden><p class="project-desc">Space reserved for the next project once it is ready to publish.</p></div>
         </article>
       </div>
     </section>
@@ -604,6 +592,10 @@ const projectCards = document.querySelectorAll('.project-card');
 projectCards.forEach((card) => {
   const toggle = card.querySelector('.project-toggle');
   const detail = card.querySelector('.project-detail');
+
+  if (!toggle || !detail) {
+    return;
+  }
 
   toggle.addEventListener('click', () => {
     const isOpen = card.classList.toggle('is-open');
