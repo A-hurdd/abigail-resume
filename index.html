@@ -17,135 +17,72 @@
 html{scroll-behavior:smooth}
 body{background:var(--bg-deep);color:var(--text);font-family:var(--sans);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
 
-.dispatch-map{position:fixed;top:18px;right:0;width:min(900px,76vw);height:min(760px,86vh);pointer-events:none;z-index:0;opacity:0.88;transform:translate3d(0,0,0);transition:transform 0.6s ease;filter:drop-shadow(0 18px 42px rgba(0,0,0,0.34))}
-.dispatch-map::before{content:'';position:absolute;inset:18px 26px 42px 120px;border-radius:24px;background:linear-gradient(180deg,rgba(226,233,241,0.96),rgba(219,228,238,0.94));box-shadow:0 28px 80px rgba(4,8,12,0.22)}
-.dispatch-map::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 70% 34%,rgba(61,220,132,0.10),transparent 30%),radial-gradient(circle at 56% 72%,rgba(109,212,255,0.08),transparent 26%);mix-blend-mode:screen;opacity:0.55}
-.dispatch-sidebar{position:absolute;top:52px;left:0;width:178px;padding:18px 16px;border:1px solid rgba(220,227,236,0.09);border-radius:18px;background:linear-gradient(180deg,rgba(9,12,18,0.96),rgba(10,14,20,0.88));box-shadow:0 20px 48px rgba(0,0,0,0.28)}
-.dispatch-sidebar-title{font-family:var(--mono);font-size:10px;letter-spacing:1.8px;color:var(--green);text-transform:uppercase;margin-bottom:12px}
-.dispatch-sidebar-list{display:grid;gap:8px}
-.dispatch-sidebar-item{display:flex;align-items:center;gap:10px;font-family:var(--sans);font-size:12px;color:var(--text-bright)}
-.dispatch-sidebar-swatch{width:12px;height:12px;border-radius:3px;background:#0f151f;border:1px solid rgba(255,255,255,0.2)}
-.dispatch-sidebar-swatch.enroute{background:#d9622f}
-.dispatch-sidebar-swatch.station{background:#3376ff}
-.dispatch-sidebar-swatch.support{background:#37c8b4}
-.dispatch-sidebar-swatch.priority{background:#d2d94d}
-.dispatch-map-panel{position:absolute;inset:34px 24px 54px 134px;border-radius:18px;overflow:hidden;background:#dce4ee;border:1px solid rgba(255,255,255,0.35)}
-.dispatch-map-svg{position:absolute;inset:0;width:100%;height:100%}
-.dispatch-water{fill:#d3deea}
-.dispatch-sector{fill:#dfe6ee;stroke:#b7c6d8;stroke-width:2}
-.dispatch-sector.alt{fill:#d8e2ed}
-.dispatch-park{fill:#c9ddc6;opacity:0.9}
-.dispatch-road-major{fill:none;stroke:#d95277;stroke-width:8;stroke-linecap:round;stroke-linejoin:round}
-.dispatch-road-minor{fill:none;stroke:#c88ca3;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
-.dispatch-grid-road{fill:none;stroke:#b28c63;stroke-width:2;opacity:0.55;stroke-linecap:round}
-.dispatch-shield{font-family:var(--mono);font-size:12px;font-weight:600}
-.dispatch-shield text{fill:#fff}
-.dispatch-shield rect{rx:5}
-.dispatch-shield.interstate rect{fill:#2d67d6}
-.dispatch-shield.route rect{fill:#3ea7c3}
-.dispatch-shield.dark rect{fill:#222936}
-.dispatch-airport{font-family:var(--mono);font-size:12px;letter-spacing:1.2px;fill:#4d5968}
-.dispatch-area-label{font-family:Georgia,'Times New Roman',serif;font-size:18px;fill:#657486;opacity:0.88}
-.dispatch-city-label{font-family:var(--mono);font-size:14px;letter-spacing:1.8px;fill:#a79039}
-.dispatch-map-unit{position:absolute;min-width:58px;padding:5px 8px 6px;border-radius:4px;border:1px solid rgba(22,28,38,0.24);background:#1f2734;font-family:var(--mono);font-size:11px;line-height:1;color:#fff;box-shadow:0 8px 18px rgba(0,0,0,0.16)}
-.dispatch-map-unit::after{content:'';position:absolute;left:50%;bottom:-11px;width:18px;height:12px;background:linear-gradient(180deg,rgba(31,39,52,0.88),transparent);transform:translateX(-50%)}
-.dispatch-map-unit.blue{background:#1f58d3}
-.dispatch-map-unit.orange{background:#c8683e}
-.dispatch-map-unit.yellow{background:#1c1f16;color:#e7ef7c}
-.dispatch-map-unit.dark{background:#1f2734}
-.dispatch-map-unit.cyan{background:#2aa4bf}
-.dispatch-map-unit.green{background:#2a8d5d}
-.dispatch-map-unit-small{font-size:10px;padding:4px 7px 5px}
-.dispatch-map-unit.unit-1{top:20%;left:28%}
-.dispatch-map-unit.unit-2{top:30%;left:39%}
-.dispatch-map-unit.unit-3{top:34%;left:48%}
-.dispatch-map-unit.unit-4{top:41%;left:56%}
-.dispatch-map-unit.unit-5{top:47%;left:34%}
-.dispatch-map-unit.unit-6{top:58%;left:18%}
-.dispatch-map-unit.unit-7{top:68%;left:61%}
-.dispatch-map-unit.unit-8{top:73%;left:72%}
-.dispatch-map-ambulance{position:absolute;width:24px;height:12px;border-radius:2px;background:#ffffff;border:1px solid rgba(18,24,30,0.18);box-shadow:0 3px 8px rgba(0,0,0,0.12)}
-.dispatch-map-ambulance::before{content:'';position:absolute;left:4px;top:2px;width:6px;height:6px;border-radius:1px;background:#dce6ef}
-.dispatch-map-ambulance::after{content:'';position:absolute;right:3px;bottom:-2px;width:5px;height:5px;border-radius:50%;background:#2d3138;box-shadow:-13px 0 0 #2d3138}
-.ambulance-1{top:22%;left:26%;transform:rotate(-12deg)}
-.ambulance-2{top:33%;left:44%;transform:rotate(10deg)}
-.ambulance-3{top:46%;left:58%;transform:rotate(-18deg)}
-.ambulance-4{top:60%;left:14%;transform:rotate(5deg)}
-.ambulance-5{top:75%;left:70%;transform:rotate(-6deg)}
-.dispatch-callout{position:absolute;padding:7px 10px;border-radius:5px;border:1px solid rgba(18,24,30,0.18);background:rgba(10,14,20,0.88);font-family:var(--mono);font-size:10px;letter-spacing:1.4px;color:#dce3ec;text-transform:uppercase;box-shadow:0 10px 24px rgba(0,0,0,0.18)}
-.dispatch-callout.priority{border-color:rgba(210,217,77,0.45);color:#f1f7a1}
-.dispatch-callout.route{border-color:rgba(42,164,191,0.45)}
-.callout-1{top:14%;left:52%}
-.callout-2{top:62%;left:46%}
-.dispatch-status{position:absolute;left:208px;right:64px;bottom:0;display:flex;align-items:center;justify-content:center;gap:10px;padding:10px 14px;border-radius:10px;background:rgba(10,14,20,0.9);border:1px solid rgba(61,220,132,0.14);font-family:var(--mono);font-size:10px;letter-spacing:1.8px;color:rgba(220,227,236,0.82);text-transform:uppercase}
-.dispatch-status::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 8px rgba(61,220,132,0.42)}
+/* === DISPATCH MAP === */
+.dispatch-wrap{position:fixed;top:0;right:0;width:460px;height:470px;pointer-events:none;z-index:0;padding:58px 18px 18px 18px;opacity:0.80}
+.dispatch-panel{width:100%;height:100%;background:rgba(8,11,17,0.55);border:1px solid rgba(255,255,255,0.07);border-radius:3px;display:flex;flex-direction:column;overflow:hidden;backdrop-filter:blur(8px)}
+.dispatch-header{display:flex;justify-content:space-between;align-items:center;padding:7px 12px;border-bottom:1px solid rgba(255,255,255,0.06);font-family:var(--mono);font-size:9px;color:var(--green);letter-spacing:2px;text-transform:uppercase;flex-shrink:0;background:rgba(8,11,17,0.40)}
+.dispatch-live{display:flex;align-items:center;gap:5px;color:var(--text-dim)}
+.dispatch-live-dot{width:5px;height:5px;background:var(--green);border-radius:50%;box-shadow:0 0 4px var(--green-glow);animation:pulse-dot 1.8s ease infinite}
+.dispatch-map-area{position:relative;flex:1;overflow:hidden;background:#1c2436}
+.dispatch-roads{position:absolute;top:0;left:0;width:100%;height:100%}
+.road-label{position:absolute;font-family:var(--mono);font-size:8px;color:rgba(180,185,200,0.35);letter-spacing:1px;pointer-events:none;white-space:nowrap}
+.unit{position:absolute;transform:translate(-50%,-50%)}
+.unit-badge{font-family:var(--mono);font-size:9px;font-weight:500;padding:2px 6px;border-radius:2px;letter-spacing:0.5px;white-space:nowrap;position:relative;z-index:1}
+.unit-badge.avail{background:rgba(20,38,30,0.85);border:1px solid rgba(61,220,132,0.50);color:#3ddc84}
+.unit-badge.scene{background:rgba(38,32,10,0.85);border:1px solid rgba(245,200,66,0.55);color:#f5c842}
+.unit-badge.busy{background:rgba(38,16,14,0.85);border:1px solid rgba(255,100,80,0.50);color:#ff7060}
+.unit-ping{position:absolute;top:50%;left:50%;width:26px;height:26px;border-radius:50%;transform:translate(-50%,-50%);animation:unit-ping 3.2s ease-out infinite;pointer-events:none}
+.unit-ping.ap{border:1px solid rgba(61,220,132,0.45)}
+.unit-ping.sp{border:1px solid rgba(245,200,66,0.45);animation-delay:0.6s}
+.unit-ping.bp{border:1px solid rgba(255,100,80,0.40);animation-delay:1.2s}
+@keyframes unit-ping{0%{transform:translate(-50%,-50%) scale(0.4);opacity:0.7}100%{transform:translate(-50%,-50%) scale(2.4);opacity:0}}
+.dispatch-legend{display:flex;gap:14px;padding:5px 12px;border-top:1px solid rgba(255,255,255,0.05);font-family:var(--mono);font-size:8px;letter-spacing:1px;flex-shrink:0;background:rgba(8,11,17,0.35)}
+.legend-item{display:flex;align-items:center;gap:4px;color:var(--text-dim)}
+.legend-dot{width:5px;height:5px;border-radius:1px}
+.legend-dot.a{background:rgba(61,220,132,0.6)}
+.legend-dot.s{background:rgba(245,200,66,0.6)}
+.legend-dot.b{background:rgba(255,100,80,0.5)}
+.dispatch-footer{display:flex;justify-content:space-between;padding:5px 12px;border-top:1px solid rgba(255,255,255,0.05);font-family:var(--mono);font-size:8px;color:var(--text-dim);letter-spacing:1.5px;flex-shrink:0;background:rgba(8,11,17,0.35)}
 
-.topo-bg{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:0.18;mix-blend-mode:screen}
-.topo-bg::before{content:'';position:absolute;inset:0;background:
-  radial-gradient(circle at 18% 22%,rgba(61,220,132,0.08),transparent 34%),
-  radial-gradient(circle at 82% 18%,rgba(109,212,255,0.05),transparent 28%),
-  radial-gradient(circle at 62% 68%,rgba(61,220,132,0.05),transparent 32%);
-  opacity:0.55
-}
-.topo-bg::after{content:'';position:absolute;inset:0;background:
-  linear-gradient(180deg,rgba(8,11,17,0.08),rgba(8,11,17,0.28) 42%,rgba(8,11,17,0.54)),
-  radial-gradient(circle at center,transparent 50%,rgba(8,11,17,0.14) 100%);
-  opacity:0.9
-}
+/* === TOPO LINES (SVG background) === */
+.topo-bg{position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:0.4}
 .topo-bg svg{width:100%;height:100%}
-body::before{content:'';position:fixed;top:0;left:0;right:0;bottom:0;background:
-  repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,0,0,0.014) 3px,rgba(0,0,0,0.014) 6px),
-  linear-gradient(90deg,rgba(61,220,132,0.015),transparent 22%,transparent 78%,rgba(61,220,132,0.015));
-pointer-events:none;z-index:2}
-body::after{content:'';position:fixed;inset:0;background:
-  radial-gradient(circle at 50% 14%,rgba(61,220,132,0.045),transparent 28%),
-  radial-gradient(circle at 50% 50%,transparent 56%,rgba(2,5,8,0.18) 100%);
-pointer-events:none;z-index:0}
+
+/* === SCANLINES === */
+body::before{content:'';position:fixed;top:0;left:0;right:0;bottom:0;background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,0,0,0.015) 3px,rgba(0,0,0,0.015) 6px);pointer-events:none;z-index:999}
 
 .page-wrap{position:relative;z-index:1}
-.container{max-width:900px;margin:0 auto;padding:0 28px}
+.container{max-width:820px;margin:0 auto;padding:0 28px}
 
+/* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:14px 28px;background:rgba(8,11,17,0.9);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center}
 .nav-logo{font-family:var(--mono);font-size:13px;font-weight:500;color:var(--green);letter-spacing:2px}
 .nav-links{display:flex;gap:28px;list-style:none}
 .nav-links a{font-family:var(--mono);font-size:11px;color:var(--text-dim);text-decoration:none;letter-spacing:1.5px;text-transform:uppercase;transition:color 0.3s}
-.nav-links a:hover,.nav-links a:focus-visible,.nav-links a.is-active{color:var(--green)}
+.nav-links a:hover{color:var(--green)}
 
+/* STATUS BAR */
 .status-bar{position:fixed;bottom:0;left:0;right:0;z-index:100;padding:8px 28px;background:rgba(8,11,17,0.92);backdrop-filter:blur(12px);border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;font-family:var(--mono);font-size:10px;color:var(--text-dim);letter-spacing:1.5px;text-transform:uppercase}
 .status-dot{display:inline-block;width:6px;height:6px;background:var(--green);border-radius:50%;margin-right:8px;animation:pulse-dot 2s ease infinite;box-shadow:0 0 6px var(--green-glow)}
 @keyframes pulse-dot{0%,100%{opacity:1}50%{opacity:0.4}}
 
-.hero{padding:160px 0 60px}
+/* HERO */
+.hero{padding:160px 0 80px}
 .hero-coord{font-family:var(--mono);font-size:11px;color:var(--text-dim);letter-spacing:3px;margin-bottom:8px}
 .hero-ident{font-family:var(--mono);font-size:11px;color:var(--green);letter-spacing:2px;margin-bottom:20px}
 .hero-ident .blink{animation:blink 1.2s step-end infinite}
 h1{font-family:var(--sans);font-size:56px;font-weight:700;color:var(--text-bright);letter-spacing:-1px;line-height:1.1;margin-bottom:16px}
-.hero-sub{font-family:var(--sans);font-size:18px;font-weight:300;color:var(--text-mid);max-width:560px;margin-bottom:28px}
-.hero-actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:28px}
-.hero-button{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:12px 18px;border:1px solid var(--border);border-radius:4px;text-decoration:none;font-family:var(--mono);font-size:11px;letter-spacing:1.7px;text-transform:uppercase;transition:transform 0.25s ease,background 0.25s ease,border-color 0.25s ease,color 0.25s ease}
-.hero-button:hover,.hero-button:focus-visible{transform:translateY(-2px);border-color:var(--green-mid)}
-.hero-button-primary{background:var(--green-dim);color:var(--green)}
-.hero-button-secondary{background:rgba(17,23,32,0.85);color:var(--text-bright)}
-.hero-button-tertiary{background:transparent;color:var(--text-mid)}
+.hero-sub{font-family:var(--sans);font-size:18px;font-weight:300;color:var(--text-mid);max-width:520px;margin-bottom:28px}
 
-.stats-strip{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin:10px 0 26px}
-.stat-card{position:relative;padding:18px 18px 16px;background:linear-gradient(180deg,rgba(17,23,32,0.96),rgba(11,16,24,0.92));border:1px solid var(--border);border-radius:4px;overflow:hidden}
-.stat-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:2px;background:linear-gradient(90deg,var(--green),transparent);opacity:0.75}
-.stat-value{font-family:var(--mono);font-size:30px;color:var(--text-bright);letter-spacing:-1px}
-.stat-label{font-family:var(--mono);font-size:10px;color:var(--green);letter-spacing:2px;text-transform:uppercase;margin-top:6px}
-.stat-note{font-size:13px;color:var(--text-mid);margin-top:8px;line-height:1.55}
-
-section{padding:64px 0;scroll-margin-top:96px}
+/* SECTIONS */
+section{padding:64px 0}
 .section-marker{font-family:var(--mono);font-size:11px;color:var(--text-dim);letter-spacing:3px;text-transform:uppercase;margin-bottom:6px;display:flex;align-items:center;gap:10px}
 .section-marker::before{content:'';width:8px;height:8px;border:1.5px solid var(--green);border-radius:50%;flex-shrink:0}
 h2{font-family:var(--sans);font-size:32px;font-weight:600;color:var(--text-bright);margin-bottom:24px;letter-spacing:-0.5px}
 .divider{width:40px;height:1px;background:var(--green);margin-bottom:36px;opacity:0.4;box-shadow:0 0 8px var(--green-faint)}
 .about-text{font-size:17px;font-weight:300;color:var(--text-mid);max-width:620px;line-height:1.8}
 
-.reveal{opacity:0;transform:translateY(28px);transition:opacity 0.7s ease,transform 0.7s ease}
-.reveal.is-visible{opacity:1;transform:translateY(0)}
-.reveal-stagger{transition-delay:var(--delay,0ms)}
-
+/* TIMELINE */
 .timeline{position:relative}
 .timeline::before{content:'';position:absolute;left:0;top:8px;bottom:8px;width:1px;background:linear-gradient(to bottom,var(--green-mid),var(--border))}
 .timeline-item{padding-left:28px;margin-bottom:36px;position:relative}
@@ -163,44 +100,33 @@ h2{font-family:var(--sans);font-size:32px;font-weight:600;color:var(--text-brigh
 .timeline-bullets li{font-size:14px;font-weight:300;color:var(--text-mid);padding:3px 0 3px 18px;position:relative;line-height:1.6}
 .timeline-bullets li::before{content:'';position:absolute;left:0;top:12px;width:6px;height:1px;background:var(--green);opacity:0.5}
 
+/* PROJECTS */
 .projects-grid{display:grid;gap:16px}
 .project-card{background:var(--bg-card);border:1px solid var(--border);border-radius:4px;padding:28px;transition:all 0.35s ease;position:relative;overflow:hidden}
 .project-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:linear-gradient(to bottom,var(--green),transparent);opacity:0;transition:opacity 0.35s}
-.project-card:hover,.project-card.is-open{background:var(--bg-card-hover);border-color:var(--green-mid)}
-.project-card:hover::before,.project-card.is-open::before{opacity:1}
+.project-card:hover{background:var(--bg-card-hover);border-color:var(--green-mid)}
+.project-card:hover::before{opacity:1}
 .project-label{font-family:var(--mono);font-size:10px;color:var(--text-dim);letter-spacing:2px;text-transform:uppercase;margin-bottom:8px}
 .project-name{font-family:var(--sans);font-size:20px;font-weight:600;color:var(--text-bright);margin-bottom:4px}
 .project-tech{font-family:var(--mono);font-size:12px;color:var(--green);margin-bottom:14px;opacity:0.7}
 .project-desc{font-size:14px;font-weight:300;color:var(--text-mid);line-height:1.7}
-.project-actions{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:18px}
-.project-toggle{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--green-mid);background:var(--green-dim);color:var(--green);padding:10px 12px;border-radius:3px;font-family:var(--mono);font-size:10px;letter-spacing:1.6px;text-transform:uppercase;cursor:pointer;transition:background 0.25s ease,color 0.25s ease,border-color 0.25s ease}
-.project-toggle:hover,.project-toggle:focus-visible{background:rgba(61,220,132,0.14)}
-.project-state{font-family:var(--mono);font-size:10px;color:var(--text-dim);letter-spacing:1.5px;text-transform:uppercase}
-.project-detail{max-height:0;overflow:hidden;opacity:0;transition:max-height 0.35s ease,opacity 0.35s ease;margin-top:0}
-.project-card.is-open .project-detail{max-height:240px;opacity:1;margin-top:18px}
-.project-detail-list{list-style:none;padding:0;display:grid;gap:10px}
-.project-detail-list li{font-size:14px;color:var(--text-mid);padding-left:18px;position:relative}
-.project-detail-list li::before{content:'';position:absolute;left:0;top:11px;width:6px;height:1px;background:var(--green);opacity:0.65}
 
+/* SKILLS */
 .skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
-.skill-group{background:var(--bg-card);border:1px solid var(--border);border-radius:4px;padding:22px;transition:border-color 0.3s,transform 0.3s,background 0.3s;cursor:pointer;text-align:left}
-.skill-group:hover,.skill-group:focus-visible,.skill-group.is-active{border-color:var(--green-mid);transform:translateY(-2px);background:var(--bg-card-hover)}
+.skill-group{background:var(--bg-card);border:1px solid var(--border);border-radius:4px;padding:22px;transition:border-color 0.3s}
+.skill-group:hover{border-color:var(--green-mid)}
 .skill-group-title{font-family:var(--mono);font-size:10px;color:var(--green);letter-spacing:2.5px;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:8px}
 .skill-group-title::before{content:'';width:4px;height:4px;background:var(--green);border-radius:50%;box-shadow:0 0 4px var(--green-glow)}
 .skill-list{display:flex;flex-wrap:wrap;gap:6px}
 .skill-chip{font-family:var(--mono);font-size:11px;color:var(--text-mid);background:var(--green-faint);padding:5px 10px;border-radius:2px;border:1px solid var(--border)}
-.skill-detail-panel{margin-top:18px;padding:22px;border:1px solid var(--green-mid);background:linear-gradient(135deg,rgba(61,220,132,0.08),rgba(17,23,32,0.95));border-radius:4px;min-height:164px}
-.skill-detail-label{font-family:var(--mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--green);margin-bottom:10px}
-.skill-detail-title{font-size:24px;color:var(--text-bright);margin-bottom:10px}
-.skill-detail-copy{font-size:15px;color:var(--text-mid);max-width:580px}
-.skill-detail-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
-.skill-detail-tags span{font-family:var(--mono);font-size:10px;letter-spacing:1.4px;text-transform:uppercase;padding:7px 9px;border:1px solid var(--border);border-radius:2px;color:var(--text-bright);background:rgba(8,11,17,0.35)}
 
+/* CERTS */
 .certs-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
 .cert-badge{display:flex;align-items:center;gap:12px;padding:16px 18px;background:var(--bg-card);border:1px solid var(--border);border-radius:4px}
 .cert-icon{width:8px;height:8px;background:var(--green);border-radius:50%;flex-shrink:0;box-shadow:0 0 6px var(--green-glow)}
 .cert-text{font-family:var(--mono);font-size:12px;color:var(--text-mid);line-height:1.4}
 
+/* EDUCATION */
 .edu-list{list-style:none}
 .edu-item{padding:16px 0;border-bottom:1px solid var(--border)}
 .edu-item:last-child{border-bottom:none}
@@ -209,240 +135,192 @@ h2{font-family:var(--sans);font-size:32px;font-weight:600;color:var(--text-brigh
 .edu-date{font-family:var(--mono);font-size:11px;color:var(--text-dim);letter-spacing:1px}
 .edu-school{font-family:var(--mono);font-size:12px;color:var(--green);margin-top:2px;opacity:0.7}
 
-.contact-grid{display:grid;grid-template-columns:1.15fr 0.85fr;gap:16px}
-.contact-panel{background:linear-gradient(180deg,rgba(17,23,32,0.96),rgba(11,16,24,0.94));border:1px solid var(--border);border-radius:4px;padding:28px;position:relative;overflow:hidden}
-.contact-panel::before{content:'';position:absolute;top:0;left:0;width:100%;height:2px;background:linear-gradient(90deg,var(--green),transparent)}
-.contact-kicker{font-family:var(--mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--green);margin-bottom:12px}
-.contact-title{font-size:30px;color:var(--text-bright);margin-bottom:12px}
-.contact-copy{font-size:15px;color:var(--text-mid);max-width:560px}
-.contact-links{display:grid;gap:12px;margin-top:24px}
-.contact-link{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 16px;border:1px solid var(--border);border-radius:4px;text-decoration:none;background:rgba(8,11,17,0.42);transition:border-color 0.25s ease,transform 0.25s ease,background 0.25s ease}
-.contact-link:hover,.contact-link:focus-visible{border-color:var(--green-mid);transform:translateY(-2px);background:rgba(17,23,32,0.78)}
-.contact-link-label{font-family:var(--mono);font-size:10px;color:var(--green);letter-spacing:1.7px;text-transform:uppercase}
-.contact-link-value{font-size:15px;color:var(--text-bright)}
-.contact-link-arrow{font-family:var(--mono);font-size:11px;color:var(--text-dim);letter-spacing:1.7px;text-transform:uppercase}
-.contact-side{display:grid;gap:16px}
-.command-card{padding:20px;border:1px solid var(--border);border-radius:4px;background:rgba(17,23,32,0.92)}
-.command-label{font-family:var(--mono);font-size:10px;letter-spacing:1.8px;text-transform:uppercase;color:var(--green);margin-bottom:8px}
-.command-value{font-size:15px;color:var(--text-bright)}
-.command-note{font-size:14px;color:var(--text-mid);margin-top:8px}
-.download-button{display:inline-flex;align-items:center;justify-content:center;padding:12px 16px;margin-top:20px;border:1px solid var(--green-mid);border-radius:4px;background:var(--green-dim);text-decoration:none;font-family:var(--mono);font-size:11px;letter-spacing:1.8px;text-transform:uppercase;color:var(--green);transition:transform 0.25s ease,border-color 0.25s ease,background 0.25s ease}
-.download-button:hover,.download-button:focus-visible{transform:translateY(-2px);background:rgba(61,220,132,0.14)}
-
-footer{padding:40px 0 60px;text-align:center}
+footer{padding:60px 0 60px;text-align:center}
 .footer-text{font-family:var(--mono);font-size:11px;color:var(--text-dim);letter-spacing:2px}
 
 @keyframes blink{50%{opacity:0}}
 
-@media(max-width:780px){
-  .stats-strip{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .contact-grid{grid-template-columns:1fr}
-  .dispatch-map{width:min(760px,92vw);height:min(620px,74vh);right:-70px;opacity:0.78}
-  .dispatch-sidebar{display:none}
-  .dispatch-status{left:42px;right:42px}
-}
-
 @media(max-width:640px){
   h1{font-size:38px}
-  .hero{padding:130px 0 44px}
+  .hero{padding:130px 0 50px}
   section{padding:48px 0}
   .nav-links{gap:16px}
   .nav-links a{font-size:10px;letter-spacing:1px}
   .timeline-header{flex-direction:column;gap:2px}
   .status-bar{font-size:9px}
-  .dispatch-map{width:540px;height:500px;right:-150px;top:34px;opacity:0.62}
-  .dispatch-map-unit,.dispatch-callout{display:none}
-  .dispatch-status{left:34px;right:28px;bottom:18px;font-size:9px}
-  .hero-actions,.project-actions{flex-direction:column;align-items:flex-start}
-  .stats-strip{grid-template-columns:1fr}
-}
-
-@media (prefers-reduced-motion: reduce){
-  html{scroll-behavior:auto}
-  *,*::before,*::after{animation:none !important;transition:none !important}
-  .reveal{opacity:1;transform:none}
+  .dispatch-wrap{width:240px;height:260px;opacity:0.35;padding:52px 10px 10px 10px}
 }
 </style>
 </head>
 <body>
 
-<div class="dispatch-map" id="dispatch-map" aria-hidden="true">
-  <div class="dispatch-sidebar">
-    <div class="dispatch-sidebar-title">Unit Display</div>
-    <div class="dispatch-sidebar-list">
-      <div class="dispatch-sidebar-item"><span class="dispatch-sidebar-swatch enroute"></span><span>Enroute Units</span></div>
-      <div class="dispatch-sidebar-item"><span class="dispatch-sidebar-swatch station"></span><span>Units at Station</span></div>
-      <div class="dispatch-sidebar-item"><span class="dispatch-sidebar-swatch support"></span><span>Support Vehicles</span></div>
-      <div class="dispatch-sidebar-item"><span class="dispatch-sidebar-swatch priority"></span><span>Priority Calls</span></div>
+<!-- DISPATCH MAP -->
+<div class="dispatch-wrap">
+  <div class="dispatch-panel">
+    <div class="dispatch-header">
+      <span>EMSA // WESTERN DIV</span>
+      <div class="dispatch-live"><div class="dispatch-live-dot"></div><span>LIVE</span></div>
+    </div>
+    <div class="dispatch-map-area">
+      <svg class="dispatch-roads" viewBox="0 0 420 370" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+        <!-- map background fill -->
+        <rect x="0" y="0" width="420" height="370" fill="#1c2436"/>
+        <!-- OKC mile-grid: E-W arterials -->
+        <g stroke="rgba(255,255,255,0.08)" stroke-width="1">
+          <line x1="0" y1="42"  x2="420" y2="42"/>   <!-- NW 63rd -->
+          <line x1="0" y1="88"  x2="420" y2="88"/>   <!-- NW 50th -->
+          <line x1="0" y1="133" x2="420" y2="133"/>  <!-- NW 36th -->
+          <line x1="0" y1="168" x2="420" y2="168"/>  <!-- NW 23rd -->
+          <line x1="0" y1="240" x2="420" y2="240"/>  <!-- SW 15th -->
+          <line x1="0" y1="278" x2="420" y2="278"/>  <!-- SW 29th -->
+          <line x1="0" y1="330" x2="420" y2="330"/>  <!-- SW 44th -->
+        </g>
+        <!-- OKC mile-grid: N-S arterials -->
+        <g stroke="rgba(255,255,255,0.08)" stroke-width="1">
+          <line x1="42"  y1="0" x2="42"  y2="370"/>  <!-- Council Rd -->
+          <line x1="95"  y1="0" x2="95"  y2="370"/>  <!-- Rockwell Ave -->
+          <line x1="148" y1="0" x2="148" y2="370"/>  <!-- MacArthur Blvd -->
+          <line x1="198" y1="0" x2="198" y2="370"/>  <!-- Portland Ave -->
+          <line x1="244" y1="0" x2="244" y2="370"/>  <!-- Penn Ave -->
+          <line x1="286" y1="0" x2="286" y2="370"/>  <!-- May Ave -->
+          <line x1="326" y1="0" x2="326" y2="370"/>  <!-- Western Ave -->
+          <line x1="370" y1="0" x2="370" y2="370"/>  <!-- Meridian Ave -->
+        </g>
+        <!-- I-40 (dominant E-W highway — amber like dark-mode maps) -->
+        <line x1="0" y1="205" x2="420" y2="203" stroke="#8a7040" stroke-width="3.5"/>
+        <line x1="0" y1="205" x2="420" y2="203" stroke="rgba(200,160,80,0.55)" stroke-width="1.5"/>
+        <!-- I-44 diagonal -->
+        <path d="M28,0 Q110,82 186,160 T298,338" stroke="#7a6438" stroke-width="3" fill="none"/>
+        <path d="M28,0 Q110,82 186,160 T298,338" stroke="rgba(200,160,80,0.40)" stroke-width="1.2" fill="none"/>
+        <!-- I-35 / Broadway Ext -->
+        <path d="M390,0 Q388,120 386,204 T382,370" stroke="#7a6438" stroke-width="3" fill="none"/>
+        <path d="M390,0 Q388,120 386,204 T382,370" stroke="rgba(200,160,80,0.40)" stroke-width="1.2" fill="none"/>
+        <!-- I-240 south loop -->
+        <path d="M80,358 Q200,338 340,352" stroke="#7a6438" stroke-width="2.8" fill="none"/>
+        <path d="M80,358 Q200,338 340,352" stroke="rgba(200,160,80,0.40)" stroke-width="1.2" fill="none"/>
+        <!-- Lake Hefner Pkwy spur -->
+        <path d="M244,0 Q248,55 260,88" stroke="rgba(255,255,255,0.06)" stroke-width="1" fill="none" stroke-dasharray="4,4"/>
+        <!-- subtle vignette overlay -->
+        <radialGradient id="vig" cx="50%" cy="50%" r="70%">
+          <stop offset="60%" stop-color="transparent"/>
+          <stop offset="100%" stop-color="rgba(10,14,22,0.55)"/>
+        </radialGradient>
+        <rect x="0" y="0" width="420" height="370" fill="url(#vig)"/>
+      </svg>
+
+      <!-- E-W street labels (left edge) -->
+      <div class="road-label" style="left:1%;top:9%">63</div>
+      <div class="road-label" style="left:1%;top:21%">50</div>
+      <div class="road-label" style="left:1%;top:33%">36</div>
+      <div class="road-label" style="left:1%;top:42%">23</div>
+      <div class="road-label" style="left:1%;top:53%;color:rgba(200,160,80,0.65);font-size:9px">I-40</div>
+      <div class="road-label" style="left:1%;top:63%">15</div>
+      <div class="road-label" style="left:1%;top:83%">44</div>
+      <!-- N-S street labels (top edge) -->
+      <div class="road-label" style="left:7%;top:1%">CNCL</div>
+      <div class="road-label" style="left:19%;top:1%">MCR</div>
+      <div class="road-label" style="left:31%;top:1%">PTLD</div>
+      <div class="road-label" style="left:53%;top:1%">MAY</div>
+      <div class="road-label" style="left:74%;top:1%">WES</div>
+      <div class="road-label" style="left:86%;top:1%;color:rgba(200,160,80,0.55)">I-35</div>
+
+      <!-- Units — placed at real grid intersections across W-DIV -->
+      <!-- Council/NW36 -->
+      <div class="unit" style="left:10%;top:34%">
+        <div class="unit-ping ap"></div>
+        <div class="unit-badge avail">BLS-346</div>
+      </div>
+      <!-- MacArthur/NW50 -->
+      <div class="unit" style="left:34%;top:21%">
+        <div class="unit-ping sp"></div>
+        <div class="unit-badge scene">MED-378*</div>
+      </div>
+      <!-- MacArthur/NW23 -->
+      <div class="unit" style="left:34%;top:43%">
+        <div class="unit-ping sp"></div>
+        <div class="unit-badge scene">BLS-337*</div>
+      </div>
+      <!-- Portland/NW63 -->
+      <div class="unit" style="left:46%;top:10%">
+        <div class="unit-badge avail">SUP-377</div>
+      </div>
+      <!-- Portland/I-40 -->
+      <div class="unit" style="left:46%;top:53%">
+        <div class="unit-badge avail">MED-392</div>
+      </div>
+      <!-- May/NW36 -->
+      <div class="unit" style="left:67%;top:33%">
+        <div class="unit-ping bp"></div>
+        <div class="unit-badge busy">BLS-382*</div>
+      </div>
+      <!-- Rockwell/SW15 -->
+      <div class="unit" style="left:22%;top:63%">
+        <div class="unit-badge avail">BLS-362</div>
+      </div>
+      <!-- Portland/SW29 -->
+      <div class="unit" style="left:46%;top:73%">
+        <div class="unit-badge avail">BLS-387</div>
+      </div>
+      <!-- May/SW44 -->
+      <div class="unit" style="left:67%;top:83%">
+        <div class="unit-badge avail">BLS-389</div>
+      </div>
+    </div>
+    <div class="dispatch-legend">
+      <div class="legend-item"><div class="legend-dot a"></div>AVAIL</div>
+      <div class="legend-item"><div class="legend-dot s"></div>ON SCENE</div>
+      <div class="legend-item"><div class="legend-dot b"></div>ACTIVE</div>
+    </div>
+    <div class="dispatch-footer">
+      <span>9 UNITS &middot; W-DIV</span>
+      <span>35.47N &middot; 97.52W</span>
     </div>
   </div>
-  <div class="dispatch-map-panel">
-    <svg class="dispatch-map-svg" viewBox="0 0 980 760" xmlns="http://www.w3.org/2000/svg">
-      <rect class="dispatch-water" x="0" y="0" width="980" height="760"/>
-      <path class="dispatch-sector" d="M520 18 L762 18 L762 222 L698 238 L640 286 L530 288 L472 190 Z"/>
-      <path class="dispatch-sector alt" d="M102 120 L292 120 L292 316 L208 332 L150 288 L102 250 Z"/>
-      <path class="dispatch-sector alt" d="M640 436 L920 436 L920 634 L760 648 L644 612 Z"/>
-      <path class="dispatch-sector" d="M202 436 L392 436 L392 650 L246 664 L202 624 Z"/>
-      <rect class="dispatch-park" x="352" y="70" width="62" height="44" rx="6"/>
-      <rect class="dispatch-park" x="784" y="110" width="56" height="40" rx="6"/>
-      <rect class="dispatch-park" x="770" y="316" width="60" height="42" rx="6"/>
-      <rect class="dispatch-park" x="144" y="560" width="72" height="46" rx="6"/>
-      <path class="dispatch-road-major" d="M76 212 C 214 212, 312 206, 428 212 S 704 222, 924 220"/>
-      <path class="dispatch-road-major" d="M108 472 C 248 474, 354 470, 504 470 S 734 472, 934 474"/>
-      <path class="dispatch-road-major" d="M594 44 C 598 164, 600 292, 600 714"/>
-      <path class="dispatch-road-major" d="M726 82 C 724 178, 722 304, 718 612"/>
-      <path class="dispatch-road-major" d="M208 44 C 258 146, 338 252, 466 398 S 660 600, 778 704"/>
-      <path class="dispatch-road-minor" d="M300 120 C 400 160, 488 160, 588 138"/>
-      <path class="dispatch-road-minor" d="M214 334 C 312 356, 428 362, 578 350"/>
-      <path class="dispatch-road-minor" d="M482 264 C 544 300, 652 336, 864 334"/>
-      <path class="dispatch-road-minor" d="M666 514 C 736 548, 812 580, 904 602"/>
-      <path class="dispatch-grid-road" d="M52 300 L924 300"/>
-      <path class="dispatch-grid-road" d="M116 388 L930 388"/>
-      <path class="dispatch-grid-road" d="M320 54 L320 692"/>
-      <path class="dispatch-grid-road" d="M480 34 L480 712"/>
-      <path class="dispatch-grid-road" d="M816 66 L816 694"/>
-      <g class="dispatch-shield interstate" transform="translate(610 208)">
-        <rect width="52" height="28"></rect><text x="26" y="18" text-anchor="middle">I-35</text>
-      </g>
-      <g class="dispatch-shield interstate" transform="translate(366 456)">
-        <rect width="52" height="28"></rect><text x="26" y="18" text-anchor="middle">I-40</text>
-      </g>
-      <g class="dispatch-shield interstate" transform="translate(176 196)">
-        <rect width="52" height="28"></rect><text x="26" y="18" text-anchor="middle">I-44</text>
-      </g>
-      <g class="dispatch-shield interstate" transform="translate(654 560)">
-        <rect width="58" height="28"></rect><text x="29" y="18" text-anchor="middle">I-240</text>
-      </g>
-      <g class="dispatch-shield route" transform="translate(538 112)">
-        <rect width="46" height="26"></rect><text x="23" y="17" text-anchor="middle">235</text>
-      </g>
-      <g class="dispatch-shield route" transform="translate(720 156)">
-        <rect width="46" height="26"></rect><text x="23" y="17" text-anchor="middle">77</text>
-      </g>
-      <g class="dispatch-shield dark" transform="translate(794 308)">
-        <rect width="50" height="26"></rect><text x="25" y="17" text-anchor="middle">382</text>
-      </g>
-      <text class="dispatch-area-label" x="470" y="182">Oklahoma National Guard</text>
-      <text class="dispatch-area-label" x="366" y="418">Scissortail Park</text>
-      <text class="dispatch-area-label" x="630" y="558">Smith Village</text>
-      <text class="dispatch-city-label" x="342" y="462">OKLAHOMA CITY</text>
-      <text class="dispatch-city-label" x="756" y="182">OKC EAST</text>
-      <text class="dispatch-city-label" x="170" y="620">MOORE</text>
-      <text class="dispatch-airport" x="530" y="360">DOWNTOWN AIRPARK</text>
-      <text class="dispatch-airport" x="734" y="662">TINKER AFB</text>
-    </svg>
-    <div class="dispatch-map-unit yellow unit-1">372</div>
-    <div class="dispatch-map-unit orange unit-2">BLS346</div>
-    <div class="dispatch-map-unit yellow unit-3">392 393</div>
-    <div class="dispatch-map-unit blue unit-4">OFD06</div>
-    <div class="dispatch-map-unit cyan unit-5">OFD551</div>
-    <div class="dispatch-map-unit cyan unit-6 dispatch-map-unit-small">OFD21</div>
-    <div class="dispatch-map-unit orange unit-7">BLS389</div>
-    <div class="dispatch-map-unit blue unit-8">OPS501</div>
-    <div class="dispatch-map-ambulance ambulance-1"></div>
-    <div class="dispatch-map-ambulance ambulance-2"></div>
-    <div class="dispatch-map-ambulance ambulance-3"></div>
-    <div class="dispatch-map-ambulance ambulance-4"></div>
-    <div class="dispatch-map-ambulance ambulance-5"></div>
-    <div class="dispatch-callout priority callout-1">Priority Call / Love Field</div>
-    <div class="dispatch-callout route callout-2">Supply Route / South Corridor</div>
-  </div>
-  <div class="dispatch-status"><span id="dispatch-status-text">OKC BOARD / 08 UNITS LIVE</span></div>
 </div>
 
-<div class="topo-bg" aria-hidden="true">
+<!-- TOPO BACKGROUND -->
+<div class="topo-bg">
 <svg viewBox="0 0 1000 1000" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <linearGradient id="topoGlow" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="rgba(61,220,132,0.26)"/>
-      <stop offset="100%" stop-color="rgba(109,212,255,0.10)"/>
-    </linearGradient>
-  </defs>
-  <g fill="none" stroke="rgba(61,220,132,0.08)" stroke-width="0.8">
-    <path d="M-20,150 Q120,110 250,150 T520,142 T790,168 T1040,140"/>
-    <path d="M-10,190 Q150,152 296,192 T610,178 T900,214 T1030,186"/>
-    <path d="M0,230 Q158,194 304,232 T618,218 T906,256 T1000,236"/>
-    <path d="M0,278 Q150,248 286,284 T568,270 T854,306 T1000,286"/>
-    <path d="M0,330 Q118,350 250,320 T548,344 T848,316 L1000,334"/>
-    <path d="M0,382 Q132,360 268,394 T566,372 T862,410 L1000,388"/>
-    <path d="M0,438 Q140,414 280,448 T586,422 T886,458 L1000,436"/>
-    <path d="M0,498 Q124,518 262,490 T552,514 T842,486 L1000,504"/>
-    <path d="M0,560 Q134,530 290,566 T602,540 T904,576 L1000,554"/>
-    <path d="M0,624 Q150,594 312,630 T628,608 T914,648 L1000,624"/>
-    <path d="M0,692 Q172,714 332,680 T642,706 T930,672 L1000,692"/>
-    <path d="M0,770 Q152,742 314,778 T642,754 T938,790 L1000,770"/>
+  <g fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="0.8">
+    <path d="M0,200 Q150,180 300,220 T600,190 T900,230 L1000,210"/>
+    <path d="M0,300 Q100,320 250,290 T550,310 T850,280 L1000,300"/>
+    <path d="M0,420 Q140,400 280,440 T580,410 T880,450 L1000,430"/>
+    <path d="M0,540 Q120,560 260,530 T560,550 T860,520 L1000,540"/>
+    <path d="M0,680 Q160,700 310,670 T610,690 T910,660 L1000,680"/>
+    <path d="M0,820 Q140,840 290,810 T590,830 T890,800 L1000,820"/>
+    <path d="M0,100 Q180,80 330,120 T630,90 T930,130 L1000,110"/>
+    <path d="M0,960 Q160,980 310,950 T610,970 T910,940 L1000,960"/>
   </g>
-  <g fill="none" stroke="rgba(220,227,236,0.035)" stroke-width="0.7">
-    <path d="M64,116 C158,74 264,76 338,132 C402,180 512,190 622,154 C724,122 814,112 936,146"/>
-    <path d="M54,468 C142,434 252,444 344,500 C422,548 520,556 624,524 C734,492 846,500 960,540"/>
-    <path d="M92,830 C188,790 302,798 386,848 C462,892 562,898 666,868 C774,836 874,840 962,882"/>
-  </g>
-  <g fill="none" stroke="url(#topoGlow)" stroke-width="1.1" opacity="0.34">
-    <path d="M100,238 C184,188 310,190 400,250 C482,304 596,314 700,274 C804,234 884,228 960,266"/>
-    <path d="M84,614 C180,566 314,576 408,634 C500,688 616,696 720,652 C814,612 894,608 972,642"/>
-  </g>
-  <g fill="none" stroke="rgba(61,220,132,0.045)" stroke-width="0.7" stroke-dasharray="3 10">
-    <path d="M0,112 L1000,112"/>
-    <path d="M0,284 L1000,284"/>
-    <path d="M0,456 L1000,456"/>
-    <path d="M0,628 L1000,628"/>
-    <path d="M0,800 L1000,800"/>
-    <path d="M146,0 L146,1000"/>
-    <path d="M372,0 L372,1000"/>
-    <path d="M628,0 L628,1000"/>
-    <path d="M854,0 L854,1000"/>
+  <g stroke="rgba(61,220,132,0.02)" stroke-width="0.5" stroke-dasharray="4,8">
+    <line x1="0" y1="250" x2="1000" y2="250"/><line x1="0" y1="500" x2="1000" y2="500"/>
+    <line x1="0" y1="750" x2="1000" y2="750"/><line x1="250" y1="0" x2="250" y2="1000"/>
+    <line x1="500" y1="0" x2="500" y2="1000"/><line x1="750" y1="0" x2="750" y2="1000"/>
   </g>
 </svg>
 </div>
 
 <div class="page-wrap">
   <nav>
-    <div class="nav-logo">AH / RESUME</div>
+    <div class="nav-logo">AH.</div>
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
       <li><a href="#experience">Work</a></li>
       <li><a href="#projects">Projects</a></li>
       <li><a href="#skills">Skills</a></li>
-      <li><a href="#contact">Contact</a></li>
     </ul>
   </nav>
 
-  <div class="container hero reveal is-visible">
-    <div class="hero-coord">KOKC / 35.47N / 97.52W</div>
-    <div class="hero-ident">ABIGAIL H. <span class="blink">_</span></div>
-    <h1>Abigail H.</h1>
-    <p class="hero-sub">Logistics technician with field support experience, supply chain readiness, and a growing hands-on background in cybersecurity and IT systems.</p>
-    <div class="hero-actions">
-      <a class="hero-button hero-button-primary" href="#projects">View Projects</a>
-      <a class="hero-button hero-button-secondary" href="#skills">Explore Skills</a>
-      <a class="hero-button hero-button-tertiary" href="https://github.com/A-hurdd" target="_blank" rel="noreferrer">View GitHub</a>
-    </div>
-    <div class="stats-strip reveal">
-      <article class="stat-card reveal reveal-stagger" style="--delay: 0ms;">
-        <div class="stat-value" data-target="3">00</div>
-        <div class="stat-label">Roles Held</div>
-        <p class="stat-note">From customer-facing work to logistics operations with real field support.</p>
-      </article>
-      <article class="stat-card reveal reveal-stagger" style="--delay: 90ms;">
-        <div class="stat-value" data-target="3">00</div>
-        <div class="stat-label">Certifications</div>
-        <p class="stat-note">Practical credentials that support both warehouse and technical environments.</p>
-      </article>
-      <article class="stat-card reveal reveal-stagger" style="--delay: 180ms;">
-        <div class="stat-value" data-target="1">00</div>
-        <div class="stat-label">Active Build</div>
-        <p class="stat-note">An off-grid mobile terminal designed for reliability without internet access.</p>
-      </article>
-      <article class="stat-card reveal reveal-stagger" style="--delay: 270ms;">
-        <div class="stat-value" data-target="24" data-suffix="/7">00</div>
-        <div class="stat-label">Field Readiness</div>
-        <p class="stat-note">A working style built around urgency, adaptability, and keeping systems moving.</p>
-      </article>
+  <div class="container">
+    <div class="hero">
+      <div class="hero-coord">35.4676&deg; N &middot; 97.5164&deg; W &middot; KOKC</div>
+      <div class="hero-ident">IDENT: AH-001 &middot; STATUS: ACTIVE &middot; CLR<span class="blink">_</span></div>
+      <h1>Abigail H.</h1>
+      <p class="hero-sub">Logistics technician, cybersecurity student, and off-grid tech builder. I keep things running whether it's ambulances, networks, or improvised systems.</p>
     </div>
   </div>
 
   <div class="container">
-    <section id="about" class="reveal">
+    <section id="about">
       <div class="section-marker">01 / About</div>
       <h2>Background</h2>
       <div class="divider"></div>
@@ -453,12 +331,12 @@ footer{padding:40px 0 60px;text-align:center}
   </div>
 
   <div class="container">
-    <section id="experience" class="reveal">
+    <section id="experience">
       <div class="section-marker">02 / Experience</div>
       <h2>Work History</h2>
       <div class="divider"></div>
       <div class="timeline">
-        <div class="timeline-item reveal reveal-stagger" style="--delay: 0ms;">
+        <div class="timeline-item">
           <div class="timeline-header">
             <span class="timeline-title">Logistics Technician (VST)</span>
             <span class="timeline-date">Jul 2025 - Present</span>
@@ -472,7 +350,7 @@ footer{padding:40px 0 60px;text-align:center}
             <li>Perform biohazard cleanup and decontamination of vehicles and equipment following safety protocols</li>
           </ul>
         </div>
-        <div class="timeline-item reveal reveal-stagger" style="--delay: 100ms;">
+        <div class="timeline-item">
           <div class="timeline-header">
             <span class="timeline-title">Barista</span>
             <span class="timeline-date">Dec 2024 - Jul 2025</span>
@@ -482,7 +360,7 @@ footer{padding:40px 0 60px;text-align:center}
             <li>Delivered fast, accurate service managing multiple orders in a high-traffic drive-through environment</li>
           </ul>
         </div>
-        <div class="timeline-item reveal reveal-stagger" style="--delay: 200ms;">
+        <div class="timeline-item">
           <div class="timeline-header">
             <span class="timeline-title">Shift Lead</span>
             <span class="timeline-date">Nov 2023 - Nov 2024</span>
@@ -500,48 +378,34 @@ footer{padding:40px 0 60px;text-align:center}
   </div>
 
   <div class="container">
-    <section id="projects" class="reveal">
+    <section id="projects">
       <div class="section-marker">03 / Projects</div>
       <h2>What I Build</h2>
       <div class="divider"></div>
       <div class="projects-grid">
-        <article class="project-card reveal reveal-stagger" style="--delay: 0ms;">
+        <div class="project-card">
           <div class="project-label">Personal Project</div>
           <div class="project-name">Off-Grid Mobile Terminal</div>
           <div class="project-tech">Termux / Android / Local Inference / SQLite</div>
           <p class="project-desc">Converted a spare phone into a fully offline reference and problem-solving terminal using Termux. Runs local inference with a custom database of information. Built for scenarios with no internet access, designed to be a self-contained tool that works anywhere.</p>
-          <div class="project-actions">
-            <button class="project-toggle" type="button" aria-expanded="false">Open Build Details</button>
-            <span class="project-state">Interactive briefing</span>
-          </div>
-          <div class="project-detail" hidden>
-            <ul class="project-detail-list">
-              <li>Designed for low-connectivity or zero-connectivity environments where quick local access matters.</li>
-              <li>Blends practical troubleshooting, data storage, and lightweight local tooling into one portable device.</li>
-              <li>Shows hands-on interest in systems thinking, resilience, and applied technical problem solving.</li>
-            </ul>
-          </div>
-        </article>
-        <article class="project-card reveal reveal-stagger" style="--delay: 120ms;">
+        </div>
+        <div class="project-card">
           <div class="project-label">Coming Soon</div>
           <div class="project-name">Next Build</div>
           <div class="project-tech">TBD</div>
           <p class="project-desc">Placeholder for the next project. As I build more things, they'll show up here.</p>
-          <div class="project-actions">
-            <span class="project-state">Queued for deployment</span>
-          </div>
-        </article>
+        </div>
       </div>
     </section>
   </div>
 
   <div class="container">
-    <section id="skills" class="reveal">
+    <section id="skills">
       <div class="section-marker">04 / Skills</div>
       <h2>Toolkit</h2>
       <div class="divider"></div>
-      <div class="skills-grid" role="tablist" aria-label="Skill categories">
-        <button class="skill-group is-active reveal reveal-stagger" style="--delay: 0ms;" type="button" data-skill-title="Logistics" data-skill-copy="I keep fast-moving inventory accurate and available, whether that means stocking ambulances, tracking supplies, or supporting time-sensitive operations without losing detail." data-skill-tags="Inventory Management|Forklift Operation|Supply Distribution|Tracking Systems|Warehouse Ops" aria-pressed="true">
+      <div class="skills-grid">
+        <div class="skill-group">
           <div class="skill-group-title">Logistics</div>
           <div class="skill-list">
             <span class="skill-chip">Inventory Management</span>
@@ -550,8 +414,8 @@ footer{padding:40px 0 60px;text-align:center}
             <span class="skill-chip">Tracking Systems</span>
             <span class="skill-chip">Warehouse Ops</span>
           </div>
-        </button>
-        <button class="skill-group reveal reveal-stagger" style="--delay: 80ms;" type="button" data-skill-title="Equipment" data-skill-copy="I work directly with field equipment and vehicle support systems, focusing on reliability, quick troubleshooting, and practical fixes when time matters." data-skill-tags="Lifepak 35|O2 Systems|Fleet Maintenance|Hardware Repair" aria-pressed="false">
+        </div>
+        <div class="skill-group">
           <div class="skill-group-title">Equipment</div>
           <div class="skill-list">
             <span class="skill-chip">Lifepak 35</span>
@@ -559,8 +423,8 @@ footer{padding:40px 0 60px;text-align:center}
             <span class="skill-chip">Fleet Maintenance</span>
             <span class="skill-chip">Hardware Repair</span>
           </div>
-        </button>
-        <button class="skill-group reveal reveal-stagger" style="--delay: 160ms;" type="button" data-skill-title="Cyber / IT" data-skill-copy="My IT focus is hands-on and systems-oriented, built through coursework, self-study, and practical experiments with Linux, networking, and off-grid tools." data-skill-tags="CompTIA ITF+|Networking|Linux / Termux|Cybersecurity|IT Operations" aria-pressed="false">
+        </div>
+        <div class="skill-group">
           <div class="skill-group-title">Cyber / IT</div>
           <div class="skill-list">
             <span class="skill-chip">CompTIA ITF+</span>
@@ -569,41 +433,28 @@ footer{padding:40px 0 60px;text-align:center}
             <span class="skill-chip">Cybersecurity</span>
             <span class="skill-chip">IT Operations</span>
           </div>
-        </button>
-        <button class="skill-group reveal reveal-stagger" style="--delay: 240ms;" type="button" data-skill-title="Software" data-skill-copy="I am comfortable working in terminals, Linux and Ubuntu environments, VS Code, and virtual machines for hands-on technical work and troubleshooting." data-skill-tags="Terminals|Linux / Ubuntu|VS Code|Virtual Machines" aria-pressed="false">
+        </div>
+        <div class="skill-group">
           <div class="skill-group-title">Software</div>
           <div class="skill-list">
-            <span class="skill-chip">Terminals</span>
-            <span class="skill-chip">Linux / Ubuntu</span>
-            <span class="skill-chip">VS Code</span>
-            <span class="skill-chip">Virtual Machines</span>
+            <span class="skill-chip">Microsoft Office</span>
+            <span class="skill-chip">Google Workspace</span>
+            <span class="skill-chip">Excel</span>
           </div>
-        </button>
-      </div>
-      <div class="skill-detail-panel reveal" id="skill-detail-panel" aria-live="polite">
-        <div class="skill-detail-label">Selected Category</div>
-        <div class="skill-detail-title" id="skill-detail-title">Logistics</div>
-        <p class="skill-detail-copy" id="skill-detail-copy">I keep fast-moving inventory accurate and available, whether that means stocking ambulances, tracking supplies, or supporting time-sensitive operations without losing detail.</p>
-        <div class="skill-detail-tags" id="skill-detail-tags">
-          <span>Inventory Management</span>
-          <span>Forklift Operation</span>
-          <span>Supply Distribution</span>
-          <span>Tracking Systems</span>
-          <span>Warehouse Ops</span>
         </div>
       </div>
     </section>
   </div>
 
   <div class="container">
-    <section class="reveal">
+    <section>
       <div class="section-marker">05 / Credentials</div>
       <h2>Certifications</h2>
       <div class="divider"></div>
       <div class="certs-row">
-        <div class="cert-badge reveal reveal-stagger" style="--delay: 0ms;"><div class="cert-icon"></div><span class="cert-text">Forklift Operator</span></div>
-        <div class="cert-badge reveal reveal-stagger" style="--delay: 80ms;"><div class="cert-icon"></div><span class="cert-text">EVOC Certified</span></div>
-        <div class="cert-badge reveal reveal-stagger" style="--delay: 160ms;"><div class="cert-icon"></div><span class="cert-text">CompTIA ITF+</span></div>
+        <div class="cert-badge"><div class="cert-icon"></div><span class="cert-text">Forklift Operator</span></div>
+        <div class="cert-badge"><div class="cert-icon"></div><span class="cert-text">EVOC Certified</span></div>
+        <div class="cert-badge"><div class="cert-icon"></div><span class="cert-text">CompTIA ITF+</span></div>
       </div>
       <h2 style="margin-top:48px;">Education</h2>
       <div class="divider"></div>
@@ -627,56 +478,7 @@ footer{padding:40px 0 60px;text-align:center}
   </div>
 
   <div class="container">
-    <section id="contact" class="reveal">
-      <div class="section-marker">06 / Contact</div>
-      <h2>Command Center</h2>
-      <div class="divider"></div>
-      <div class="contact-grid">
-        <div class="contact-panel reveal reveal-stagger" style="--delay: 0ms;">
-          <div class="contact-kicker">Open Channel</div>
-          <div class="contact-title">Ready for the next mission.</div>
-          <p class="contact-copy">If you want to talk about logistics, operations, or technical work, this section is built to make that easy. Reach out through the channel that fits best.</p>
-          <div class="contact-links">
-            <a class="contact-link" href="mailto:abigailmenasco@gmail.com">
-              <div>
-                <div class="contact-link-label">Email</div>
-                <div class="contact-link-value">abigailmenasco@gmail.com</div>
-              </div>
-              <div class="contact-link-arrow">Transmit</div>
-            </a>
-            <a class="contact-link" href="https://github.com/A-hurdd" target="_blank" rel="noreferrer">
-              <div>
-                <div class="contact-link-label">GitHub</div>
-                <div class="contact-link-value">github.com/A-hurdd</div>
-              </div>
-              <div class="contact-link-arrow">Open</div>
-            </a>
-          </div>
-          <a class="download-button" href="./AbigailH-Resume-Dark.pdf" target="_blank" rel="noreferrer">Download Resume</a>
-        </div>
-        <div class="contact-side reveal reveal-stagger" style="--delay: 120ms;">
-          <div class="command-card">
-            <div class="command-label">Location</div>
-            <div class="command-value">Oklahoma City, OK</div>
-            <p class="command-note">Central base with experience supporting field operations in fast-moving environments.</p>
-          </div>
-          <div class="command-card">
-            <div class="command-label">Availability</div>
-            <div class="command-value">Open to logistics, supply chain, and IT roles</div>
-            <p class="command-note">Interested in practical work where reliability, systems thinking, and adaptability matter.</p>
-          </div>
-          <div class="command-card">
-            <div class="command-label">Status</div>
-            <div class="command-value">Open to new opportunities</div>
-            <p class="command-note">Interested in logistics, operations, and technical roles where reliability and problem solving matter.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-  </div>
-
-  <div class="container">
-    <footer class="reveal">
+    <footer>
       <div class="footer-text">Abigail H. / Oklahoma City, OK</div>
     </footer>
   </div>
@@ -687,153 +489,6 @@ footer{padding:40px 0 60px;text-align:center}
   <span>KOKC &middot; 35.47N 97.52W</span>
   <span>AH-001</span>
 </div>
-
-<script>
-const revealItems = document.querySelectorAll('.reveal');
-const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-if (!prefersReducedMotion && 'IntersectionObserver' in window) {
-  const revealObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('is-visible');
-        revealObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.16, rootMargin: '0px 0px -40px 0px' });
-
-  revealItems.forEach((item) => {
-    if (!item.classList.contains('is-visible')) {
-      revealObserver.observe(item);
-    }
-  });
-} else {
-  revealItems.forEach((item) => item.classList.add('is-visible'));
-}
-
-const projectCards = document.querySelectorAll('.project-card');
-projectCards.forEach((card) => {
-  const toggle = card.querySelector('.project-toggle');
-  const detail = card.querySelector('.project-detail');
-
-  if (!toggle || !detail) {
-    return;
-  }
-
-  toggle.addEventListener('click', () => {
-    const isOpen = card.classList.toggle('is-open');
-    detail.hidden = !isOpen;
-    toggle.setAttribute('aria-expanded', String(isOpen));
-    toggle.textContent = isOpen ? 'Hide Build Details' : 'Open Build Details';
-  });
-});
-
-const skillButtons = document.querySelectorAll('.skill-group');
-const skillTitle = document.getElementById('skill-detail-title');
-const skillCopy = document.getElementById('skill-detail-copy');
-const skillTags = document.getElementById('skill-detail-tags');
-
-function updateSkillPanel(button) {
-  skillButtons.forEach((item) => {
-    item.classList.remove('is-active');
-    item.setAttribute('aria-pressed', 'false');
-  });
-
-  button.classList.add('is-active');
-  button.setAttribute('aria-pressed', 'true');
-  skillTitle.textContent = button.dataset.skillTitle;
-  skillCopy.textContent = button.dataset.skillCopy;
-
-  skillTags.innerHTML = '';
-  button.dataset.skillTags.split('|').forEach((tag) => {
-    const chip = document.createElement('span');
-    chip.textContent = tag;
-    skillTags.appendChild(chip);
-  });
-}
-
-skillButtons.forEach((button) => {
-  button.addEventListener('click', () => updateSkillPanel(button));
-  button.addEventListener('keydown', (event) => {
-    if (event.key === 'Enter' || event.key === ' ') {
-      event.preventDefault();
-      updateSkillPanel(button);
-    }
-  });
-});
-
-const statValues = document.querySelectorAll('.stat-value');
-const statObserver = !prefersReducedMotion && 'IntersectionObserver' in window ? new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    if (!entry.isIntersecting) return;
-    const element = entry.target;
-    const target = Number(element.dataset.target || 0);
-    const suffix = element.dataset.suffix || '';
-    const duration = 1100;
-    const start = performance.now();
-
-    function tick(now) {
-      const progress = Math.min((now - start) / duration, 1);
-      const value = Math.round(progress * target);
-      element.textContent = String(value).padStart(2, '0') + suffix;
-      if (progress < 1) {
-        requestAnimationFrame(tick);
-      }
-    }
-
-    requestAnimationFrame(tick);
-    statObserver.unobserve(element);
-  });
-}, { threshold: 0.45 }) : null;
-
-statValues.forEach((item) => {
-  if (statObserver) {
-    statObserver.observe(item);
-  } else {
-    item.textContent = String(item.dataset.target || '0').padStart(2, '0') + (item.dataset.suffix || '');
-  }
-});
-
-const dispatchMap = document.getElementById('dispatch-map');
-const dispatchStatusText = document.getElementById('dispatch-status-text');
-const dispatchStatusMessages = [
-  'OKC BOARD / 08 UNITS LIVE',
-  'DOWNTOWN / COVERAGE STABLE',
-  'LOVE FIELD / PRIORITY CALL OPEN',
-  'SOUTH CORRIDOR / SUPPLY ROUTE CLEAR',
-  'MIDWEST CITY / STATION CHECK READY'
-];
-let dispatchStatusIndex = 0;
-
-if (!prefersReducedMotion) {
-  setInterval(() => {
-    dispatchStatusIndex = (dispatchStatusIndex + 1) % dispatchStatusMessages.length;
-    dispatchStatusText.textContent = dispatchStatusMessages[dispatchStatusIndex];
-  }, 4200);
-
-  window.addEventListener('mousemove', (event) => {
-    if (!dispatchMap) return;
-    const x = (event.clientX / window.innerWidth - 0.5) * 8;
-    const y = (event.clientY / window.innerHeight - 0.5) * 8;
-    dispatchMap.style.transform = `translate3d(${x}px, ${y}px, 0)`;
-  });
-}
-
-const navLinks = document.querySelectorAll('.nav-links a');
-const sections = Array.from(document.querySelectorAll('section[id]'));
-if ('IntersectionObserver' in window) {
-  const navObserver = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (!entry.isIntersecting) return;
-      navLinks.forEach((link) => {
-        link.classList.toggle('is-active', link.getAttribute('href') === `#${entry.target.id}`);
-      });
-    });
-  }, { rootMargin: '-35% 0px -55% 0px', threshold: 0.01 });
-
-  sections.forEach((section) => navObserver.observe(section));
-}
-</script>
 
 </body>
 </html>
