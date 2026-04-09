@@ -61,12 +61,21 @@ body{background:var(--bg-deep);color:var(--text);font-family:var(--sans);font-si
 .dot-3{margin-top:-194px;margin-left:-106px;width:5px;height:5px}
 .dot-4{margin-top:144px;margin-left:166px;width:6px;height:6px}
 .dot-5{margin-top:-48px;margin-left:232px;width:5px;height:5px}
-.radar-label{position:absolute;top:50%;left:50%;font-family:var(--mono);font-size:9px;letter-spacing:1.6px;color:rgba(220,227,236,0.25);pointer-events:none;opacity:calc(0.12 + var(--signal,0) * 0.9);transform:translateY(calc((1 - var(--signal,0)) * 2px));transition:opacity 0.18s linear,transform 0.18s linear}
-.label-1{margin-top:-116px;margin-left:98px}
-.label-2{margin-top:98px;margin-left:-138px}
-.label-3{margin-top:-198px;margin-left:-84px}
-.label-4{margin-top:148px;margin-left:184px}
-.label-5{margin-top:-52px;margin-left:248px}
+.radar-label{position:absolute;top:50%;left:50%;min-width:84px;padding:6px 8px 7px 18px;border:1px solid rgba(61,220,132,0.18);border-radius:2px;background:linear-gradient(180deg,rgba(8,11,17,0.92),rgba(8,11,17,0.74));font-family:var(--mono);pointer-events:none;opacity:calc(0.14 + var(--signal,0) * 0.9);transform:translateY(calc((1 - var(--signal,0)) * 2px));transition:opacity 0.18s linear,transform 0.18s linear,border-color 0.18s linear,box-shadow 0.18s linear;color:rgba(220,227,236,0.76);box-shadow:0 0 calc(var(--signal,0) * 12px) rgba(61,220,132,0.16)}
+.radar-label::before{content:'+';position:absolute;top:6px;left:6px;font-size:9px;line-height:1;color:rgba(140,255,194,0.88)}
+.radar-label-code{display:block;font-size:8px;letter-spacing:1.6px;color:rgba(230,246,234,0.94);text-transform:uppercase}
+.radar-label-meta{display:block;margin-top:4px;font-size:7px;letter-spacing:1.2px;color:rgba(220,227,236,0.56);text-transform:uppercase}
+.radar-label.is-enroute{border-color:rgba(255,180,76,0.34);box-shadow:0 0 calc(var(--signal,0) * 12px) rgba(255,180,76,0.16)}
+.radar-label.is-enroute::before{color:rgba(255,198,120,0.95)}
+.radar-label.is-station{border-color:rgba(111,176,255,0.28);box-shadow:0 0 calc(var(--signal,0) * 12px) rgba(111,176,255,0.14)}
+.radar-label.is-station::before{color:rgba(162,206,255,0.92)}
+.radar-label.is-support{border-color:rgba(132,231,216,0.28);box-shadow:0 0 calc(var(--signal,0) * 12px) rgba(132,231,216,0.14)}
+.radar-label.is-support::before{color:rgba(171,244,232,0.92)}
+.label-1{margin-top:-120px;margin-left:102px}
+.label-2{margin-top:102px;margin-left:-154px}
+.label-3{margin-top:-204px;margin-left:-98px}
+.label-4{margin-top:154px;margin-left:180px}
+.label-5{margin-top:-58px;margin-left:238px}
 .radar-route{position:absolute;inset:0;opacity:0.55}
 .radar-route path{fill:none;stroke:rgba(61,220,132,0.16);stroke-width:1.2;stroke-dasharray:7 12}
 .flight-layer{position:absolute;inset:0}
@@ -102,7 +111,10 @@ body{background:var(--bg-deep);color:var(--text);font-family:var(--sans);font-si
 .radar-legend{position:absolute;bottom:134px;left:24px;display:grid;gap:7px;padding:10px 12px;border:1px solid rgba(61,220,132,0.12);background:rgba(8,11,17,0.58);font-family:var(--mono);font-size:8px;letter-spacing:1.4px;text-transform:uppercase;color:rgba(220,227,236,0.6)}
 .legend-item{display:flex;align-items:center;gap:8px}
 .legend-swatch{width:10px;height:10px;border:1px solid rgba(140,255,194,0.9);background:rgba(10,16,18,0.92);transform:rotate(45deg)}
-.legend-swatch.friend{border-radius:50%;transform:none}
+.legend-swatch.ready{border-radius:50%;transform:none}
+.legend-swatch.enroute{border-color:rgba(255,198,120,0.95);background:rgba(36,24,10,0.9);transform:none}
+.legend-swatch.station{border-color:rgba(162,206,255,0.95);background:rgba(8,18,34,0.9);transform:none}
+.legend-swatch.support{border-color:rgba(171,244,232,0.95);background:rgba(8,24,22,0.9);transform:none}
 .legend-swatch.priority{border-color:rgba(204,255,111,0.95);transform:none}
 .radar-status{position:absolute;bottom:78px;left:50%;transform:translateX(-50%);display:flex;gap:12px;align-items:center;padding:8px 12px;border:1px solid rgba(61,220,132,0.14);background:rgba(8,11,17,0.82);font-family:var(--mono);font-size:9px;letter-spacing:1.8px;text-transform:uppercase;color:rgba(220,227,236,0.74);min-width:260px;justify-content:center}
 .radar-status::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--green);box-shadow:0 0 6px rgba(61,220,132,0.4)}
@@ -329,7 +341,7 @@ footer{padding:40px 0 60px;text-align:center}
   </div>
   <div class="radar-panel panel-right">
     <span class="panel-line">COVERAGE / METRO</span>
-    <span class="panel-line">UNITS / 03</span>
+    <span class="panel-line">UNITS / 08</span>
     <span class="panel-line">PRIORITY / 01</span>
   </div>
   <div class="flight-layer">
@@ -340,21 +352,21 @@ footer{padding:40px 0 60px;text-align:center}
       <div class="flight-point"></div>
       <div class="flight-tag">
         <span class="flight-call">MED-04</span>
-        <span class="flight-meta">SUPPLY RUN / UNIT READY</span>
+        <span class="flight-meta">AT POST 441 / READY</span>
       </div>
     </div>
     <div class="flight flight-2 track-priority">
       <div class="flight-point"></div>
       <div class="flight-tag">
-        <span class="flight-call">DISPATCH-1</span>
+        <span class="flight-call">ALS-12</span>
         <span class="flight-meta">PRIORITY CALL / ENROUTE</span>
       </div>
     </div>
     <div class="flight flight-3 track-unknown">
       <div class="flight-point"></div>
       <div class="flight-tag">
-        <span class="flight-call">OPS-21</span>
-        <span class="flight-meta">FLEET CHECK / STANDBY</span>
+        <span class="flight-call">LOG-6</span>
+        <span class="flight-meta">SUPPLY RUN / CLEAR</span>
       </div>
     </div>
   </div>
@@ -364,17 +376,18 @@ footer{padding:40px 0 60px;text-align:center}
   <div class="radar-dot dot-3"></div>
   <div class="radar-dot dot-4"></div>
   <div class="radar-dot dot-5"></div>
-  <div class="radar-label label-1">POST 441 / READY</div>
-  <div class="radar-label label-2">SUPPLY CORRIDOR</div>
-  <div class="radar-label label-3">RADIO CHECK</div>
-  <div class="radar-label label-4">ROUTE CLEAR</div>
-  <div class="radar-label label-5">STAGING B</div>
+  <div class="radar-label label-1"><span class="radar-label-code">MED-04</span><span class="radar-label-meta">Post 441</span></div>
+  <div class="radar-label label-2 is-station"><span class="radar-label-code">BLS-07</span><span class="radar-label-meta">Station East</span></div>
+  <div class="radar-label label-3 is-support"><span class="radar-label-code">NET-7</span><span class="radar-label-meta">Radio Check</span></div>
+  <div class="radar-label label-4 is-enroute"><span class="radar-label-code">ER-2</span><span class="radar-label-meta">Call 17</span></div>
+  <div class="radar-label label-5 is-support"><span class="radar-label-code">SUP-3</span><span class="radar-label-meta">Staging B</span></div>
   <div class="radar-legend">
-    <div class="legend-item"><span class="legend-swatch friend"></span><span>Ready</span></div>
-    <div class="legend-item"><span class="legend-swatch"></span><span>Standby</span></div>
-    <div class="legend-item"><span class="legend-swatch priority"></span><span>Priority</span></div>
+    <div class="legend-item"><span class="legend-swatch ready"></span><span>Ready</span></div>
+    <div class="legend-item"><span class="legend-swatch enroute"></span><span>Enroute</span></div>
+    <div class="legend-item"><span class="legend-swatch station"></span><span>Station</span></div>
+    <div class="legend-item"><span class="legend-swatch support"></span><span>Support</span></div>
   </div>
-  <div class="radar-status"><span id="radar-status-text">DISPATCH BOARD / 03 UNITS LIVE</span></div>
+  <div class="radar-status"><span id="radar-status-text">DISPATCH BOARD / 08 UNITS LIVE</span></div>
 </div>
 
 <div class="topo-bg" aria-hidden="true">
@@ -828,11 +841,12 @@ const flights = Array.from(document.querySelectorAll('.flight'));
 const radarDots = Array.from(document.querySelectorAll('.radar-dot'));
 const radarLabels = Array.from(document.querySelectorAll('.radar-label'));
 const statusMessages = [
-  'DISPATCH BOARD / 03 UNITS LIVE',
+  'DISPATCH BOARD / 08 UNITS LIVE',
   'OKC WEST / COVERAGE STABLE',
-  'PRIORITY CALL / DISPATCH-1 ENROUTE',
-  'SUPPLY RUN / MED-04 CLEAR',
-  'FLEET STATUS / OPS-21 STANDBY'
+  'ALS-12 / PRIORITY CALL ENROUTE',
+  'MED-04 / POST 441 READY',
+  'SUP-3 / STAGING B',
+  'NET-7 / RADIO CHECK STABLE'
 ];
 let statusIndex = 0;
 const radarSweepDuration = 14000;
