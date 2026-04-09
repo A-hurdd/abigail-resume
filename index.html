@@ -35,8 +35,7 @@ body{background:var(--bg-deep);color:var(--text);font-family:var(--sans);font-si
 .diag-1{transform:translate(-255px,-255px) rotate(45deg)}
 .diag-2{transform:translate(-255px,255px) rotate(-45deg)}
 .radar-sweep{position:absolute;top:50%;left:50%;width:360px;height:2px;background:linear-gradient(90deg,rgba(61,220,132,0.95),rgba(61,220,132,0.45),transparent 78%);transform-origin:left center;animation:sweep 11s linear infinite;filter:drop-shadow(0 0 10px rgba(61,220,132,0.24))}
-.radar-sweep::before{content:'';position:absolute;top:-180px;left:0;width:360px;height:360px;background:conic-gradient(from 0deg,rgba(61,220,132,0.26),rgba(61,220,132,0.10) 14deg,rgba(61,220,132,0.02) 28deg,transparent 44deg);transform-origin:0 180px;border-radius:0 360px 0 0;clip-path:polygon(0 50%,100% 0,100% 50%)}
-.radar-sweep::after{content:'';position:absolute;top:50%;right:-4px;width:10px;height:10px;border-radius:50%;background:rgba(61,220,132,0.95);transform:translateY(-50%);box-shadow:0 0 16px rgba(61,220,132,0.55)}
+.radar-sweep::before{content:'';position:absolute;top:-180px;left:0;width:360px;height:360px;background:conic-gradient(from 0deg,rgba(61,220,132,0.20),rgba(61,220,132,0.08) 14deg,transparent 42deg);transform-origin:0 180px;border-radius:0 360px 0 0;clip-path:polygon(0 50%,100% 0,100% 50%)}
 @keyframes sweep{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
 .radar-dot{position:absolute;top:50%;left:50%;width:6px;height:6px;background:var(--green);border-radius:50%;box-shadow:0 0 6px var(--green-glow);opacity:calc(0.08 + var(--signal,0) * 0.92);transform:translate(-50%,-50%) scale(calc(0.75 + var(--signal,0) * 0.35));transition:opacity 0.16s linear,transform 0.16s linear,box-shadow 0.16s linear}
 .radar-dot::after{content:'';position:absolute;inset:-5px;border-radius:50%;border:1px solid rgba(61,220,132,0.18);opacity:calc(var(--signal,0) * 0.85)}
@@ -45,6 +44,7 @@ body{background:var(--bg-deep);color:var(--text);font-family:var(--sans);font-si
 .dot-3{margin-top:-150px;margin-left:-80px;width:4px;height:4px}
 .dot-4{margin-top:100px;margin-left:140px;width:5px;height:5px}
 .dot-5{margin-top:-30px;margin-left:200px;width:4px;height:4px}
+
 .radar-label{position:absolute;top:50%;left:50%;font-family:var(--mono);font-size:9px;color:rgba(61,220,132,0.12);pointer-events:none;opacity:0.2}
 .label-1{margin-top:2px;margin-left:78px}.label-2{margin-top:2px;margin-left:153px}.label-3{margin-top:2px;margin-left:228px}.label-4{margin-top:2px;margin-left:305px}
 .radar-route{position:absolute;inset:0;opacity:0.4}
@@ -53,15 +53,15 @@ body{background:var(--bg-deep);color:var(--text);font-family:var(--sans);font-si
 .flight{position:absolute;top:50%;left:50%;width:12px;height:12px;margin:-6px;transform-origin:center;--signal:0;--heading:0deg}
 .flight-point{position:absolute;top:50%;left:50%;width:8px;height:8px;margin:-4px;border-radius:50%;background:rgba(61,220,132,0.98);box-shadow:0 0 calc(8px + var(--signal,0) * 10px) rgba(61,220,132,0.55);opacity:calc(0.22 + var(--signal,0) * 0.9);transition:opacity 0.16s linear,box-shadow 0.16s linear,transform 0.16s linear}
 .flight-point::before{content:'';position:absolute;top:50%;left:50%;width:18px;height:2px;background:linear-gradient(90deg,rgba(61,220,132,0.9),transparent);transform-origin:2px 50%;transform:translateY(-50%) rotate(var(--heading));opacity:calc(0.25 + var(--signal,0) * 0.85)}
-.flight::after{content:'';position:absolute;top:50%;left:50%;width:1px;height:34px;background:linear-gradient(to top,rgba(61,220,132,0.28),transparent);transform:translate(-50%,-100%) rotate(var(--heading));transform-origin:center bottom;opacity:calc(0.15 + var(--signal,0) * 0.5)}
+.flight::after{content:'';position:absolute;top:50%;left:50%;width:1px;height:28px;background:linear-gradient(to top,rgba(61,220,132,0.25),transparent);transform:translate(-50%,-100%)}
 .flight-label{position:absolute;top:50%;left:50%;margin-left:14px;margin-top:-18px;padding:4px 7px;border:1px solid rgba(61,220,132,0.14);background:rgba(8,11,17,0.78);font-family:var(--mono);font-size:8px;letter-spacing:1.4px;text-transform:uppercase;color:rgba(220,227,236,0.85);white-space:nowrap;opacity:calc(0.18 + var(--signal,0) * 0.95);transform:translateY(calc((1 - var(--signal,0)) * 2px));transition:opacity 0.16s linear,transform 0.16s linear,border-color 0.16s linear,box-shadow 0.16s linear;box-shadow:0 0 calc(var(--signal,0) * 18px) rgba(61,220,132,0.16)}
 .flight-track{position:absolute;top:50%;left:50%;height:1px;border-top:1px dashed rgba(61,220,132,0.18);transform-origin:left center;opacity:0.45}
 .track-1{width:180px;transform:translate(-210px,-80px) rotate(-26deg)}
 .track-2{width:210px;transform:translate(-120px,180px) rotate(-60deg)}
 .track-3{width:165px;transform:translate(170px,100px) rotate(148deg)}
-.flight-1{animation:orbit-one 30s linear infinite}
-.flight-2{animation:orbit-two 38s linear infinite}
-.flight-3{animation:orbit-three 34s linear infinite}
+.flight-1{animation:orbit-one 34s linear infinite}
+.flight-2{animation:orbit-two 42s linear infinite}
+.flight-3{animation:orbit-three 38s linear infinite}
 @keyframes orbit-one{0%{transform:translate(-210px,-80px)}25%{transform:translate(-40px,-200px)}50%{transform:translate(170px,-100px)}75%{transform:translate(110px,120px)}100%{transform:translate(-210px,-80px)}}
 @keyframes orbit-two{0%{transform:translate(-120px,180px)}25%{transform:translate(-200px,10px)}50%{transform:translate(-20px,-150px)}75%{transform:translate(180px,-30px)}100%{transform:translate(-120px,180px)}}
 @keyframes orbit-three{0%{transform:translate(170px,100px)}25%{transform:translate(40px,210px)}50%{transform:translate(-180px,70px)}75%{transform:translate(-40px,-120px)}100%{transform:translate(170px,100px)}}
@@ -137,4 +137,608 @@ h2{font-family:var(--sans);font-size:32px;font-weight:600;color:var(--text-brigh
 .timeline-bullets li::before{content:'';position:absolute;left:0;top:12px;width:6px;height:1px;background:var(--green);opacity:0.5}
 
 .projects-grid{display:grid;gap:16px}
-.project-card{background:var(--bg-carë­;¶‰žËkºwµç
+.project-card{background:var(--bg-card);border:1px solid var(--border);border-radius:4px;padding:28px;transition:all 0.35s ease;position:relative;overflow:hidden}
+.project-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:linear-gradient(to bottom,var(--green),transparent);opacity:0;transition:opacity 0.35s}
+.project-card:hover,.project-card.is-open{background:var(--bg-card-hover);border-color:var(--green-mid)}
+.project-card:hover::before,.project-card.is-open::before{opacity:1}
+.project-label{font-family:var(--mono);font-size:10px;color:var(--text-dim);letter-spacing:2px;text-transform:uppercase;margin-bottom:8px}
+.project-name{font-family:var(--sans);font-size:20px;font-weight:600;color:var(--text-bright);margin-bottom:4px}
+.project-tech{font-family:var(--mono);font-size:12px;color:var(--green);margin-bottom:14px;opacity:0.7}
+.project-desc{font-size:14px;font-weight:300;color:var(--text-mid);line-height:1.7}
+.project-actions{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:18px}
+.project-toggle{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--green-mid);background:var(--green-dim);color:var(--green);padding:10px 12px;border-radius:3px;font-family:var(--mono);font-size:10px;letter-spacing:1.6px;text-transform:uppercase;cursor:pointer;transition:background 0.25s ease,color 0.25s ease,border-color 0.25s ease}
+.project-toggle:hover,.project-toggle:focus-visible{background:rgba(61,220,132,0.14)}
+.project-state{font-family:var(--mono);font-size:10px;color:var(--text-dim);letter-spacing:1.5px;text-transform:uppercase}
+.project-detail{max-height:0;overflow:hidden;opacity:0;transition:max-height 0.35s ease,opacity 0.35s ease;margin-top:0}
+.project-card.is-open .project-detail{max-height:240px;opacity:1;margin-top:18px}
+.project-detail-list{list-style:none;padding:0;display:grid;gap:10px}
+.project-detail-list li{font-size:14px;color:var(--text-mid);padding-left:18px;position:relative}
+.project-detail-list li::before{content:'';position:absolute;left:0;top:11px;width:6px;height:1px;background:var(--green);opacity:0.65}
+
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.skill-group{background:var(--bg-card);border:1px solid var(--border);border-radius:4px;padding:22px;transition:border-color 0.3s,transform 0.3s,background 0.3s;cursor:pointer;text-align:left}
+.skill-group:hover,.skill-group:focus-visible,.skill-group.is-active{border-color:var(--green-mid);transform:translateY(-2px);background:var(--bg-card-hover)}
+.skill-group-title{font-family:var(--mono);font-size:10px;color:var(--green);letter-spacing:2.5px;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.skill-group-title::before{content:'';width:4px;height:4px;background:var(--green);border-radius:50%;box-shadow:0 0 4px var(--green-glow)}
+.skill-list{display:flex;flex-wrap:wrap;gap:6px}
+.skill-chip{font-family:var(--mono);font-size:11px;color:var(--text-mid);background:var(--green-faint);padding:5px 10px;border-radius:2px;border:1px solid var(--border)}
+.skill-detail-panel{margin-top:18px;padding:22px;border:1px solid var(--green-mid);background:linear-gradient(135deg,rgba(61,220,132,0.08),rgba(17,23,32,0.95));border-radius:4px;min-height:164px}
+.skill-detail-label{font-family:var(--mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--green);margin-bottom:10px}
+.skill-detail-title{font-size:24px;color:var(--text-bright);margin-bottom:10px}
+.skill-detail-copy{font-size:15px;color:var(--text-mid);max-width:580px}
+.skill-detail-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.skill-detail-tags span{font-family:var(--mono);font-size:10px;letter-spacing:1.4px;text-transform:uppercase;padding:7px 9px;border:1px solid var(--border);border-radius:2px;color:var(--text-bright);background:rgba(8,11,17,0.35)}
+
+.certs-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+.cert-badge{display:flex;align-items:center;gap:12px;padding:16px 18px;background:var(--bg-card);border:1px solid var(--border);border-radius:4px}
+.cert-icon{width:8px;height:8px;background:var(--green);border-radius:50%;flex-shrink:0;box-shadow:0 0 6px var(--green-glow)}
+.cert-text{font-family:var(--mono);font-size:12px;color:var(--text-mid);line-height:1.4}
+
+.edu-list{list-style:none}
+.edu-item{padding:16px 0;border-bottom:1px solid var(--border)}
+.edu-item:last-child{border-bottom:none}
+.edu-header{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px}
+.edu-title{font-family:var(--sans);font-size:16px;font-weight:500;color:var(--text-bright)}
+.edu-date{font-family:var(--mono);font-size:11px;color:var(--text-dim);letter-spacing:1px}
+.edu-school{font-family:var(--mono);font-size:12px;color:var(--green);margin-top:2px;opacity:0.7}
+
+.contact-grid{display:grid;grid-template-columns:1.15fr 0.85fr;gap:16px}
+.contact-panel{background:linear-gradient(180deg,rgba(17,23,32,0.96),rgba(11,16,24,0.94));border:1px solid var(--border);border-radius:4px;padding:28px;position:relative;overflow:hidden}
+.contact-panel::before{content:'';position:absolute;top:0;left:0;width:100%;height:2px;background:linear-gradient(90deg,var(--green),transparent)}
+.contact-kicker{font-family:var(--mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--green);margin-bottom:12px}
+.contact-title{font-size:30px;color:var(--text-bright);margin-bottom:12px}
+.contact-copy{font-size:15px;color:var(--text-mid);max-width:560px}
+.contact-links{display:grid;gap:12px;margin-top:24px}
+.contact-link{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px 16px;border:1px solid var(--border);border-radius:4px;text-decoration:none;background:rgba(8,11,17,0.42);transition:border-color 0.25s ease,transform 0.25s ease,background 0.25s ease}
+.contact-link:hover,.contact-link:focus-visible{border-color:var(--green-mid);transform:translateY(-2px);background:rgba(17,23,32,0.78)}
+.contact-link-label{font-family:var(--mono);font-size:10px;color:var(--green);letter-spacing:1.7px;text-transform:uppercase}
+.contact-link-value{font-size:15px;color:var(--text-bright)}
+.contact-link-arrow{font-family:var(--mono);font-size:11px;color:var(--text-dim);letter-spacing:1.7px;text-transform:uppercase}
+.contact-side{display:grid;gap:16px}
+.command-card{padding:20px;border:1px solid var(--border);border-radius:4px;background:rgba(17,23,32,0.92)}
+.command-label{font-family:var(--mono);font-size:10px;letter-spacing:1.8px;text-transform:uppercase;color:var(--green);margin-bottom:8px}
+.command-value{font-size:15px;color:var(--text-bright)}
+.command-note{font-size:14px;color:var(--text-mid);margin-top:8px}
+.download-button{display:inline-flex;align-items:center;justify-content:center;padding:12px 16px;margin-top:20px;border:1px solid var(--green-mid);border-radius:4px;background:var(--green-dim);text-decoration:none;font-family:var(--mono);font-size:11px;letter-spacing:1.8px;text-transform:uppercase;color:var(--green);transition:transform 0.25s ease,border-color 0.25s ease,background 0.25s ease}
+.download-button:hover,.download-button:focus-visible{transform:translateY(-2px);background:rgba(61,220,132,0.14)}
+
+footer{padding:40px 0 60px;text-align:center}
+.footer-text{font-family:var(--mono);font-size:11px;color:var(--text-dim);letter-spacing:2px}
+
+@keyframes blink{50%{opacity:0}}
+
+@media(max-width:780px){
+  .stats-strip{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .contact-grid{grid-template-columns:1fr}
+}
+
+@media(max-width:640px){
+  h1{font-size:38px}
+  .hero{padding:130px 0 44px}
+  section{padding:48px 0}
+  .nav-links{gap:16px}
+  .nav-links a{font-size:10px;letter-spacing:1px}
+  .timeline-header{flex-direction:column;gap:2px}
+  .status-bar{font-size:9px}
+  .radar-wrap{width:460px;height:460px;right:-120px;top:-30px}
+  .hero-actions,.project-actions{flex-direction:column;align-items:flex-start}
+  .stats-strip{grid-template-columns:1fr}
+  .radar-status{bottom:52px;width:max-content;max-width:88vw}
+}
+
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none !important;transition:none !important}
+  .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<div class="radar-wrap" id="radar-wrap" aria-hidden="true">
+  <div class="radar-grid"></div>
+  <svg class="radar-route" viewBox="0 0 760 760" xmlns="http://www.w3.org/2000/svg">
+    <path d="M145 520 C 245 355, 370 300, 560 180" />
+    <path d="M122 356 C 256 250, 360 205, 605 250" />
+    <path d="M210 615 C 330 520, 430 470, 620 525" />
+  </svg>
+  <div class="radar-ring ring-1"></div>
+  <div class="radar-ring ring-2"></div>
+  <div class="radar-ring ring-3"></div>
+  <div class="radar-ring ring-4"></div>
+  <div class="radar-ring ring-5"></div>
+  <div class="radar-cross"></div>
+  <div class="radar-diag diag-1"></div>
+  <div class="radar-diag diag-2"></div>
+  <div class="radar-sweep"></div>
+  <div class="flight-layer">
+    <div class="flight-track track-1"></div>
+    <div class="flight-track track-2"></div>
+    <div class="flight-track track-3"></div>
+    <div class="flight flight-1"><div class="flight-point"></div><div class="flight-label">AH-01 / OKC</div></div>
+    <div class="flight flight-2"><div class="flight-point"></div><div class="flight-label">TRACK / ACTIVE</div></div>
+    <div class="flight flight-3"><div class="flight-point"></div><div class="flight-label">FIELD / READY</div></div>
+  </div>
+  <div class="radar-pulse" id="radar-pulse"></div>
+  <div class="radar-dot dot-1"></div>
+  <div class="radar-dot dot-2"></div>
+  <div class="radar-dot dot-3"></div>
+  <div class="radar-dot dot-4"></div>
+  <div class="radar-dot dot-5"></div>
+  <div class="radar-label label-1">25nm</div>
+  <div class="radar-label label-2">50nm</div>
+  <div class="radar-label label-3">75nm</div>
+  <div class="radar-label label-4">100nm</div>
+  <div class="radar-status"><span id="radar-status-text">Tracking 03 targets</span></div>
+</div>
+
+<div class="topo-bg" aria-hidden="true">
+<svg viewBox="0 0 1000 1000" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+  <g fill="none" stroke="rgba(255,255,255,0.04)" stroke-width="0.8">
+    <path d="M0,200 Q150,180 300,220 T600,190 T900,230 L1000,210"/>
+    <path d="M0,300 Q100,320 250,290 T550,310 T850,280 L1000,300"/>
+    <path d="M0,420 Q140,400 280,440 T580,410 T880,450 L1000,430"/>
+    <path d="M0,540 Q120,560 260,530 T560,550 T860,520 L1000,540"/>
+    <path d="M0,680 Q160,700 310,670 T610,690 T910,660 L1000,680"/>
+  </g>
+</svg>
+</div>
+
+<div class="page-wrap">
+  <nav>
+    <div class="nav-logo">AH / RESUME</div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Work</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="container hero reveal is-visible">
+    <div class="hero-coord">KOKC / 35.47N / 97.52W</div>
+    <div class="hero-ident">ABIGAIL H. <span class="blink">_</span></div>
+    <h1>Abigail H.</h1>
+    <p class="hero-sub">Logistics technician with field support experience, supply chain readiness, and a growing hands-on background in cybersecurity and IT systems.</p>
+    <div class="hero-actions">
+      <a class="hero-button hero-button-primary" href="#projects">View Projects</a>
+      <a class="hero-button hero-button-secondary" href="#skills">Explore Skills</a>
+      <a class="hero-button hero-button-tertiary" href="https://github.com/A-hurdd" target="_blank" rel="noreferrer">View GitHub</a>
+    </div>
+    <div class="stats-strip reveal">
+      <article class="stat-card reveal reveal-stagger" style="--delay: 0ms;">
+        <div class="stat-value" data-target="3">00</div>
+        <div class="stat-label">Roles Held</div>
+        <p class="stat-note">From customer-facing work to logistics operations with real field support.</p>
+      </article>
+      <article class="stat-card reveal reveal-stagger" style="--delay: 90ms;">
+        <div class="stat-value" data-target="3">00</div>
+        <div class="stat-label">Certifications</div>
+        <p class="stat-note">Practical credentials that support both warehouse and technical environments.</p>
+      </article>
+      <article class="stat-card reveal reveal-stagger" style="--delay: 180ms;">
+        <div class="stat-value" data-target="1">00</div>
+        <div class="stat-label">Active Build</div>
+        <p class="stat-note">An off-grid mobile terminal designed for reliability without internet access.</p>
+      </article>
+      <article class="stat-card reveal reveal-stagger" style="--delay: 270ms;">
+        <div class="stat-value" data-target="24" data-suffix="/7">00</div>
+        <div class="stat-label">Field Readiness</div>
+        <p class="stat-note">A working style built around urgency, adaptability, and keeping systems moving.</p>
+      </article>
+    </div>
+  </div>
+
+  <div class="container">
+    <section id="about" class="reveal">
+      <div class="section-marker">01 / About</div>
+      <h2>Background</h2>
+      <div class="divider"></div>
+      <p class="about-text">I work at EMSA's Western Division as a Logistics Technician, keeping ambulances stocked with supplies, troubleshooting medical equipment in the field, and handling biohazard cleanup after calls. Before EMS, I worked my way up from guest service rep to shift lead at Nothing Bundt Cakes in under a year.</p>
+      <br>
+      <p class="about-text">On my own time I study cybersecurity through hands-on courses and personal projects. I like building things that work in harsh conditions with limited resources. I'm looking for my next opportunity in supply chain, logistics, or IT.</p>
+    </section>
+  </div>
+
+  <div class="container">
+    <section id="experience" class="reveal">
+      <div class="section-marker">02 / Experience</div>
+      <h2>Work History</h2>
+      <div class="divider"></div>
+      <div class="timeline">
+        <div class="timeline-item reveal reveal-stagger" style="--delay: 0ms;">
+          <div class="timeline-header">
+            <span class="timeline-title">Logistics Technician (VST)</span>
+            <span class="timeline-date">Jul 2025 - Present</span>
+          </div>
+          <div class="timeline-company">EMSA Oklahoma Western Division / Oklahoma City, OK</div>
+          <ul class="timeline-bullets">
+            <li>Receive, stock, issue, and inventory medical supplies and equipment for ambulance fleet; operate forklifts for warehouse management</li>
+            <li>Respond to field crews on scene or roadside to deliver critical supplies like epinephrine and BVMs during emergencies</li>
+            <li>Troubleshoot and repair medical equipment including Lifepak 35 monitors, portable oxygen systems, and regulators</li>
+            <li>Coordinate vehicle swaps when ambulance units can't be repaired on-site</li>
+            <li>Perform biohazard cleanup and decontamination of vehicles and equipment following safety protocols</li>
+          </ul>
+        </div>
+        <div class="timeline-item reveal reveal-stagger" style="--delay: 100ms;">
+          <div class="timeline-header">
+            <span class="timeline-title">Barista</span>
+            <span class="timeline-date">Dec 2024 - Jul 2025</span>
+          </div>
+          <div class="timeline-company">Dutch Bros Coffee / Oklahoma City, OK</div>
+          <ul class="timeline-bullets">
+            <li>Delivered fast, accurate service managing multiple orders in a high-traffic drive-through environment</li>
+          </ul>
+        </div>
+        <div class="timeline-item reveal reveal-stagger" style="--delay: 200ms;">
+          <div class="timeline-header">
+            <span class="timeline-title">Shift Lead</span>
+            <span class="timeline-date">Nov 2023 - Nov 2024</span>
+          </div>
+          <div class="timeline-company">Nothing Bundt Cakes / Oklahoma City, OK</div>
+          <ul class="timeline-bullets">
+            <li>Promoted from Guest Service Rep to Key Holder to Shift Lead within months</li>
+            <li>Cross-trained in all operations: baking, frosting, decorating, front counter, and management</li>
+            <li>Managed local marketing at community events and maintained inventory accuracy</li>
+            <li>Trained and mentored new team members</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div class="container">
+    <section id="projects" class="reveal">
+      <div class="section-marker">03 / Projects</div>
+      <h2>What I Build</h2>
+      <div class="divider"></div>
+      <div class="projects-grid">
+        <article class="project-card reveal reveal-stagger" style="--delay: 0ms;">
+          <div class="project-label">Personal Project</div>
+          <div class="project-name">Off-Grid Mobile Terminal</div>
+          <div class="project-tech">Termux / Android / Local Inference / SQLite</div>
+          <p class="project-desc">Converted a spare phone into a fully offline reference and problem-solving terminal using Termux. Runs local inference with a custom database of information. Built for scenarios with no internet access, designed to be a self-contained tool that works anywhere.</p>
+          <div class="project-actions">
+            <button class="project-toggle" type="button" aria-expanded="false">Open Build Details</button>
+            <span class="project-state">Interactive briefing</span>
+          </div>
+          <div class="project-detail" hidden>
+            <ul class="project-detail-list">
+              <li>Designed for low-connectivity or zero-connectivity environments where quick local access matters.</li>
+              <li>Blends practical troubleshooting, data storage, and lightweight local tooling into one portable device.</li>
+              <li>Shows hands-on interest in systems thinking, resilience, and applied technical problem solving.</li>
+            </ul>
+          </div>
+        </article>
+        <article class="project-card reveal reveal-stagger" style="--delay: 120ms;">
+          <div class="project-label">Coming Soon</div>
+          <div class="project-name">Next Build</div>
+          <div class="project-tech">TBD</div>
+          <p class="project-desc">Placeholder for the next project. As I build more things, they'll show up here.</p>
+          <div class="project-actions">
+            <span class="project-state">Queued for deployment</span>
+          </div>
+        </article>
+      </div>
+    </section>
+  </div>
+
+  <div class="container">
+    <section id="skills" class="reveal">
+      <div class="section-marker">04 / Skills</div>
+      <h2>Toolkit</h2>
+      <div class="divider"></div>
+      <div class="skills-grid" role="tablist" aria-label="Skill categories">
+        <button class="skill-group is-active reveal reveal-stagger" style="--delay: 0ms;" type="button" data-skill-title="Logistics" data-skill-copy="I keep fast-moving inventory accurate and available, whether that means stocking ambulances, tracking supplies, or supporting time-sensitive operations without losing detail." data-skill-tags="Inventory Management|Forklift Operation|Supply Distribution|Tracking Systems|Warehouse Ops" aria-pressed="true">
+          <div class="skill-group-title">Logistics</div>
+          <div class="skill-list">
+            <span class="skill-chip">Inventory Management</span>
+            <span class="skill-chip">Forklift Operation</span>
+            <span class="skill-chip">Supply Distribution</span>
+            <span class="skill-chip">Tracking Systems</span>
+            <span class="skill-chip">Warehouse Ops</span>
+          </div>
+        </button>
+        <button class="skill-group reveal reveal-stagger" style="--delay: 80ms;" type="button" data-skill-title="Equipment" data-skill-copy="I work directly with field equipment and vehicle support systems, focusing on reliability, quick troubleshooting, and practical fixes when time matters." data-skill-tags="Lifepak 35|O2 Systems|Fleet Maintenance|Hardware Repair" aria-pressed="false">
+          <div class="skill-group-title">Equipment</div>
+          <div class="skill-list">
+            <span class="skill-chip">Lifepak 35</span>
+            <span class="skill-chip">O2 Systems</span>
+            <span class="skill-chip">Fleet Maintenance</span>
+            <span class="skill-chip">Hardware Repair</span>
+          </div>
+        </button>
+        <button class="skill-group reveal reveal-stagger" style="--delay: 160ms;" type="button" data-skill-title="Cyber / IT" data-skill-copy="My IT focus is hands-on and systems-oriented, built through coursework, self-study, and practical experiments with Linux, networking, and off-grid tools." data-skill-tags="CompTIA ITF+|Networking|Linux / Termux|Cybersecurity|IT Operations" aria-pressed="false">
+          <div class="skill-group-title">Cyber / IT</div>
+          <div class="skill-list">
+            <span class="skill-chip">CompTIA ITF+</span>
+            <span class="skill-chip">Networking</span>
+            <span class="skill-chip">Linux / Termux</span>
+            <span class="skill-chip">Cybersecurity</span>
+            <span class="skill-chip">IT Operations</span>
+          </div>
+        </button>
+        <button class="skill-group reveal reveal-stagger" style="--delay: 240ms;" type="button" data-skill-title="Software" data-skill-copy="I am comfortable working in terminals, Linux and Ubuntu environments, VS Code, and virtual machines for hands-on technical work and troubleshooting." data-skill-tags="Terminals|Linux / Ubuntu|VS Code|Virtual Machines" aria-pressed="false">
+          <div class="skill-group-title">Software</div>
+          <div class="skill-list">
+            <span class="skill-chip">Terminals</span>
+            <span class="skill-chip">Linux / Ubuntu</span>
+            <span class="skill-chip">VS Code</span>
+            <span class="skill-chip">Virtual Machines</span>
+          </div>
+        </button>
+      </div>
+      <div class="skill-detail-panel reveal" id="skill-detail-panel" aria-live="polite">
+        <div class="skill-detail-label">Selected Category</div>
+        <div class="skill-detail-title" id="skill-detail-title">Logistics</div>
+        <p class="skill-detail-copy" id="skill-detail-copy">I keep fast-moving inventory accurate and available, whether that means stocking ambulances, tracking supplies, or supporting time-sensitive operations without losing detail.</p>
+        <div class="skill-detail-tags" id="skill-detail-tags">
+          <span>Inventory Management</span>
+          <span>Forklift Operation</span>
+          <span>Supply Distribution</span>
+          <span>Tracking Systems</span>
+          <span>Warehouse Ops</span>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div class="container">
+    <section class="reveal">
+      <div class="section-marker">05 / Credentials</div>
+      <h2>Certifications</h2>
+      <div class="divider"></div>
+      <div class="certs-row">
+        <div class="cert-badge reveal reveal-stagger" style="--delay: 0ms;"><div class="cert-icon"></div><span class="cert-text">Forklift Operator</span></div>
+        <div class="cert-badge reveal reveal-stagger" style="--delay: 80ms;"><div class="cert-icon"></div><span class="cert-text">EVOC Certified</span></div>
+        <div class="cert-badge reveal reveal-stagger" style="--delay: 160ms;"><div class="cert-icon"></div><span class="cert-text">CompTIA ITF+</span></div>
+      </div>
+      <h2 style="margin-top:48px;">Education</h2>
+      <div class="divider"></div>
+      <ul class="edu-list">
+        <li class="edu-item">
+          <div class="edu-header">
+            <span class="edu-title">Cybersecurity Certificates (Ops-102, 201, 301)</span>
+            <span class="edu-date">Sep 2023 - Aug 2024</span>
+          </div>
+          <div class="edu-school">CodeFellows / Seattle, WA (Remote)</div>
+        </li>
+        <li class="edu-item">
+          <div class="edu-header">
+            <span class="edu-title">Coursework in Computer Science</span>
+            <span class="edu-date">Attended</span>
+          </div>
+          <div class="edu-school">Oklahoma City Community College (OCCC)</div>
+        </li>
+      </ul>
+    </section>
+  </div>
+
+  <div class="container">
+    <section id="contact" class="reveal">
+      <div class="section-marker">06 / Contact</div>
+      <h2>Command Center</h2>
+      <div class="divider"></div>
+      <div class="contact-grid">
+        <div class="contact-panel reveal reveal-stagger" style="--delay: 0ms;">
+          <div class="contact-kicker">Open Channel</div>
+          <div class="contact-title">Ready for the next mission.</div>
+          <p class="contact-copy">If you want to talk about logistics, operations, or technical work, this section is built to make that easy. Reach out through the channel that fits best.</p>
+          <div class="contact-links">
+            <a class="contact-link" href="mailto:abigailmenasco@gmail.com">
+              <div>
+                <div class="contact-link-label">Email</div>
+                <div class="contact-link-value">abigailmenasco@gmail.com</div>
+              </div>
+              <div class="contact-link-arrow">Transmit</div>
+            </a>
+            <a class="contact-link" href="https://github.com/A-hurdd" target="_blank" rel="noreferrer">
+              <div>
+                <div class="contact-link-label">GitHub</div>
+                <div class="contact-link-value">github.com/A-hurdd</div>
+              </div>
+              <div class="contact-link-arrow">Open</div>
+            </a>
+          </div>
+          <a class="download-button" href="./AbigailH-Resume-Dark.pdf" target="_blank" rel="noreferrer">Download Resume</a>
+        </div>
+        <div class="contact-side reveal reveal-stagger" style="--delay: 120ms;">
+          <div class="command-card">
+            <div class="command-label">Location</div>
+            <div class="command-value">Oklahoma City, OK</div>
+            <p class="command-note">Central base with experience supporting field operations in fast-moving environments.</p>
+          </div>
+          <div class="command-card">
+            <div class="command-label">Availability</div>
+            <div class="command-value">Open to logistics, supply chain, and IT roles</div>
+            <p class="command-note">Interested in practical work where reliability, systems thinking, and adaptability matter.</p>
+          </div>
+          <div class="command-card">
+            <div class="command-label">Status</div>
+            <div class="command-value">Open to new opportunities</div>
+            <p class="command-note">Interested in logistics, operations, and technical roles where reliability and problem solving matter.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div class="container">
+    <footer class="reveal">
+      <div class="footer-text">Abigail H. / Oklahoma City, OK</div>
+    </footer>
+  </div>
+</div>
+
+<div class="status-bar">
+  <span><span class="status-dot"></span>SYS NOMINAL</span>
+  <span>KOKC &middot; 35.47N 97.52W</span>
+  <span>AH-001</span>
+</div>
+
+<script>
+const revealItems = document.querySelectorAll('.reveal');
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+if (!prefersReducedMotion && 'IntersectionObserver' in window) {
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        revealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.16, rootMargin: '0px 0px -40px 0px' });
+
+  revealItems.forEach((item) => {
+    if (!item.classList.contains('is-visible')) {
+      revealObserver.observe(item);
+    }
+  });
+} else {
+  revealItems.forEach((item) => item.classList.add('is-visible'));
+}
+
+const projectCards = document.querySelectorAll('.project-card');
+projectCards.forEach((card) => {
+  const toggle = card.querySelector('.project-toggle');
+  const detail = card.querySelector('.project-detail');
+
+  if (!toggle || !detail) {
+    return;
+  }
+
+  toggle.addEventListener('click', () => {
+    const isOpen = card.classList.toggle('is-open');
+    detail.hidden = !isOpen;
+    toggle.setAttribute('aria-expanded', String(isOpen));
+    toggle.textContent = isOpen ? 'Hide Build Details' : 'Open Build Details';
+  });
+});
+
+const skillButtons = document.querySelectorAll('.skill-group');
+const skillTitle = document.getElementById('skill-detail-title');
+const skillCopy = document.getElementById('skill-detail-copy');
+const skillTags = document.getElementById('skill-detail-tags');
+
+function updateSkillPanel(button) {
+  skillButtons.forEach((item) => {
+    item.classList.remove('is-active');
+    item.setAttribute('aria-pressed', 'false');
+  });
+
+  button.classList.add('is-active');
+  button.setAttribute('aria-pressed', 'true');
+  skillTitle.textContent = button.dataset.skillTitle;
+  skillCopy.textContent = button.dataset.skillCopy;
+
+  skillTags.innerHTML = '';
+  button.dataset.skillTags.split('|').forEach((tag) => {
+    const chip = document.createElement('span');
+    chip.textContent = tag;
+    skillTags.appendChild(chip);
+  });
+}
+
+skillButtons.forEach((button) => {
+  button.addEventListener('click', () => updateSkillPanel(button));
+  button.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      updateSkillPanel(button);
+    }
+  });
+});
+
+const statValues = document.querySelectorAll('.stat-value');
+const statObserver = !prefersReducedMotion && 'IntersectionObserver' in window ? new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (!entry.isIntersecting) return;
+    const element = entry.target;
+    const target = Number(element.dataset.target || 0);
+    const suffix = element.dataset.suffix || '';
+    const duration = 1100;
+    const start = performance.now();
+
+    function tick(now) {
+      const progress = Math.min((now - start) / duration, 1);
+      const value = Math.round(progress * target);
+      element.textContent = String(value).padStart(2, '0') + suffix;
+      if (progress < 1) {
+        requestAnimationFrame(tick);
+      }
+    }
+
+    requestAnimationFrame(tick);
+    statObserver.unobserve(element);
+  });
+}, { threshold: 0.45 }) : null;
+
+statValues.forEach((item) => {
+  if (statObserver) {
+    statObserver.observe(item);
+  } else {
+    item.textContent = String(item.dataset.target || '0').padStart(2, '0') + (item.dataset.suffix || '');
+  }
+});
+
+const radarWrap = document.getElementById('radar-wrap');
+const radarPulse = document.getElementById('radar-pulse');
+const radarStatusText = document.getElementById('radar-status-text');
+const flights = Array.from(document.querySelectorAll('.flight'));
+const statusMessages = [
+  'Tracking 03 targets',
+  'Signal lock stable',
+  'Flight paths nominal',
+  'Sweep synced to sector',
+  'Field systems active'
+];
+let statusIndex = 0;
+
+function triggerPulse() {
+  if (!radarPulse) return;
+  const flight = flights[Math.floor(Math.random() * flights.length)];
+  const rect = radarWrap.getBoundingClientRect();
+  const flightRect = flight.getBoundingClientRect();
+  const x = flightRect.left - rect.left + flightRect.width / 2;
+  const y = flightRect.top - rect.top + flightRect.height / 2;
+  radarPulse.style.left = x + 'px';
+  radarPulse.style.top = y + 'px';
+  radarPulse.classList.remove('is-active');
+  void radarPulse.offsetWidth;
+  radarPulse.classList.add('is-active');
+}
+
+if (!prefersReducedMotion) {
+  setInterval(() => {
+    triggerPulse();
+    statusIndex = (statusIndex + 1) % statusMessages.length;
+    radarStatusText.textContent = statusMessages[statusIndex];
+  }, 3800);
+
+  window.addEventListener('mousemove', (event) => {
+    const x = (event.clientX / window.innerWidth - 0.5) * 6;
+    const y = (event.clientY / window.innerHeight - 0.5) * 6;
+    radarWrap.style.transform = `translate3d(${x}px, ${y}px, 0)`;
+  });
+}
+
+const navLinks = document.querySelectorAll('.nav-links a');
+const sections = Array.from(document.querySelectorAll('section[id]'));
+if ('IntersectionObserver' in window) {
+  const navObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      navLinks.forEach((link) => {
+        link.classList.toggle('is-active', link.getAttribute('href') === `#${entry.target.id}`);
+      });
+    });
+  }, { rootMargin: '-35% 0px -55% 0px', threshold: 0.01 });
+
+  sections.forEach((section) => navObserver.observe(section));
+}
+</script>
+
+</body>
+</html>
